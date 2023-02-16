@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+    app:
+        build: .
+        volumes:
+            - .:/app
+        working_dir: /app
+        user: 1000:1000
+        ports:
+            - "6055:8100"
+        command: ionic serve --host=0.0.0.0
+        container_name: fastjob-frontend-app

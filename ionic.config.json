@@ -1,0 +1,7 @@
+{
+    "name": "fastjob-frontend",
+    "integrations": {
+        "capacitor": {}
+    },
+    "type": "angular"
+}
