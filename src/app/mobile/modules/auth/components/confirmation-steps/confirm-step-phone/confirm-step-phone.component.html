@@ -1,0 +1,17 @@
+<div class="grid gap-4">
+    <tui-input-phone [formControl]="control">
+        Введите ваш номер телефона
+        <input
+            tuiTextfield
+            autocomplete="tel"
+        />
+    </tui-input-phone>
+
+    <div class="flex justify-center">
+        <button tuiButton
+                type="button"
+                (click)="nextStep()"
+                [disabled]="nextButtonDisabled()"
+        >Далее</button>
+    </div>
+</div>

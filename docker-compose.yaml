@@ -1,7 +1,7 @@
 version: "3.7"
 
 services:
-    app:
+    ionic:
         build: .
         volumes:
             - .:/app
@@ -9,5 +9,16 @@ services:
         user: 1000:1000
         ports:
             - "6055:8100"
-        command: ionic serve --host=0.0.0.0
-        container_name: fastjob-frontend-app
+        command: ionic serve fastjob-ionic --host=0.0.0.0
+        container_name: fastjob-frontend-ionic
+
+    mobile:
+        build: .
+        volumes:
+            - .:/app
+        working_dir: /app
+        user: 1000:1000
+        ports:
+            - "6056:4200"
+        command: ng serve fastjob-mobile --host=0.0.0.0
+        container_name: fastjob-frontend-mobile

@@ -1,0 +1,35 @@
+<div class="h-screen justify-evenly grid content-center">
+
+    <div></div>
+
+    <div class="flex m-auto justify-center items-center">
+        <div class="m-auto justify-center">
+            <form [formGroup]="formGroup">
+                <div class="grid gap-2">
+                    <div>
+                        <tui-input formControlName="firstName">
+                            Введите ваше имя
+                            <input tuiTextfield>
+                        </tui-input>
+                    </div>
+
+                    <div>
+                        <tui-input-date formControlName="birthDate">
+                            Укажите дату рождения
+                        </tui-input-date>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="justify-center flex mt-10">
+        <button tuiButton
+                type="button"
+                class="next-button"
+                (click)="submit()"
+                *ngIf="formGroup.valid"
+        >Далее</button>
+    </div>
+
+</div>
