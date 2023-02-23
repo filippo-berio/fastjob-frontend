@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DateValidators } from '../../../../shared/validators/date.validators';
-import { RegistrationFacade } from '../../../facade/registration.facade';
+import { DateValidators } from '../../../../../core/shared/validators/date.validators';
+import { RegistrationFacade } from '../../../../../core/profile/facade/registration.facade';
 
 @Component({
   selector: 'fj-register-profile',

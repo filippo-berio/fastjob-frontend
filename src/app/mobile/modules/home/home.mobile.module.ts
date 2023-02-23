@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AuthInterceptor } from '../../../core/auth/core/interceptors/auth.interceptor';
 import { AuthModule } from '../../../core/auth/auth.module';
 import { HomeModule } from '../../../core/home/home.module';
+import { MenuMobileModule } from '../menu/menu-mobile.module';
 import { HomeComponent } from './components/home/home.component';
 
 
@@ -24,6 +25,7 @@ const routes = [
         CommonModule,
         RouterModule.forChild(routes),
         AuthModule,
+        MenuMobileModule,
     ],
     providers: [
         {
