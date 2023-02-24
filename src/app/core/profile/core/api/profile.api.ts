@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
 import { SuccessResponseInterface } from '../../../shared/data/interfaces/success-response.interface';
 import { ProfileInterface } from '../data/profile.interface';
@@ -28,6 +28,16 @@ export class ProfileApi {
         return this.http.post<SuccessResponseInterface>(this.backendUrl + '/api/profile/register', {
             firstName,
             birthDate
+        })
+    }
+
+    update(profile: ProfileInterface): Observable<SuccessResponseInterface> {
+        return this.http.put<SuccessResponseInterface>(this.backendUrl + '/api/profile/update', {
+            description: profile.description,
+            lastName: profile.lastName,
+            categoryIds: profile.categories.map(c => c.id),
+            cityId: profile.city?.id,
+            firstName: profile.firstName,
         })
     }
 }

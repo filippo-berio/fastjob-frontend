@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DateValidators } from '../../../../../core/shared/validators/date.validators';
+import { FormGroup } from '@angular/forms';
 import { RegistrationFacade } from '../../../../../core/profile/facade/registration.facade';
 
 @Component({
@@ -17,18 +16,7 @@ export class RegisterProfileComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.formGroup = new FormGroup({
-            firstName: new FormControl(null, [
-                Validators.required,
-                Validators.minLength(2),
-                Validators.maxLength(64),
-            ]),
-            birthDate: new FormControl(null, [
-                Validators.required,
-                DateValidators.date,
-                DateValidators.yearsPassed(18),
-            ])
-        });
+        this.formGroup = this.facade.buildForm();
     }
 
     submit() {
@@ -37,9 +25,6 @@ export class RegisterProfileComponent implements OnInit {
             return;
         }
 
-        this.facade.register(
-            this.formGroup.get('firstName')!.value,
-            this.formGroup.get('birthDate')!.value,
-        );
+        this.facade.register();
     }
 }

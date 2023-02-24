@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 import { Route, RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 import { TuiButtonModule } from '@taiga-ui/core';
 import { TuiInputDateModule, TuiInputModule } from '@taiga-ui/kit';
 import { NoProfileGuard } from '../../../core/profile/core/guards/no-profile.guard';
 import { ProfileGuard } from '../../../core/profile/core/guards/profile.guard';
 import { MenuMobileModule } from '../menu/menu-mobile.module';
+import { SharedMobileModule } from '../shared/shared-mobile.module';
+import { ProfileLayoutComponent } from './components/profile-layout/profile-layout.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterProfileComponent } from './components/register-profile/register-profile.component';
 
@@ -27,7 +31,8 @@ const routes: Route[] = [
 @NgModule({
     declarations: [
         RegisterProfileComponent,
-        ProfileComponent
+        ProfileComponent,
+        ProfileLayoutComponent,
     ],
     imports: [
         CommonModule,
@@ -37,6 +42,9 @@ const routes: Route[] = [
         TuiInputDateModule,
         TuiButtonModule,
         MenuMobileModule,
+        IonicModule,
+        SharedMobileModule,
+        MatDialogModule,
     ]
 })
 export class ProfileMobileModule {

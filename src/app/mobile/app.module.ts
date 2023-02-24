@@ -1,6 +1,7 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { TuiDialogModule } from '@taiga-ui/core';
 import { AuthInterceptor } from '../core/auth/core/interceptors/auth.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
+        TuiDialogModule,
     ],
     providers: [
         {

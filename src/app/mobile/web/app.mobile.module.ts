@@ -11,7 +11,9 @@ import { AppComponent } from './app.component';
         AppModule,
         TuiRootModule,
         RouterOutlet,
-        IonicModule.forRoot(),
+        IonicModule.forRoot({
+            rippleEffect: false,
+        }),
     ],
     providers: [],
     bootstrap: [AppComponent],

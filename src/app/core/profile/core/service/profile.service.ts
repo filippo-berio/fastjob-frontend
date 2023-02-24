@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { ProfileApi } from '../api/profile.api';
 import { ProfileInterface } from '../data/profile.interface';
 import { ProfileStore } from '../store/profile.store';
@@ -21,7 +21,9 @@ export class ProfileService {
                     if (!response.success) {
                         return null;
                     }
+                    // const profile = new Profile(...response.data!);
                     this.store.profile$.next(response.data!);
+                    console.log(this.store.profile$.value?.firstName);
                     return response.data!;
                 })
             );

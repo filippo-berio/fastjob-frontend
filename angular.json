@@ -186,10 +186,11 @@
                             }
                         ],
                         "styles": [
-                            "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
-                            "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
-                            "src/global.scss",
-                            "src/theme/variables.scss"
+                          "@angular/material/prebuilt-themes/indigo-pink.css",
+                          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
+                          "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
+                          "src/global.scss",
+                          "src/theme/variables.scss"
                         ],
                         "scripts": []
                     },
@@ -272,8 +273,9 @@
                             }
                         ],
                         "styles": [
-                            "src/theme/variables.scss",
-                            "src/global.scss"
+                          "@angular/material/prebuilt-themes/indigo-pink.css",
+                          "src/theme/variables.scss",
+                          "src/global.scss"
                         ],
                         "scripts": []
                     }

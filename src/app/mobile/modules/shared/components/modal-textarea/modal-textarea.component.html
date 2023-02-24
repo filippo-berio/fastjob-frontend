@@ -1,0 +1,16 @@
+<div mat-dialog-title>{{label}}</div>
+<div class="mt-10 grid flex justify-center" mat-dialog-content>
+    <div>
+        <tui-text-area [tuiTextfieldLabelOutside]="true"
+                       [formControl]="control"
+        >
+        </tui-text-area>
+    </div>
+
+    <div class="flex mt-2 justify-center">
+        <button tuiButton
+                type="button"
+                (click)="submit()"
+        >{{submitText}}</button>
+    </div>
+</div>
