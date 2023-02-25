@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { CategoryInterface } from '../../categories/data/category.interface';
 import { ProfileApi } from '../core/api/profile.api';
 import { ProfileInterface } from '../core/data/profile.interface';
 import { ProfileFormBuilder } from '../core/form/profile.form-builder';
@@ -29,6 +30,13 @@ export class ProfileSettingsFacade {
     buildForm(): FormGroup {
         this.profileForm = this.formBuilder.buildProfileForm(this.store.profile$.value!);
         return this.profileForm;
+    }
+
+    updateCategories(categories: CategoryInterface[]) {
+        const profile = this.store.profile$.value;
+        profile!.categories = categories;
+        this.store.profile$.next(profile);
+        this.profileApi.update(profile!).subscribe();
     }
 
     update() {

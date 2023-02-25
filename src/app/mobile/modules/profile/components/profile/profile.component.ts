@@ -66,6 +66,11 @@ export class ProfileComponent implements OnInit {
             height: '100%',
             maxHeight: '100vh',
         });
+        modalRef.componentInstance.checked = this.profile.categories;
+        modalRef.componentInstance.select.subscribe(selected => {
+            modalRef.close();
+            this.facade.updateCategories(selected);
+        })
     }
 
     private openModal<T>(component: ComponentType<T>): MatDialogRef<T> {

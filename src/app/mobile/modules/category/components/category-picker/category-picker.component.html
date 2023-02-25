@@ -1,19 +1,30 @@
-<!--<ion-content class="ion-padding">-->
-<!--    <h1>Animal Facts</h1>-->
-<!--</ion-content>-->
-<!--<ion-footer collapse="fade">-->
-<!--    <ion-toolbar>-->
-<!--        FOOR-->
-<!--        <ion-title>Footer</ion-title>-->
-<!--    </ion-toolbar>-->
-<!--</ion-footer>-->
+<div class="ion-padding grid gap-2">
+    <div>
+        <tui-loader *ngIf="!tree"></tui-loader>
 
-<!--<ion-footer collapse="fade">-->
-<!--    <ion-toolbar>-->
-<!--        <ion-buttons slot="primary">-->
-<!--            <ion-button>-->
-<!--                <ion-icon slot="icon-only" name="search"></ion-icon>-->
-<!--            </ion-button>-->
-<!--        </ion-buttons>-->
-<!--    </ion-toolbar>-->
-<!--</ion-footer>-->
+        <tui-tree
+            *ngFor="let item of tree"
+            [tuiTreeController]="true"
+            [value]="item"
+            [content]="content"
+            [childrenHandler]="childrenHandler"
+        ></tui-tree>
+    </div>
+
+    <div class="flex justify-center">
+        <button tuiButton (click)="submit()">Сохранить</button>
+    </div>
+</div>
+
+
+<ng-template
+    #content
+    let-item
+>
+    <tui-checkbox-labeled class="tui-space_vertical-2 tui-space_left-1"
+                          [ngModel]="item | tuiMapper : getValue"
+                          (ngModelChange)="onChecked(item)"
+    >
+        {{ item.title }}
+    </tui-checkbox-labeled>
+</ng-template>
