@@ -8,6 +8,7 @@ import { TuiButtonModule } from '@taiga-ui/core';
 import { TuiInputDateModule, TuiInputModule } from '@taiga-ui/kit';
 import { NoProfileGuard } from '../../../core/profile/core/guards/no-profile.guard';
 import { ProfileGuard } from '../../../core/profile/core/guards/profile.guard';
+import { CategoryMobileModule } from '../category/category-mobile.module';
 import { MenuMobileModule } from '../menu/menu-mobile.module';
 import { SharedMobileModule } from '../shared/shared-mobile.module';
 import { ProfileLayoutComponent } from './components/profile-layout/profile-layout.component';
@@ -45,6 +46,7 @@ const routes: Route[] = [
         IonicModule,
         SharedMobileModule,
         MatDialogModule,
+        CategoryMobileModule,
     ]
 })
 export class ProfileMobileModule {

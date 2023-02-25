@@ -1,5 +1,11 @@
-<div class="mt-10 grid flex justify-center" mat-dialog-content>
-     <form [formGroup]="form">
+<div class="grid flex justify-center" mat-dialog-content>
+    <button tuiButton
+            appearance="outline"
+            size="s"
+            type="button"
+            (click)="submit()"
+    >{{submitText}}</button>
+    <form [formGroup]="form">
         <div *ngFor="let control of getControlNames()" class="mt-1">
             <tui-input [tuiTextfieldLabelOutside]="true"
                        [formControlName]="control"
@@ -9,11 +15,4 @@
             </tui-input>
         </div>
     </form>
-
-    <div class="flex mt-2 justify-center">
-        <button tuiButton
-                type="button"
-                (click)="submit()"
-        >{{submitText}}</button>
-    </div>
 </div>

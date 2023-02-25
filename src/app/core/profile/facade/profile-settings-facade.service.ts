@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { catchError, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ProfileApi } from '../core/api/profile.api';
 import { ProfileInterface } from '../core/data/profile.interface';
-import { UpdateProfileDtoInterface } from '../core/data/update-profile.dto';
 import { ProfileFormBuilder } from '../core/form/profile.form-builder';
 import { ProfileService } from '../core/service/profile.service';
 import { ProfileStore } from '../core/store/profile.store';

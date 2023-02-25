@@ -5,6 +5,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProfileInterface } from '../../../../../core/profile/core/data/profile.interface';
 import { getProfileRepresentation } from '../../../../../core/profile/core/util/profile-representation';
 import { ProfileSettingsFacade } from '../../../../../core/profile/facade/profile-settings-facade.service';
+import { CategoryPickerComponent } from '../../../category/components/category-picker/category-picker.component';
 import { ModalInputComponent } from '../../../shared/components/modal-input/modal-input.component';
 import { ModalTextareaComponent } from '../../../shared/components/modal-textarea/modal-textarea.component';
 
@@ -55,6 +56,15 @@ export class ProfileComponent implements OnInit {
         modalRef.componentInstance.valueEmitter.subscribe(() => {
             modalRef.close();
             this.facade.update();
+        });
+    }
+
+    editCategories() {
+        const modalRef = this.modalOpener.open(CategoryPickerComponent, {
+            width: '100%',
+            maxWidth: '100vw',
+            height: '100%',
+            maxHeight: '100vh',
         });
     }
 

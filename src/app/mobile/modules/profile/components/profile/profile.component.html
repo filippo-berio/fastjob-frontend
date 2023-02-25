@@ -14,11 +14,11 @@
 
         <div class="">
             <div class="grid gap-4">
-                <div class="grid" (click)="editDescription()">
+                <div (click)="editDescription()" class="grid">
                     <ng-container [ngSwitch]="!!profile.description">
                         <ng-container *ngSwitchCase="true">
-                            <span class="text-neutral-500">Описание</span>
-                            <span class="text-sm">{{profile.description}}</span>
+                            <span class="text-neutral-500 text-xs">Описание</span>
+                            <span class="text-lg">{{profile.description}}</span>
                         </ng-container>
 
                         <ng-container *ngSwitchCase="false">
@@ -27,6 +27,24 @@
                             >
                                 <ion-icon slot="start" name="add-circle-outline"></ion-icon>
                                 Добавить описание
+                            </ion-button>
+                        </ng-container>
+                    </ng-container>
+                </div>
+
+                <div (click)="editCategories()">
+                    <ng-container [ngSwitch]="profile.categories.length > 0">
+                        <ng-container *ngSwitchCase="true">
+                            <span class="text-neutral-500 text-xs">Категории</span>
+                            <fj-category-slider class="mt-1" [categories]="profile.categories"></fj-category-slider>
+                        </ng-container>
+
+                        <ng-container *ngSwitchCase="false">
+                            <ion-button class="add-info-button"
+                                        fill="outline"
+                            >
+                                <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+                                Добавить категории
                             </ion-button>
                         </ng-container>
                     </ng-container>
