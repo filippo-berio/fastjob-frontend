@@ -1,0 +1,23 @@
+<tui-primitive-textfield #input
+                         tuiTextfieldIconLeft="tuiIconSearchLarge"
+                         class="tui-space_all-2"
+                         [tuiTextfieldLabelOutside]="true"
+                         [(value)]="searchInput"
+>
+</tui-primitive-textfield>
+
+<hr />
+
+<tui-data-list emptyContent="Не найдено">
+    <tui-opt-group>
+        <button *ngFor="let item of items | tuiFilter : filterItems : searchInput"
+                tuiOption
+                [value]="item.value"
+                (click)="select(item)"
+        >
+            <ng-template [ngTemplateOutlet]="templateRef"
+                         [ngTemplateOutletContext]="{$implicit: item.item}"
+            ></ng-template>
+        </button>
+    </tui-opt-group>
+</tui-data-list>

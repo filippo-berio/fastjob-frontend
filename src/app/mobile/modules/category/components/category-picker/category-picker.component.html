@@ -22,7 +22,7 @@
     let-item
 >
     <tui-checkbox-labeled class="tui-space_vertical-2 tui-space_left-1"
-                          [ngModel]="item | tuiMapper : getValue"
+                          [ngModel]="item | tuiMapper : isChecked"
                           (ngModelChange)="onChecked(item)"
     >
         {{ item.title }}

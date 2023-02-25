@@ -1,0 +1,10 @@
+<div class="ion-padding">
+    <fj-select-typeahead [items]="cityItems" (onSelect)="select($event)">
+        <ng-template let-item>
+            <div class="grid">
+                <span>{{item.title}}</span>
+                <span class="text-neutral-500">{{item.region.title}}</span>
+            </div>
+        </ng-template>
+    </fj-select-typeahead>
+</div>

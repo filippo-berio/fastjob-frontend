@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { CategoryInterface } from '../../categories/data/category.interface';
+import { CityInterface } from '../../location/data/city.interface';
+import { LocationApi } from '../../location/service/location.api';
 import { ProfileApi } from '../core/api/profile.api';
 import { ProfileInterface } from '../core/data/profile.interface';
 import { ProfileFormBuilder } from '../core/form/profile.form-builder';
@@ -19,6 +21,7 @@ export class ProfileSettingsFacade {
         private profileService: ProfileService,
         private profileApi: ProfileApi,
         private formBuilder: ProfileFormBuilder,
+        private locationApi: LocationApi,
     ) {
     }
 
@@ -39,6 +42,13 @@ export class ProfileSettingsFacade {
         this.profileApi.update(profile!).subscribe();
     }
 
+    updateCity(city: CityInterface) {
+        const profile = this.store.profile$.value;
+        profile!.city = city;
+        this.store.profile$.next(profile);
+        this.profileApi.update(profile!).subscribe();
+    }
+
     update() {
         const profile = this.store.profile$.value;
         profile!.lastName = this.profileForm.get('lastName')?.value;
@@ -46,5 +56,9 @@ export class ProfileSettingsFacade {
         profile!.firstName = this.profileForm.get('firstName')?.value;
         this.store.profile$.next(profile);
         this.profileApi.update(profile!).subscribe();
+    }
+
+    cities$(): Observable<CityInterface[]> {
+        return this.locationApi.cityList();
     }
 }

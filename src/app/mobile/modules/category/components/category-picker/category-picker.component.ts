@@ -27,7 +27,7 @@ export class CategoryPickerComponent implements OnInit {
         CategoryBranchInterface[]
     > = (branch) => branch.children;
 
-    getValue = (item: CategoryBranchInterface): boolean => {
+    isChecked = (item: CategoryBranchInterface): boolean => {
         return this.categoryPicker.isCategoryPicked(item);
     };
 

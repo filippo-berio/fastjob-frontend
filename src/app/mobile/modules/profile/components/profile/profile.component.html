@@ -49,6 +49,26 @@
                         </ng-container>
                     </ng-container>
                 </div>
+
+                <div (click)="editCity()">
+                    <ng-container [ngSwitch]="!!profile.city">
+                        <ng-container *ngSwitchCase="true">
+                            <div class="grid">
+                                <span class="text-neutral-500 text-xs">Населенный пункт</span>
+                                <span class="text-lg">{{profile.city?.title}}</span>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngSwitchCase="false">
+                            <ion-button class="add-info-button"
+                                        fill="outline"
+                            >
+                                <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+                                Добавить населённый пункт
+                            </ion-button>
+                        </ng-container>
+                    </ng-container>
+                </div>
             </div>
         </div>
     </div>
