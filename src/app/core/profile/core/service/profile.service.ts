@@ -23,7 +23,6 @@ export class ProfileService {
                     }
                     // const profile = new Profile(...response.data!);
                     this.store.profile$.next(response.data!);
-                    console.log(this.store.profile$.value?.firstName);
                     return response.data!;
                 })
             );

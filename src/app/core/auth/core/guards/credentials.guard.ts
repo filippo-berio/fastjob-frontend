@@ -17,7 +17,6 @@ export class CredentialsGuard implements CanActivate {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-        console.log(this.credentialsStore.hasCredentials())
         if (this.credentialsStore.hasCredentials()) {
             return true;
 

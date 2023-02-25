@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
-import { SuccessResponseInterface } from '../../../shared/data/interfaces/success-response.interface';
+import { SuccessResponseInterface } from '../../../shared/data/success-response.interface';
 import { ProfileInterface } from '../data/profile.interface';
 
 export interface GetProfileResponse extends SuccessResponseInterface {

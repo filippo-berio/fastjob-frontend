@@ -19,7 +19,6 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-        console.log(this.credentialsStore.hasCredentials() + 'has')
         if (this.credentialsStore.hasCredentials()) {
             request = request.clone({
                 headers: request.headers
