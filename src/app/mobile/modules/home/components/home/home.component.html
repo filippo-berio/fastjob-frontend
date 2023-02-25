@@ -1,2 +1,19 @@
-<p>home works!</p>
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-title>Header</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [scrollY]="false">
+    <div *ngIf="isProfileConfigured(); else noSettings">
+
+    </div>
+</ion-content>
 <fj-menu selected="home"></fj-menu>
+
+<ng-template #noSettings>
+    <div class="grid items-center h-2/3 justify-center"
+    >
+        <fj-to-profile-settings></fj-to-profile-settings>
+    </div>
+</ng-template>

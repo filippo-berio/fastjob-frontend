@@ -12,6 +12,7 @@ import { CategoryMobileModule } from '../category/category-mobile.module';
 import { LocationMobileModule } from '../location/location-mobile.module';
 import { MenuMobileModule } from '../menu/menu-mobile.module';
 import { SharedMobileModule } from '../shared/shared-mobile.module';
+import { AddProfileInfoButtonComponent } from './components/add-profile-info-button/add-profile-info-button.component';
 import { ProfileLayoutComponent } from './components/profile-layout/profile-layout.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterProfileComponent } from './components/register-profile/register-profile.component';
@@ -35,10 +36,10 @@ const routes: Route[] = [
         RegisterProfileComponent,
         ProfileComponent,
         ProfileLayoutComponent,
+        AddProfileInfoButtonComponent,
     ],
     imports: [
         CommonModule,
-        RouterModule.forChild(routes),
         ReactiveFormsModule,
         TuiInputModule,
         TuiInputDateModule,
@@ -49,6 +50,9 @@ const routes: Route[] = [
         MatDialogModule,
         CategoryMobileModule,
         LocationMobileModule,
+    ],
+    exports: [
+        AddProfileInfoButtonComponent,
     ]
 })
 export class ProfileMobileModule {

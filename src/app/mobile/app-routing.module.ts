@@ -9,7 +9,7 @@ const routes: Routes = [
     },
     {
         path: 'profile',
-        loadChildren: () => import('./modules/profile/profile-mobile.module').then(m => m.ProfileMobileModule),
+        loadChildren: () => import('./modules/profile/profile-mobile-routing.module').then(m => m.ProfileMobileRoutingModule),
         data: {routeName: 'profile'}
     },
     {

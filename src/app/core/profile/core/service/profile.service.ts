@@ -21,7 +21,6 @@ export class ProfileService {
                     if (!response.success) {
                         return null;
                     }
-                    // const profile = new Profile(...response.data!);
                     this.store.profile$.next(response.data!);
                     return response.data!;
                 })
