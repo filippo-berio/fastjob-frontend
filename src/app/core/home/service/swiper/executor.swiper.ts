@@ -14,9 +14,12 @@ export class ExecutorSwiper implements SwiperInterface {
     ) {
     }
 
-    swipe(type: SwipeType, item?: Swipeable): Observable<Swipeable | null> {
-        this.swipeApi.swipeExecutor(type, item?.task.author, item?.task);
+    swipe(type: SwipeType, item: Swipeable): Observable<Swipeable | null> {
+        this.swipeApi.swipeExecutor(type, item.task.author, item?.task);
         return of(null);
     }
 
+    next(): Observable<Swipeable| null> {
+        return this.swipeApi.nextExecutor();
+    }
 }

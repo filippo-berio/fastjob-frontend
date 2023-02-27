@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeFacade } from '../../../../../core/home/facade/home.facade';
 import { ProfileInterface } from '../../../../../core/profile/core/data/profile.interface';
+import { Swipeable } from '../../../../../core/home/data/swipeable.interface';
 
 @Component({
     selector: 'fj-home',
@@ -9,6 +10,7 @@ import { ProfileInterface } from '../../../../../core/profile/core/data/profile.
 })
 export class HomeComponent implements OnInit {
     profile: ProfileInterface;
+    card: Swipeable | null;
 
     constructor(
         private facade: HomeFacade,
@@ -17,6 +19,12 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         this.facade.profile$().subscribe(p => this.profile = p);
+        this.facade.currentCard$.subscribe(card => this.card = card)
+        this.facade.init().subscribe(hasNext => {
+            if (!hasNext) {
+                console.error('NO TASK LEFT')
+            }
+        });
     }
 
     isProfileConfigured(): boolean {
