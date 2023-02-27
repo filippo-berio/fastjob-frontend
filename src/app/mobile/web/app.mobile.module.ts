@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
         RouterOutlet,
         IonicModule.forRoot({
             rippleEffect: false,
+            animated: false,
         }),
     ],
     providers: [],

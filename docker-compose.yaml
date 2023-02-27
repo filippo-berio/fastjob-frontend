@@ -9,7 +9,7 @@ services:
         user: 1000:1000
         ports:
             - "6055:8100"
-        command: ionic serve fastjob-ionic --host=0.0.0.0
+        command: ionic serve --host=0.0.0.0
         container_name: fastjob-frontend-ionic
 
     mobile:

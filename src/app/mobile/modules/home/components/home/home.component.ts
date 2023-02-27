@@ -22,4 +22,12 @@ export class HomeComponent implements OnInit {
     isProfileConfigured(): boolean {
         return this.profile.categories.length > 0;
     }
+
+    accept() {
+        console.log('accept');
+    }
+
+    reject() {
+        console.log('reject');
+    }
 }

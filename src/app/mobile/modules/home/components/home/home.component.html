@@ -1,14 +1,20 @@
 <ion-header class="ion-no-border">
-    <ion-toolbar>
-        <ion-title>Header</ion-title>
+    <ion-toolbar class="flex justify-center">
+        <ion-title>Fastjob</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding" [scrollY]="false">
-    <div *ngIf="isProfileConfigured(); else noSettings">
-
+    <div *ngIf="isProfileConfigured(); else noSettings"
+         class="flex flex-col h-full"
+    >
+        <div class="flex p-10 mt-auto mb-16 w-full justify-around">
+            <button tuiButton (click)="accept()">ACCEPT</button>
+            <button tuiButton (click)="reject()">REJECT</button>
+        </div>
     </div>
 </ion-content>
+
 <fj-menu selected="home"></fj-menu>
 
 <ng-template #noSettings>

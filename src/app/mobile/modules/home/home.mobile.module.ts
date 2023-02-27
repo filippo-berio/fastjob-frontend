@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { TuiButtonModule } from '@taiga-ui/core';
 import { AuthInterceptor } from '../../../core/auth/core/interceptors/auth.interceptor';
 import { AuthModule } from '../../../core/auth/auth.module';
 import { HomeModule } from '../../../core/home/home.module';
@@ -32,6 +33,7 @@ const routes = [
         MenuMobileModule,
         IonicModule,
         ProfileMobileModule,
+        TuiButtonModule,
     ],
     providers: [
         {
