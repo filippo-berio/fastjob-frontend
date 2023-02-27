@@ -34,13 +34,14 @@ const routes = [
         IonicModule,
         ProfileMobileModule,
         TuiButtonModule,
+        HomeModule,
     ],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
             multi: true,
-        }
+        },
     ],
 })
 export class HomeMobileModule {

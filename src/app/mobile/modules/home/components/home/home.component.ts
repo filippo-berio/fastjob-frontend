@@ -24,10 +24,10 @@ export class HomeComponent implements OnInit {
     }
 
     accept() {
-        console.log('accept');
+        this.facade.swipe('accept');
     }
 
     reject() {
-        console.log('reject');
+        this.facade.swipe('reject');
     }
 }

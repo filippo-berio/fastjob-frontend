@@ -9,8 +9,7 @@ import { SharedModule } from '../shared/shared.module';
         CommonModule,
         SharedModule,
     ],
-    providers: [
-    ],
+    providers: [],
 })
 export class HomeModule {
     public static homeRouteGuards = [

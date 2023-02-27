@@ -17,7 +17,12 @@ import { TuiRootModule } from '@taiga-ui/core';
         }),
         RouterOutlet,
     ],
-    providers: [{provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
+    providers: [
+        {
+            provide: RouteReuseStrategy,
+            useClass: IonicRouteStrategy
+        },
+    ],
     bootstrap: [AppComponent],
 })
 export class AppIonicModule {

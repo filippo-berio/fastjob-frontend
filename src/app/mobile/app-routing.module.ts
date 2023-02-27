@@ -22,11 +22,11 @@ const routes: Routes = [
         loadChildren: () => import('./modules/home/home.mobile.module').then(m => m.HomeMobileModule),
         data: {routeName: 'home'}
     },
-    {
-        path: 'settings',
-        loadChildren: () => import('../core/settings/settings.module').then(m => m.SettingsModule),
-        data: {routeName: 'settings'}
-    },
+    // {
+    //     path: 'settings',
+    //     loadChildren: () => import('../core/settings/settings.module').then(m => m.SettingsModule),
+    //     data: {routeName: 'settings'}
+    // },
 ];
 
 @NgModule({
