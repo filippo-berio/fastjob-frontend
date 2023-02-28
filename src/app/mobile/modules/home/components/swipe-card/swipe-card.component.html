@@ -1,23 +1,4 @@
-<p class="font-bold">
-    {{card.task.title}}
-</p>
-
-<p class="font-bold">
-    {{card.task.price}} {{ 'RUB' | tuiCurrency }}
-</p>
-
-<p *ngIf="card.task.remote">
-    Удаленно
-</p>
-
-<fj-category-slider *ngIf="card.task.categories.length"
-                    [categories]="card.task.categories"
-></fj-category-slider>
-
-<p class="font-semi-bold">
-    {{profileTitle()}}
-</p>
-
+<ng-template dynamic></ng-template>
 <div class="flex p-10 mt-auto mb-16 w-full justify-around">
     <button tuiButton (click)="onAccept()">ACCEPT</button>
     <button tuiButton (click)="onReject()">REJECT</button>

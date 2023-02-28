@@ -15,6 +15,10 @@ import { SwipeCardComponent } from './components/swipe-card/swipe-card.component
 import { TuiCurrencyPipeModule } from '@taiga-ui/addon-commerce';
 import { CategoryMobileModule } from '../category/category-mobile.module';
 import { NoSwipeCardsComponent } from './components/no-swipe-cards/no-swipe-cards.component';
+import { CardLayoutComponent } from './components/card-layout/card-layout.component';
+import { ExecutorCardComponent } from './components/executor-card/executor-card.component';
+import { TaskCardComponent } from './components/task-card/task-card.component';
+import { SharedModule } from '../../../core/shared/shared.module';
 
 
 const routes = [
@@ -31,6 +35,9 @@ const routes = [
         ToProfileSettingsComponent,
         SwipeCardComponent,
         NoSwipeCardsComponent,
+        CardLayoutComponent,
+        ExecutorCardComponent,
+        TaskCardComponent,
     ],
     imports: [
         CommonModule,
@@ -43,13 +50,9 @@ const routes = [
         HomeModule,
         TuiCurrencyPipeModule,
         CategoryMobileModule,
+        SharedModule,
     ],
     providers: [
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
-            multi: true,
-        },
     ],
 })
 export class HomeMobileModule {

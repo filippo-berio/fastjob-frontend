@@ -5,6 +5,8 @@ import { TuiDialogModule } from '@taiga-ui/core';
 import { AuthInterceptor } from '../core/auth/core/interceptors/auth.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
+import { cardComponentFactory, CardComponentToken } from './modules/home/tokens/card-component.token';
+import { SettingsService } from '../core/settings/service/settings.service';
 
 @NgModule({
     imports: [
@@ -18,6 +20,11 @@ import { AppRoutingModule } from './app-routing.module';
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
             multi: true,
+        },
+        {
+            provide: CardComponentToken,
+            useFactory: cardComponentFactory,
+            deps: [SettingsService],
         }
     ],
 })

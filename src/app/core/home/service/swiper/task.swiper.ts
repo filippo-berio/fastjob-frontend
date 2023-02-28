@@ -1,6 +1,6 @@
 import { Swipeable } from '../../data/swipeable.interface';
 import { SwiperInterface } from './swiper.interface';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { SwipeApi } from '../swipe.api';
 import { SwipeType } from '../../data/swipe.type';
 import { TaskInterface } from '../../../task/data/task.interface';
@@ -24,6 +24,9 @@ export class TaskSwiper implements SwiperInterface {
     }
 
     private mapToSwipeable(task: TaskInterface | null): Swipeable | null {
-        return task ? {task} : null;
+        return task ? {
+            task,
+            profile: task.author,
+        } : null;
     }
 }

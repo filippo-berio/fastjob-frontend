@@ -9,10 +9,12 @@
          class="flex flex-col h-full"
     >
         <fj-swipe-card [card]="card"
+                       [cardComponent]="cardComponent"
                        *ngIf="card; else noCards"
                        (accept)="accept()"
                        (reject)="reject()"
-        ></fj-swipe-card>
+        >
+        </fj-swipe-card>
     </div>
 </ion-content>
 

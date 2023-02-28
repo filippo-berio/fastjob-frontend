@@ -1,14 +1,28 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    EventEmitter,
+    Input, OnChanges,
+    OnInit,
+    Output,
+    SimpleChanges,
+    Type,
+    ViewChild
+} from '@angular/core';
 import { Swipeable } from '../../../../../core/home/data/swipeable.interface';
-import { getProfileRepresentation } from '../../../../../core/profile/core/util/profile-representation';
+import { DynamicDirective } from '../../../../../core/shared/directives/dynamic.directive';
 
 @Component({
     selector: 'fj-swipe-card',
     templateUrl: './swipe-card.component.html',
     styleUrls: ['./swipe-card.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SwipeCardComponent implements OnInit {
+export class SwipeCardComponent implements OnInit, AfterViewInit, OnChanges {
+    @ViewChild(DynamicDirective, {
+        static: false
+    }) cardContainer: DynamicDirective;
+
+    @Input() cardComponent: Type<any>;
     @Input() card: Swipeable;
     @Output() accept = new EventEmitter();
     @Output() reject = new EventEmitter();
@@ -16,11 +30,17 @@ export class SwipeCardComponent implements OnInit {
     constructor() {
     }
 
+    ngOnChanges(changes: SimpleChanges): void {
+        if (this.cardContainer) {
+            this.drawCard();
+        }
+    }
+
     ngOnInit() {
     }
 
-    profileTitle() {
-        return getProfileRepresentation(this.card.task.author);
+    ngAfterViewInit() {
+        this.drawCard();
     }
 
     onAccept() {
@@ -29,5 +49,12 @@ export class SwipeCardComponent implements OnInit {
 
     onReject() {
         this.reject.emit();
+    }
+
+    private drawCard() {
+        const viewContainerRef = this.cardContainer.viewContainerRef;
+        viewContainerRef.clear();
+        const componentRef = viewContainerRef.createComponent(this.cardComponent);
+        componentRef.instance.card = this.card;
     }
 }
