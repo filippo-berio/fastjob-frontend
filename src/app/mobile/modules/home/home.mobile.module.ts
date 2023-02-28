@@ -11,6 +11,10 @@ import { MenuMobileModule } from '../menu/menu-mobile.module';
 import { ProfileMobileModule } from '../profile/profile-mobile.module';
 import { HomeComponent } from './components/home/home.component';
 import { ToProfileSettingsComponent } from './components/to-profile-settings/to-profile-settings.component';
+import { SwipeCardComponent } from './components/swipe-card/swipe-card.component';
+import { TuiCurrencyPipeModule } from '@taiga-ui/addon-commerce';
+import { CategoryMobileModule } from '../category/category-mobile.module';
+import { NoSwipeCardsComponent } from './components/no-swipe-cards/no-swipe-cards.component';
 
 
 const routes = [
@@ -25,6 +29,8 @@ const routes = [
     declarations: [
         HomeComponent,
         ToProfileSettingsComponent,
+        SwipeCardComponent,
+        NoSwipeCardsComponent,
     ],
     imports: [
         CommonModule,
@@ -35,6 +41,8 @@ const routes = [
         ProfileMobileModule,
         TuiButtonModule,
         HomeModule,
+        TuiCurrencyPipeModule,
+        CategoryMobileModule,
     ],
     providers: [
         {
