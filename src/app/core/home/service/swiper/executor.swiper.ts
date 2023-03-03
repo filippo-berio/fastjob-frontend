@@ -16,7 +16,7 @@ export class ExecutorSwiper implements SwiperInterface {
     }
 
     swipe(type: SwipeType, item: Swipeable): Observable<Swipeable | null> {
-        return this.swipeApi.swipeExecutor(type, item.task.author, item?.task).pipe(
+        return this.swipeApi.swipeExecutor(type, item.profile, item.task).pipe(
             map(e => this.mapToSwipeable(e))
         );
     }

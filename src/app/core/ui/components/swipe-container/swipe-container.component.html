@@ -1,5 +1,12 @@
 <ng-content></ng-content>
-<div class="flex p-10 mt-auto mb-16 w-full justify-between">
-    <button tuiButton (click)="onSwipe('left')">Swipe left</button>
-    <button tuiButton (click)="onSwipe('right')">Swipe right</button>
+<div class="flex mt-4 mb-16 w-full justify-between">
+    <div>
+        <button tuiButton (click)="onSwipe('left')"
+        >Swipe left</button>
+    </div>
+    <div>
+        <button tuiButton (click)="onSwipe('right')"
+                appearance="outline"
+        >Swipe right</button>
+    </div>
 </div>
