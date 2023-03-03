@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { SubscribeRegistry } from '../../../../../core/shared/services/subscribe.registry';
 
 export type MenuTabType = 'settings'
     | 'tasks'
@@ -52,6 +53,7 @@ export class MenuComponent {
 
     constructor(
         private router: Router,
+        private subscribeRegistry: SubscribeRegistry,
     ) {
     }
 
@@ -62,6 +64,7 @@ export class MenuComponent {
     }
 
     navigate(tab: MenuTabType) {
+        this.subscribeRegistry.unsubscribe();
         this.router.navigateByUrl(this.tabs[tab].route)
     }
 }

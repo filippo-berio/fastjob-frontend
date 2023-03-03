@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log('profile');
         this.facade.profile$().subscribe(profile => {
             this.profile = profile;
             this.form = this.facade.buildForm();

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, take, tap } from 'rxjs';
 import { ProfileInterface } from '../../profile/core/data/profile.interface';
 import { ProfileStore } from '../../profile/core/store/profile.store';
 import { Swipeable } from '../data/swipeable.interface';
@@ -23,7 +23,8 @@ export class HomeFacade {
     init(): Observable<boolean> {
         return this.swiperFactory.getSwiper().next().pipe(
             tap(swipeable => this.currentCardSubject.next(swipeable)),
-            map(swipeable => !!swipeable)
+            map(swipeable => !!swipeable),
+            take(1),
         );
     }
 

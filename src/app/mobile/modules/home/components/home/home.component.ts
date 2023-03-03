@@ -3,6 +3,7 @@ import { HomeFacade } from '../../../../../core/home/facade/home.facade';
 import { ProfileInterface } from '../../../../../core/profile/core/data/profile.interface';
 import { Swipeable } from '../../../../../core/home/data/swipeable.interface';
 import { CardComponentFactoryType, CardComponentToken } from '../../tokens/card-component.token';
+import { SubscribeRegistry } from '../../../../../core/shared/services/subscribe.registry';
 
 @Component({
     selector: 'fj-home',
@@ -19,12 +20,14 @@ export class HomeComponent implements OnInit {
         private facade: HomeFacade,
         private changeDetection: ChangeDetectorRef,
         @Inject(CardComponentToken) private cardComponentFactory: CardComponentFactoryType,
+        private subscribeRegistry: SubscribeRegistry,
     ) {
     }
 
     ngOnInit() {
-        this.facade.profile$().subscribe(p => this.profile = p);
-        this.facade.currentCard$.subscribe(card => {
+        console.log('home');
+        const profileSub = this.facade.profile$().subscribe(p => this.profile = p);
+        const cardSub = this.facade.currentCard$.subscribe(card => {
             this.card = card;
             this.cardComponent = this.cardComponentFactory();
             this.changeDetection.detectChanges();
@@ -34,6 +37,8 @@ export class HomeComponent implements OnInit {
                 console.error('NO TASK LEFT')
             }
         });
+
+        this.subscribeRegistry.register(profileSub, cardSub);
     }
 
     isProfileConfigured(): boolean {

@@ -19,7 +19,7 @@ const routes: Routes = [
     },
     {
         path: 'home',
-        loadChildren: () => import('./modules/home/home.mobile.module').then(m => m.HomeMobileModule),
+        loadChildren: () => import('./modules/home/home-routing-mobile.module').then(m => m.HomeRoutingMobileModule),
         data: {routeName: 'home'}
     },
     // {
@@ -31,7 +31,7 @@ const routes: Routes = [
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})
+        RouterModule.forRoot(routes)
     ],
     exports: [RouterModule]
 })
