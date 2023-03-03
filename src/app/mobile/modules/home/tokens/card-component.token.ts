@@ -9,7 +9,7 @@ export const CardComponentToken = new InjectionToken<CardComponentFactoryType>('
 
 export const cardComponentFactory = (settingsService: SettingsService) => {
     return () => {
-        const mode = settingsService.currentMode();
+        const mode = settingsService.currentMode;
         return mode === 'author' ? ExecutorCardComponent : TaskCardComponent;
     }
 }

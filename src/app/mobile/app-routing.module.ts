@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { CredentialsGuard } from '../core/auth/core/guards/credentials.guard';
+import { ProfileGuard } from '../core/profile/core/guards/profile.guard';
 
 const routes: Routes = [
     {
@@ -20,13 +22,17 @@ const routes: Routes = [
     {
         path: 'home',
         loadChildren: () => import('./modules/home/home-routing-mobile.module').then(m => m.HomeRoutingMobileModule),
-        data: {routeName: 'home'}
+        data: {routeName: 'home'},
     },
-    // {
-    //     path: 'settings',
-    //     loadChildren: () => import('../core/settings/settings.module').then(m => m.SettingsModule),
-    //     data: {routeName: 'settings'}
-    // },
+    {
+        path: 'settings',
+        loadChildren: () => import('./modules/settings/settings-mobile.module').then(m => m.SettingsMobileModule),
+        data: {routeName: 'settings'},
+        canActivate: [
+            CredentialsGuard,
+            ProfileGuard,
+        ]
+    },
 ];
 
 @NgModule({

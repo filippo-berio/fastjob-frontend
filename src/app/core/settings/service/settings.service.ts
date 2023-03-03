@@ -7,7 +7,11 @@ import { Injectable } from '@angular/core';
 export class SettingsService {
     private localStorage = localStorage;
 
-    currentMode(): AppMode {
+    get currentMode(): AppMode {
         return (this.localStorage.getItem('mode') ?? 'executor') as AppMode;
+    }
+
+    set currentMode(value: AppMode) {
+        this.localStorage.setItem('mode', value);
     }
 }

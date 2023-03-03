@@ -16,7 +16,7 @@ export class SwiperFactory {
     }
 
     getSwiper(): SwiperInterface {
-        const mode = this.settingsService.currentMode();
+        const mode = this.settingsService.currentMode;
         return mode === 'author' ? new ExecutorSwiper(this.swipeApi) : new TaskSwiper(this.swipeApi);
     }
 }

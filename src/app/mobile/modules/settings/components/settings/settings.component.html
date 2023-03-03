@@ -1,0 +1,19 @@
+<div class="ion-padding">
+    <p class="text-neutral-500">Режим приложения</p>
+    <div class="flex justify-between">
+        <div>
+            {{getCurrentMode()}}
+        </div>
+        <div>
+            <button tuiButton
+                    (click)="changeCurrentMode()"
+                    appearance="outline"
+                    size="s"
+            >
+                Сменить режим
+            </button>
+        </div>
+    </div>
+</div>
+
+<fj-menu selected="settings"></fj-menu>
