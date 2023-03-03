@@ -16,6 +16,7 @@ import { CardLayoutComponent } from './components/card-layout/card-layout.compon
 import { ExecutorCardComponent } from './components/executor-card/executor-card.component';
 import { TaskCardComponent } from './components/task-card/task-card.component';
 import { SharedModule } from '../../../core/shared/shared.module';
+import { UiModule } from '../../../core/ui/ui.module';
 
 @NgModule({
     declarations: [
@@ -38,6 +39,7 @@ import { SharedModule } from '../../../core/shared/shared.module';
         TuiCurrencyPipeModule,
         CategoryMobileModule,
         SharedModule,
+        UiModule,
     ],
     providers: [
     ],

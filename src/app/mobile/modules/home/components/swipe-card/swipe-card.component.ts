@@ -3,7 +3,6 @@ import {
     Component,
     EventEmitter,
     Input, OnChanges,
-    OnInit,
     Output,
     SimpleChanges,
     Type,
@@ -11,13 +10,14 @@ import {
 } from '@angular/core';
 import { Swipeable } from '../../../../../core/home/data/swipeable.interface';
 import { DynamicDirective } from '../../../../../core/shared/directives/dynamic.directive';
+import { SwipeDirection } from '../../../../../core/ui/data/swipe-direction';
 
 @Component({
     selector: 'fj-swipe-card',
     templateUrl: './swipe-card.component.html',
     styleUrls: ['./swipe-card.component.scss'],
 })
-export class SwipeCardComponent implements OnInit, AfterViewInit, OnChanges {
+export class SwipeCardComponent implements AfterViewInit, OnChanges {
     @ViewChild(DynamicDirective, {
         static: false
     }) cardContainer: DynamicDirective;
@@ -27,6 +27,10 @@ export class SwipeCardComponent implements OnInit, AfterViewInit, OnChanges {
     @Output() accept = new EventEmitter();
     @Output() reject = new EventEmitter();
 
+    private swipeDirectionEmitterMap = new Map<SwipeDirection, EventEmitter<any>>([
+        ['left', this.accept],
+        ['right', this.reject],
+    ]);
     constructor() {
     }
 
@@ -36,19 +40,12 @@ export class SwipeCardComponent implements OnInit, AfterViewInit, OnChanges {
         }
     }
 
-    ngOnInit() {
-    }
-
     ngAfterViewInit() {
         this.drawCard();
     }
 
-    onAccept() {
-        this.accept.emit();
-    }
-
-    onReject() {
-        this.reject.emit();
+    onSwipe(direction: SwipeDirection) {
+        this.swipeDirectionEmitterMap.get(direction)?.emit();
     }
 
     private drawCard() {

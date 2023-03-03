@@ -1,11 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TuiFilterPipeModule } from '@taiga-ui/cdk';
-import { TuiDataListModule, TuiPrimitiveTextfieldModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
+import {
+    TuiButtonModule,
+    TuiDataListModule,
+    TuiPrimitiveTextfieldModule,
+    TuiTextfieldControllerModule
+} from '@taiga-ui/core';
 import { SelectTypeaheadComponent } from './components/select-modal/select-typeahead.component';
+import { SwipeContainerComponent } from './components/swipe-container/swipe-container.component';
 
 const declarations = [
     SelectTypeaheadComponent,
+    SwipeContainerComponent,
 ];
 
 @NgModule({
@@ -15,7 +22,8 @@ const declarations = [
         TuiPrimitiveTextfieldModule,
         TuiTextfieldControllerModule,
         TuiDataListModule,
-        TuiFilterPipeModule
+        TuiFilterPipeModule,
+        TuiButtonModule
     ],
     exports: declarations,
 })
