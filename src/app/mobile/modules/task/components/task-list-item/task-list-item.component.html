@@ -1,0 +1,24 @@
+<ion-card>
+    <ion-card-header>
+        <ion-card-subtitle>{{task.title}}</ion-card-subtitle>
+        <ion-card-subtitle>{{task.price}}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+        <div class="grid">
+            <div class="flex">
+                <span class="ml-auto" *ngIf="task.matches?.length">M</span>
+            </div>
+            <div class="flex">
+                <span class="ml-auto" *ngIf="task.executor">
+                    {{task.author.firstName}}
+                </span>
+            </div>
+
+            <div class="ml-auto">
+                <ng-content select="icon"></ng-content>
+            </div>
+        </div>
+
+    </ion-card-content>
+</ion-card>

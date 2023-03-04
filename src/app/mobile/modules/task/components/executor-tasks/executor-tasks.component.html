@@ -1,0 +1,40 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar class="flex justify-center">
+        <ion-title>Задачи</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<div class="ion-padding">
+    <tui-loader *ngIf="loading$ | async; else content"></tui-loader>
+
+    <ng-template #content>
+        <div class="grid">
+            <fj-task-list-item *ngFor="let task of tasks.work"
+                               [task]="task"
+                               (click)="onTaskClick(task)"
+            >
+                В работе
+            </fj-task-list-item>
+
+            <fj-task-list-item *ngFor="let task of tasks.offers"
+                               [task]="task"
+                               (click)="onTaskClick(task)"
+            >
+                Оффер
+            </fj-task-list-item>
+
+            <fj-task-list-item *ngFor="let task of tasks.matches"
+                               [task]="task"
+                               (click)="onTaskClick(task)"
+            >
+                <ng-container ngProjectAs="icon">Метч</ng-container>
+            </fj-task-list-item>
+
+            <fj-task-list-item *ngFor="let task of tasks.swipes"
+                               [task]="task"
+                               (click)="onTaskClick(task)"
+            >
+            </fj-task-list-item>
+        </div>
+    </ng-template>
+</div>

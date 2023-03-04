@@ -9,4 +9,6 @@ export interface TaskInterface {
     categories: CategoryInterface[];
     price?: number;
     description?: string;
+    executor?: ProfileInterface;
+    matches?: any[];
 }

@@ -33,6 +33,15 @@ const routes: Routes = [
             ProfileGuard,
         ]
     },
+    {
+        path: 'tasks',
+        loadChildren: () => import('./modules/task/task-mobile.module').then(m => m.TaskMobileModule),
+        data: {routeName: 'tasks'},
+        canActivate: [
+            CredentialsGuard,
+            ProfileGuard,
+        ]
+    },
 ];
 
 @NgModule({

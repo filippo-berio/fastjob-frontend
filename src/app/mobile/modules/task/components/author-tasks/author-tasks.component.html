@@ -1,0 +1,15 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar class="flex justify-center">
+        <ion-title>Задачи</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<div class="ion-padding">
+    <div class="grid">
+        <fj-task-list-item *ngFor="let task of tasks$ | async"
+                           [task]="task"
+                           (click)="onTaskClick(task)"
+        >
+        </fj-task-list-item>
+    </div>
+</div>

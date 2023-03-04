@@ -4,6 +4,7 @@ import { ProfileInterface } from '../../../../../core/profile/core/data/profile.
 import { Swipeable } from '../../../../../core/home/data/swipeable.interface';
 import { CardComponentFactoryType, CardComponentToken } from '../../tokens/card-component.token';
 import { SubscribeRegistry } from '../../../../../core/shared/services/subscribe.registry';
+import { SettingsService } from '../../../../../core/settings/service/settings.service';
 
 @Component({
     selector: 'fj-home',
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit {
         private changeDetection: ChangeDetectorRef,
         @Inject(CardComponentToken) private cardComponentFactory: CardComponentFactoryType,
         private subscribeRegistry: SubscribeRegistry,
+        private settings: SettingsService,
     ) {
     }
 
@@ -42,7 +44,7 @@ export class HomeComponent implements OnInit {
     }
 
     isProfileConfigured(): boolean {
-        return this.profile.categories.length > 0;
+        return this.settings.currentMode === 'author' || this.profile.categories.length > 0;
     }
 
     accept() {

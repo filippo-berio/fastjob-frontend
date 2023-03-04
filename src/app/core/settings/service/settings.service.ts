@@ -8,10 +8,10 @@ export class SettingsService {
     private localStorage = localStorage;
 
     get currentMode(): AppMode {
-        return (this.localStorage.getItem('mode') ?? 'executor') as AppMode;
+        return (this.localStorage.getItem('fastjob-mode') ?? 'executor') as AppMode;
     }
 
     set currentMode(value: AppMode) {
-        this.localStorage.setItem('mode', value);
+        this.localStorage.setItem('fastjob-mode', value);
     }
 }
