@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { TuiButtonModule } from '@taiga-ui/core';
+import { TuiButtonModule, TuiLoaderModule } from '@taiga-ui/core';
 import { AuthModule } from '../../../core/auth/auth.module';
 import { HomeModule } from '../../../core/home/home.module';
 import { MenuMobileModule } from '../menu/menu-mobile.module';
@@ -40,6 +40,7 @@ import { UiModule } from 'src/app/lib/ui/ui.module';
         CategoryMobileModule,
         SharedModule,
         UiModule,
+        TuiLoaderModule,
     ],
     providers: [
     ],

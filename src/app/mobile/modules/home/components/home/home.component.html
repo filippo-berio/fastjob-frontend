@@ -8,13 +8,19 @@
     <div *ngIf="isProfileConfigured(); else noSettings"
          class="flex flex-col h-full"
     >
-        <fj-swipe-card [card]="card"
-                       [cardComponent]="cardComponent"
-                       *ngIf="card; else noCards"
-                       (accept)="accept()"
-                       (reject)="reject()"
-        >
-        </fj-swipe-card>
+        <div *ngIf="loading$ | async; else cardTemplate">
+            <tui-loader></tui-loader>
+        </div>
+
+        <ng-template #cardTemplate>
+            <fj-swipe-card [card]="card"
+                           [cardComponent]="cardComponent"
+                           *ngIf="card; else noCards"
+                           (accept)="accept()"
+                           (reject)="reject()"
+            >
+            </fj-swipe-card>
+        </ng-template>
     </div>
 </ion-content>
 

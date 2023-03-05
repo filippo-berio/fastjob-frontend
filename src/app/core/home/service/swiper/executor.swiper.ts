@@ -28,7 +28,6 @@ export class ExecutorSwiper implements SwiperInterface {
     }
 
     private mapToSwipeable(data: NextExecutorInterface | null): Swipeable | null {
-        console.log(data);
         return data ? {
             task: data!.task,
             profile: data!.profile,

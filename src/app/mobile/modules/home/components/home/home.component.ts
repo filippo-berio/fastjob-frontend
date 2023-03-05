@@ -5,6 +5,7 @@ import { Swipeable } from '../../../../../core/home/data/swipeable.interface';
 import { CardComponentFactoryType, CardComponentToken } from '../../tokens/card-component.token';
 import { SubscribeRegistry } from '../../../../../core/shared/services/subscribe.registry';
 import { SettingsService } from '../../../../../core/settings/service/settings.service';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'fj-home',
@@ -12,6 +13,8 @@ import { SettingsService } from '../../../../../core/settings/service/settings.s
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+    loading$: Observable<boolean>;
 
     profile: ProfileInterface;
     card: Swipeable | null
@@ -33,11 +36,8 @@ export class HomeComponent implements OnInit {
             this.cardComponent = this.cardComponentFactory();
             this.changeDetection.detectChanges();
         });
-        this.facade.init().subscribe(hasNext => {
-            if (!hasNext) {
-                console.error('NO TASK LEFT')
-            }
-        });
+        this.facade.init();
+        this.loading$ = this.facade.loading$;
 
         this.subscribeRegistry.register(profileSub, cardSub);
     }
