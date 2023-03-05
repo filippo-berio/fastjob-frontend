@@ -1,6 +1,7 @@
 <div class="grid">
     <div class="flex justify-around">
         <button (click)="openMatches()"
+                *ngIf="task.matches?.length"
                 tuiButton
                 appearance="outline"
                 size="s"

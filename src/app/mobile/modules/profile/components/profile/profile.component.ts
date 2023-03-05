@@ -9,6 +9,7 @@ import { CategoryPickerComponent } from '../../../category/components/category-p
 import { CityPickerComponent } from '../../../location/components/city-picker/city-picker.component';
 import { ModalInputComponent } from '../../../shared/components/modal-input/modal-input.component';
 import { ModalTextareaComponent } from '../../../shared/components/modal-textarea/modal-textarea.component';
+import { LoginFacade } from '../../../../../core/auth/facade/login.facade';
 
 @Component({
     selector: 'fj-profile',
@@ -23,6 +24,7 @@ export class ProfileComponent implements OnInit {
     constructor(
         private facade: ProfileSettingsFacade,
         private modalOpener: MatDialog,
+        private loginFacade: LoginFacade,
     ) {
     }
 
@@ -79,5 +81,9 @@ export class ProfileComponent implements OnInit {
             modalRef.close();
             this.facade.updateCity(city);
         })
+    }
+
+    logout() {
+        this.loginFacade.logout();
     }
 }

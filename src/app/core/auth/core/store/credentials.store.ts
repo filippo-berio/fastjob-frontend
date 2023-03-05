@@ -23,4 +23,9 @@ export class CredentialsStore {
     refreshToken(): string|null {
         return this.localStorage.getItem('fastjob-refresh-token');
     }
+
+    clear() {
+        this.localStorage.removeItem('fastjob-access-token');
+        this.localStorage.removeItem('fastjob-refresh-token');
+    }
 }
