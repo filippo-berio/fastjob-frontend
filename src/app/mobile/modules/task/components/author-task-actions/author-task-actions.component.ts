@@ -5,7 +5,7 @@ import { TaskMatchesComponent } from '../task-matches/task-matches.component';
 import { fullScreenConfig } from '../../../../../core/shared/data/mat-dialog.configs';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { AuthorFacade } from '../../../../../core/task/service/author.facade';
+import { AuthorFacade } from '../../../../../core/task/facade/author.facade';
 
 @Component({
     selector: 'fj-author-task-actions',
@@ -24,7 +24,6 @@ export class AuthorTaskActionsComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('this._tasks$.value');
         this.canFinishTask$ = this.facade.canFinishTask$(this.task);
     }
 

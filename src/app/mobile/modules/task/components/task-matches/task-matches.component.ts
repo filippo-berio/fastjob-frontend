@@ -6,7 +6,7 @@ import { MatchInterface } from '../../../../../core/task/data/match.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { fullScreenConfig } from '../../../../../core/shared/data/mat-dialog.configs';
 import { ShowExecutorComponent } from '../show-executor/show-executor.component';
-import { AuthorFacade } from '../../../../../core/task/service/author.facade';
+import { AuthorFacade } from '../../../../../core/task/facade/author.facade';
 
 @Component({
     selector: 'fj-task-matches',

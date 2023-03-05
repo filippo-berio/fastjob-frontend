@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('home');
         const profileSub = this.facade.profile$().subscribe(p => this.profile = p);
         const cardSub = this.facade.currentCard$.subscribe(card => {
             this.card = card;

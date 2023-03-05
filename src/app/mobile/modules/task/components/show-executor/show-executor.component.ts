@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatchInterface } from '../../../../../core/task/data/match.interface';
-import { AuthorFacade } from '../../../../../core/task/service/author.facade';
+import { AuthorFacade } from '../../../../../core/task/facade/author.facade';
 
 @Component({
     selector: 'fj-show-executor',

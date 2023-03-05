@@ -21,10 +21,10 @@ export class AuthorFacade {
     }
 
     init() {
-        this.tasks$ = this.taskApi.getAuthorTasks().pipe(
+         this.taskApi.getAuthorTasks().pipe(
+            tap(tasks => this._tasks$.next(tasks)),
             finalize(() => this._loading$.next(false))
-        );
-        this.tasks$.subscribe();
+        ).subscribe();
     }
 
     openChat(match: MatchInterface) {
@@ -40,10 +40,8 @@ export class AuthorFacade {
     }
 
     canFinishTask$(task: TaskInterface): Observable<boolean> {
-        console.log(this._tasks$.value);
         return this.tasks$.pipe(
             map(tasks => {
-                console.log(tasks.find(t => t.id === task.id));
                 return tasks.find(t => t.id === task.id)?.status === 'work'
             })
         );

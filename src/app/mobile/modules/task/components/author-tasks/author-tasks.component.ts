@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { AuthorFacade } from '../../../../../core/task/service/author.facade';
+import { AuthorFacade } from '../../../../../core/task/facade/author.facade';
 import { Observable } from 'rxjs';
 import { TaskInterface } from '../../../../../core/task/data/task.interface';
 
