@@ -1,0 +1,22 @@
+<div class="ion-padding">
+    <form [formGroup]="form">
+        <p class="text-md">Дайте оценку исполнителю</p>
+
+        <div class="grid gap-2 flex items-center">
+            <tui-rating class="yellow"
+                        formControlName="rating"
+            ></tui-rating>
+
+            <tui-text-area formControlName="comment">
+                Комментарий
+            </tui-text-area>
+        </div>
+
+        <button tuiButton
+                *ngIf="form.valid"
+                (click)="finish()"
+        >
+            Закрыть задачу
+        </button>
+    </form>
+</div>

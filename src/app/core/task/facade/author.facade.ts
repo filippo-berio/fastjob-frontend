@@ -4,6 +4,7 @@ import { BehaviorSubject, finalize, map, Observable, tap } from 'rxjs';
 import { TaskInterface } from '../data/task.interface';
 import { ProfileInterface } from '../../profile/core/data/profile.interface';
 import { MatchInterface } from '../data/match.interface';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({
     providedIn: 'root'
@@ -11,6 +12,7 @@ import { MatchInterface } from '../data/match.interface';
 export class AuthorFacade {
     private _loading$ = new BehaviorSubject<boolean>(true);
     private _tasks$ = new BehaviorSubject<TaskInterface[]>([]);
+    private finishTaskForm: FormGroup;
 
     tasks$ = this._tasks$.asObservable();
     loading$ = this._loading$.asObservable();
@@ -47,9 +49,18 @@ export class AuthorFacade {
         );
     }
 
-    finishTask(task: TaskInterface, rating: number, comment?: string) {
-        this.taskApi.finishTask(task, rating, comment).pipe(
+    finishTask(task: TaskInterface) {
+        const formValue = this.finishTaskForm.value;
+        this.taskApi.finishTask(task, formValue.rating, formValue.comment).pipe(
             tap(tasks => this._tasks$.next(tasks))
         ).subscribe();
+    }
+
+    createFinishTaskForm(): FormGroup {
+        this.finishTaskForm = new FormGroup({
+            rating: new FormControl(null, [Validators.required]),
+            comment: new FormControl(null),
+        });
+        return this.finishTaskForm;
     }
 }

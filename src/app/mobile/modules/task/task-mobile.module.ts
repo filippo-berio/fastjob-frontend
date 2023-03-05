@@ -16,6 +16,9 @@ import { ExecutorTaskActionsComponent } from './components/executor-task-actions
 import { TaskMatchesComponent } from './components/task-matches/task-matches.component';
 import { ShowExecutorComponent } from './components/show-executor/show-executor.component';
 import { ProfileMobileModule } from '../profile/profile-mobile.module';
+import { FinishTaskComponent } from './components/finish-task/finish-task.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TuiRatingModule, TuiTextAreaModule } from '@taiga-ui/kit';
 
 const routes: Routes = [
     {
@@ -35,6 +38,7 @@ const routes: Routes = [
         ExecutorTaskActionsComponent,
         TaskMatchesComponent,
         ShowExecutorComponent,
+        FinishTaskComponent,
     ],
     imports: [
         CommonModule,
@@ -46,6 +50,9 @@ const routes: Routes = [
         TuiLoaderModule,
         TuiButtonModule,
         ProfileMobileModule,
+        ReactiveFormsModule,
+        TuiTextAreaModule,
+        TuiRatingModule,
     ],
     providers: [
     ]

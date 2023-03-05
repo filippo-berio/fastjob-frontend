@@ -6,6 +6,7 @@ import { fullScreenConfig } from '../../../../../core/shared/data/mat-dialog.con
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthorFacade } from '../../../../../core/task/facade/author.facade';
+import { FinishTaskComponent } from '../finish-task/finish-task.component';
 
 @Component({
     selector: 'fj-author-task-actions',
@@ -40,6 +41,7 @@ export class AuthorTaskActionsComponent implements OnInit {
     }
 
     finishTask() {
-
+        const componentRef = this.dialog.open(FinishTaskComponent, fullScreenConfig);
+        componentRef.componentInstance.task = this.task;
     }
 }
