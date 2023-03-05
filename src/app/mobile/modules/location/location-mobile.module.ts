@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UiModule } from '../../../core/ui/ui.module';
 import { CityPickerComponent } from './components/city-picker/city-picker.component';
+import { UiModule } from 'src/app/lib/ui/ui.module';
 
 
 @NgModule({

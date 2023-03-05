@@ -13,14 +13,14 @@
                                [task]="task"
                                (click)="onTaskClick(task)"
             >
-                В работе
+                <ng-container ngProjectAs="icon">В работе</ng-container>
             </fj-task-list-item>
 
             <fj-task-list-item *ngFor="let task of tasks.offers"
                                [task]="task"
                                (click)="onTaskClick(task)"
             >
-                Оффер
+                <ng-container ngProjectAs="icon">Оффер</ng-container>
             </fj-task-list-item>
 
             <fj-task-list-item *ngFor="let task of tasks.matches"

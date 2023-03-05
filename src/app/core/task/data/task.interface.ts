@@ -1,5 +1,9 @@
 import { ProfileInterface } from '../../profile/core/data/profile.interface';
 import { CategoryInterface } from '../../categories/data/category.interface';
+import { MatchInterface } from './match.interface';
+import { OfferInterface } from './offer.interface';
+
+export type TaskStatus = 'wait' | 'offered' | 'work' | 'finished';
 
 export interface TaskInterface {
     id: number,
@@ -10,5 +14,7 @@ export interface TaskInterface {
     price?: number;
     description?: string;
     executor?: ProfileInterface;
-    matches?: any[];
+    matches?: MatchInterface[];
+    offers?: OfferInterface[];
+    status: TaskStatus;
 }

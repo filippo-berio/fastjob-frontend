@@ -21,7 +21,8 @@ export class ExecutorTasksComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.facade.tasks$().subscribe(tasks => this.tasks = tasks);
+        this.facade.init();
+        this.facade.tasks$.subscribe(tasks => this.tasks = tasks!);
         this.loading$ = this.facade.loading$;
     }
 

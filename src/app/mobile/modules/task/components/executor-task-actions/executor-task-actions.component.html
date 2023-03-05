@@ -1,0 +1,15 @@
+<div class="flex justify-around">
+    <button (click)="goChat()"
+            *ngIf="canGoChat$ | async"
+            tuiButton
+            appearance="outline"
+            size="s"
+    >Перейти в чат</button>
+
+    <button (click)="acceptOffer()"
+            *ngIf="canAcceptOffer$ | async"
+            tuiButton
+            appearance="outline"
+            size="s"
+    >Принять оффер</button>
+</div>

@@ -1,0 +1,21 @@
+<div class="grid">
+    <div class="flex justify-around">
+        <button (click)="openMatches()"
+                tuiButton
+                appearance="outline"
+                size="s"
+        >Метчи</button>
+
+        <button (click)="searchExecutors()"
+                tuiButton
+                appearance="outline"
+                size="s"
+        >Поиск исполнителя</button>
+    </div>
+
+    <button tuiButton
+            size="m"
+            *ngIf="canFinishTask$ | async"
+            (click)="finishTask()"
+    >Задача выполнена</button>
+</div>

@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { Swipeable } from '../../../../../core/home/data/swipeable.interface';
 import { DynamicDirective } from '../../../../../core/shared/directives/dynamic.directive';
-import { SwipeDirection } from '../../../../../core/ui/data/swipe-direction';
+import { SwipeDirection } from '../../../../../lib/ui/data/swipe-direction';
 
 @Component({
     selector: 'fj-swipe-card',
@@ -31,6 +31,7 @@ export class SwipeCardComponent implements AfterViewInit, OnChanges {
         ['left', this.accept],
         ['right', this.reject],
     ]);
+
     constructor() {
     }
 

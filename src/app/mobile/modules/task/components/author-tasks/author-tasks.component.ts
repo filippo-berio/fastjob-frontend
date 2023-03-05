@@ -21,7 +21,8 @@ export class AuthorTasksComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.tasks$ = this.facade.tasks$();
+        this.facade.init();
+        this.tasks$ = this.facade.tasks$;
         this.loading$ = this.facade.loading$;
     }
 

@@ -10,7 +10,12 @@ import { TaskListItemComponent } from './components/task-list-item/task-list-ite
 import { IonicModule } from '@ionic/angular';
 import { TaskComponent } from './components/task/task.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { TuiLoaderModule } from '@taiga-ui/core';
+import { TuiButtonModule, TuiLoaderModule } from '@taiga-ui/core';
+import { AuthorTaskActionsComponent } from './components/author-task-actions/author-task-actions.component';
+import { ExecutorTaskActionsComponent } from './components/executor-task-actions/executor-task-actions.component';
+import { TaskMatchesComponent } from './components/task-matches/task-matches.component';
+import { ShowExecutorComponent } from './components/show-executor/show-executor.component';
+import { ProfileMobileModule } from '../profile/profile-mobile.module';
 
 const routes: Routes = [
     {
@@ -26,6 +31,10 @@ const routes: Routes = [
         ExecutorTasksComponent,
         TaskListItemComponent,
         TaskComponent,
+        AuthorTaskActionsComponent,
+        ExecutorTaskActionsComponent,
+        TaskMatchesComponent,
+        ShowExecutorComponent,
     ],
     imports: [
         CommonModule,
@@ -35,6 +44,10 @@ const routes: Routes = [
         MatDialogModule,
         IonicModule,
         TuiLoaderModule,
+        TuiButtonModule,
+        ProfileMobileModule,
+    ],
+    providers: [
     ]
 })
 export class TaskMobileModule {

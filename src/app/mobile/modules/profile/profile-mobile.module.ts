@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
-import { Route, RouterModule } from '@angular/router';
+import { Route } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { TuiButtonModule } from '@taiga-ui/core';
 import { TuiInputDateModule, TuiInputModule } from '@taiga-ui/kit';
@@ -16,6 +16,7 @@ import { AddProfileInfoButtonComponent } from './components/add-profile-info-but
 import { ProfileLayoutComponent } from './components/profile-layout/profile-layout.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterProfileComponent } from './components/register-profile/register-profile.component';
+import { ShowProfileComponent } from './components/show-profile/show-profile.component';
 
 
 const routes: Route[] = [
@@ -37,6 +38,7 @@ const routes: Route[] = [
         ProfileComponent,
         ProfileLayoutComponent,
         AddProfileInfoButtonComponent,
+        ShowProfileComponent,
     ],
     imports: [
         CommonModule,
@@ -53,6 +55,7 @@ const routes: Route[] = [
     ],
     exports: [
         AddProfileInfoButtonComponent,
+        ShowProfileComponent,
     ]
 })
 export class ProfileMobileModule {

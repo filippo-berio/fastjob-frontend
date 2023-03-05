@@ -1,0 +1,13 @@
+<div class="ion-padding">
+    <ion-card *ngFor="let match of task.matches"
+              (click)="openProfile(match)"
+    >
+        <ion-card-content>
+            <div class="flex justify-between">
+                {{profileRepresentation(match.executor)}}
+
+                <ion-icon name="chatbubble-ellipses-outline" (click)="openChat($event, match)"></ion-icon>
+            </div>
+        </ion-card-content>
+    </ion-card>
+</div>

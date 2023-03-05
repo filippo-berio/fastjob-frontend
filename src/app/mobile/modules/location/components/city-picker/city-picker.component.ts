@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
+import { SelectItemInterface } from 'src/app/lib/ui/data/select-item.interface';
 import { CityInterface } from '../../../../../core/location/data/city.interface';
 import { LocationApi } from '../../../../../core/location/service/location.api';
-import { SelectItemInterface } from '../../../../../core/ui/data/select-item.interface';
 
 @Component({
     selector: 'fj-city-picker',
