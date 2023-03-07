@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileInterface } from '../../../../../core/profile/core/data/profile.interface';
+import { getProfileMainPhotoPath } from '../../../../../core/profile/core/util/profile-photo.utils';
 import { getProfileRepresentation } from '../../../../../core/profile/core/util/profile-representation';
 import { ProfileSettingsFacade } from '../../../../../core/profile/facade/profile-settings-facade.service';
 import { bottomDialogConfig, fullScreenConfig } from '../../../../../core/shared/data/mat-dialog.configs';
@@ -20,6 +21,7 @@ export class ProfileComponent implements OnInit {
     profile: ProfileInterface;
     profileRepresentation: string;
     form: FormGroup;
+    mainPhotoPath: string;
 
     constructor(
         private facade: ProfileSettingsFacade,
@@ -33,6 +35,7 @@ export class ProfileComponent implements OnInit {
             this.profile = profile;
             this.form = this.facade.buildForm();
             this.profileRepresentation = getProfileRepresentation(profile);
+            this.mainPhotoPath = getProfileMainPhotoPath(this.profile);
         });
         if (window.history.state?.openCategories) {
             setTimeout(() => this.editCategories(), 300);

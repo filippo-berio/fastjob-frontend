@@ -1,5 +1,6 @@
 import { CategoryInterface } from '../../../categories/data/category.interface';
 import { CityInterface } from '../../../location/data/city.interface';
+import { ProfilePhoto } from './profile-photo.interface';
 
 export interface ProfileInterface {
     id: number;
@@ -8,6 +9,6 @@ export interface ProfileInterface {
     categories: CategoryInterface[];
     lastName?: string;
     description?: string;
-    photoPath?: string;
+    photos: ProfilePhoto[];
     city?: CityInterface;
 }

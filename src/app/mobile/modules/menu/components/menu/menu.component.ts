@@ -42,7 +42,7 @@ export class MenuComponent {
         chat: {
             icon: 'chatbubble-ellipses-outline',
             iconSelected: 'chatbubble-ellipses',
-            route: 'chat'
+            route: 'chats'
         },
         profile: {
             icon: 'person-outline',

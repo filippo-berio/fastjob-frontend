@@ -42,6 +42,15 @@ const routes: Routes = [
             ProfileGuard,
         ]
     },
+    {
+        path: 'chats',
+        loadChildren: () => import('./modules/chat/chat-mobile.module').then(m => m.ChatMobileModule),
+        data: {routeName: 'chats'},
+        canActivate: [
+            CredentialsGuard,
+            ProfileGuard,
+        ]
+    },
 ];
 
 @NgModule({
