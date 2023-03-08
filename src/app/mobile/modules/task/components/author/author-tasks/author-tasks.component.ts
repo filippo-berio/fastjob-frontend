@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { MatchInterface } from '../../../../../../core/task/data/match.interface';
 import { AuthorFacade } from '../../../../../../core/task/facade/author.facade';
-import { filter, map, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { TaskInterface } from '../../../../../../core/task/data/task.interface';
 
 @Component({
@@ -11,15 +10,12 @@ import { TaskInterface } from '../../../../../../core/task/data/task.interface';
 })
 export class AuthorTasksComponent implements OnInit {
 
-    finished$: Observable<TaskInterface[]>;
-    work$: Observable<TaskInterface[]>;
-    offers$: Observable<TaskInterface[]>;
-    matches$: Observable<TaskInterface[]>;
-    wait$: Observable<TaskInterface[]>;
+    tasks$: Observable<TaskInterface[]>;
 
     loading$: Observable<boolean>;
 
     @Output() openTask = new EventEmitter<TaskInterface>();
+    tasks: TaskInterface[] = [];
 
     constructor(
         private facade: AuthorFacade,
@@ -29,21 +25,10 @@ export class AuthorTasksComponent implements OnInit {
     ngOnInit() {
         this.facade.init();
 
-        this.finished$ = this.facade.tasks$.pipe(
-            map(list => list.filter(t => this.isTaskFinished(t)))
+        this.tasks$ = this.facade.tasks$.pipe(
+            map(list => list.sort(this.compareTasksForSorting))
         );
-        this.work$ = this.facade.tasks$.pipe(
-            map(list => list.filter(t => this.isTaskInWork(t)))
-        );
-        this.offers$ = this.facade.tasks$.pipe(
-            map(list => list.filter(t => this.isTaskOffered(t)))
-        );
-        this.matches$ = this.facade.tasks$.pipe(
-            map(list => list.filter(t => this.isTaskWithMatches(t)))
-        );
-        this.wait$ = this.facade.tasks$.pipe(
-            map(list => list.filter(t => this.isTaskWaiting(t)))
-        );
+        this.facade.tasks$.subscribe(list => this.tasks = list);
 
         this.loading$ = this.facade.loading$;
     }
@@ -52,8 +37,23 @@ export class AuthorTasksComponent implements OnInit {
         this.openTask.emit(task);
     }
 
-    getMatches(task: TaskInterface): MatchInterface[] {
-        return task.matches?.filter(m => !task.offers?.find(of => of.profile.id === m.executor.id)) ?? [];
+    private compareTasksForSorting(a: TaskInterface, b: TaskInterface): number {
+        const valueFn = (t: TaskInterface) => {
+            switch (true) {
+                case this.isTaskInWork(t):
+                    return 0;
+                case this.isTaskOffered(t):
+                    return 1;
+                case this.isTaskWithMatches(t):
+                    return 2;
+                case this.isTaskWaiting(t):
+                    return 3;
+                case this.isTaskFinished(t):
+                default:
+                    return 4;
+            }
+        }
+        return valueFn(a) > valueFn(b) ? 1 : -1;
     }
 
     private isTaskFinished(task: TaskInterface): boolean {

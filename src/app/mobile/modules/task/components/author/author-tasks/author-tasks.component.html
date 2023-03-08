@@ -5,36 +5,12 @@
 </ion-header>
 
 <div class="ion-padding">
-    <div class="grid">
-        <fj-author-task-list-item *ngFor="let task of work$ | async"
-                           [task]="task"
-                           (click)="onTaskClick(task)"
-        >
-        </fj-author-task-list-item>
-
-        <fj-author-task-list-item *ngFor="let task of offers$ | async"
-                                  [task]="task"
-                                  (click)="onTaskClick(task)"
-        >
-        </fj-author-task-list-item>
-
-        <fj-author-task-list-item *ngFor="let task of matches$ | async"
-                                  [task]="task"
-                                  (click)="onTaskClick(task)"
-        >
-        </fj-author-task-list-item>
-
-        <fj-author-task-list-item *ngFor="let task of wait$ | async"
-                           [task]="task"
-                           (click)="onTaskClick(task)"
-        >
-        </fj-author-task-list-item>
-
-        <fj-author-task-list-item *ngFor="let task of finished$ | async"
-                           [task]="task"
-                           (click)="onTaskClick(task)"
-        >
-        </fj-author-task-list-item>
-
-    </div>
+    <fj-task-list [tasks]="tasks">
+        <ng-template let-task>
+            <fj-author-task-list-item [task]="task"
+                                      (click)="onTaskClick(task)"
+            >
+            </fj-author-task-list-item>
+        </ng-template>
+    </fj-task-list>
 </div>

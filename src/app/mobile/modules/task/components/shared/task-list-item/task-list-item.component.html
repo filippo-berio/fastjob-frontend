@@ -1,15 +1,22 @@
-<ion-card>
-    <ion-card-header>
-        <ion-card-subtitle>{{task.title}}</ion-card-subtitle>
-        <ion-card-subtitle>{{task.price}}</ion-card-subtitle>
-    </ion-card-header>
+<a class="block">
+    <div class="flex items-center px-4 py-4">
+        <div class="grid w-full">
+            <div class="flex-1 flex items-center">
+                <div class="flex-1 grid gap-4">
+                    <div>
+                        <p class="text-sm font-medium w-2/3 truncate">
+                            {{task.title}}
+                        </p>
+                        <p class="mt-2 flex items-center text-sm text-gray-500">
+                            <span class="truncate">{{task.price ?? 'По договоренности'}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-    <ion-card-content>
-        <div class="grid">
-            <div class="ml-auto">
+            <div class="ml-auto h-6">
                 <ng-content select="icon"></ng-content>
             </div>
         </div>
-
-    </ion-card-content>
-</ion-card>
+    </div>
+</a>

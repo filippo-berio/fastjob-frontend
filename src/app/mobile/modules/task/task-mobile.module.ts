@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthorTaskListItemComponent } from './components/author/author-task-list-item/author-task-list-item.component';
+import { TaskListComponent } from './components/shared/task-list/task-list.component';
 import { TaskPageComponent } from './components/task-page/task-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MenuMobileModule } from '../menu/menu-mobile.module';
@@ -41,6 +42,7 @@ const routes: Routes = [
         ShowExecutorComponent,
         FinishTaskComponent,
         AuthorTaskListItemComponent,
+        TaskListComponent,
     ],
     imports: [
         CommonModule,

@@ -1,0 +1,9 @@
+<div class="bg-white shadow overflow-hidden rounded-md">
+    <ul role="list" class="divide-y divide-gray-200">
+        <li *ngFor="let task of tasks">
+            <ng-template [ngTemplateOutlet]="templateRef"
+                         [ngTemplateOutletContext]="{$implicit: task}"
+            ></ng-template>
+        </li>
+    </ul>
+</div>
