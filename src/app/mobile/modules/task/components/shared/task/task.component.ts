@@ -1,10 +1,10 @@
 import { Component, Input, OnInit, Type, ViewChild } from '@angular/core';
-import { TaskInterface } from '../../../../../core/task/data/task.interface';
-import { DynamicDirective } from '../../../../../core/shared/directives/dynamic.directive';
-import { AppMode } from '../../../../../core/settings/data/app-mode.type';
-import { ExecutorTaskActionsComponent } from '../executor-task-actions/executor-task-actions.component';
-import { AuthorTaskActionsComponent } from '../author-task-actions/author-task-actions.component';
-import { SettingsService } from '../../../../../core/settings/service/settings.service';
+import { TaskInterface } from '../../../../../../core/task/data/task.interface';
+import { DynamicDirective } from '../../../../../../core/shared/directives/dynamic.directive';
+import { AppMode } from '../../../../../../core/settings/data/app-mode.type';
+import { ExecutorTaskActionsComponent } from '../../executor/executor-task-actions/executor-task-actions.component';
+import { AuthorTaskActionsComponent } from '../../author/author-task-actions/author-task-actions.component';
+import { SettingsService } from '../../../../../../core/settings/service/settings.service';
 
 @Component({
     selector: 'fj-task',

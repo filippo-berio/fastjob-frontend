@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { TaskInterface } from '../../../../../core/task/data/task.interface';
-import { ExecutorFacade } from '../../../../../core/task/facade/executor.facade';
+import { TaskInterface } from '../../../../../../core/task/data/task.interface';
+import { ExecutorFacade } from '../../../../../../core/task/facade/executor.facade';
 import { Observable } from 'rxjs';
-import { ExecutorTaskList } from '../../../../../core/task/data/executor-task-list.interface';
+import { ExecutorTaskList } from '../../../../../../core/task/data/executor-task-list.interface';
 
 @Component({
     selector: 'fj-executor-tasks',

@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ProfileInterface } from '../../../../../core/profile/core/data/profile.interface';
-import { fullScreenConfig } from '../../../../../core/shared/data/mat-dialog.configs';
-import { MatchInterface } from '../../../../../core/task/data/match.interface';
-import { TaskInterface } from '../../../../../core/task/data/task.interface';
+import { ProfileInterface } from '../../../../../../core/profile/core/data/profile.interface';
+import { fullScreenConfig } from '../../../../../../core/shared/data/mat-dialog.configs';
+import { MatchInterface } from '../../../../../../core/task/data/match.interface';
+import { TaskInterface } from '../../../../../../core/task/data/task.interface';
 import { ShowExecutorComponent } from '../show-executor/show-executor.component';
 
 @Component({

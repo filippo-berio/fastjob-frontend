@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { MatchInterface } from '../../../../../core/task/data/match.interface';
-import { AuthorFacade } from '../../../../../core/task/facade/author.facade';
+import { MatchInterface } from '../../../../../../core/task/data/match.interface';
+import { AuthorFacade } from '../../../../../../core/task/facade/author.facade';
 import { filter, map, Observable } from 'rxjs';
-import { TaskInterface } from '../../../../../core/task/data/task.interface';
+import { TaskInterface } from '../../../../../../core/task/data/task.interface';
 
 @Component({
     selector: 'fj-author-tasks',

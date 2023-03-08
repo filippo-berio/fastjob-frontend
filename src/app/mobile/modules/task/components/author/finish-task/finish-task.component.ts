@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TaskInterface } from '../../../../../core/task/data/task.interface';
-import { AuthorFacade } from '../../../../../core/task/facade/author.facade';
+import { TaskInterface } from '../../../../../../core/task/data/task.interface';
+import { AuthorFacade } from '../../../../../../core/task/facade/author.facade';
 import { FormGroup } from '@angular/forms';
 
 @Component({

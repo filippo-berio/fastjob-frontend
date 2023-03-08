@@ -6,11 +6,11 @@
 
 <div class="ion-padding">
     <div class="grid">
-        <fj-task-list-item *ngFor="let task of work$ | async"
+        <fj-author-task-list-item *ngFor="let task of work$ | async"
                            [task]="task"
                            (click)="onTaskClick(task)"
         >
-        </fj-task-list-item>
+        </fj-author-task-list-item>
 
         <fj-author-task-list-item *ngFor="let task of offers$ | async"
                                   [task]="task"
@@ -24,17 +24,17 @@
         >
         </fj-author-task-list-item>
 
-        <fj-task-list-item *ngFor="let task of wait$ | async"
+        <fj-author-task-list-item *ngFor="let task of wait$ | async"
                            [task]="task"
                            (click)="onTaskClick(task)"
         >
-        </fj-task-list-item>
+        </fj-author-task-list-item>
 
-        <fj-task-list-item *ngFor="let task of finished$ | async"
+        <fj-author-task-list-item *ngFor="let task of finished$ | async"
                            [task]="task"
                            (click)="onTaskClick(task)"
         >
-        </fj-task-list-item>
+        </fj-author-task-list-item>
 
     </div>
 </div>

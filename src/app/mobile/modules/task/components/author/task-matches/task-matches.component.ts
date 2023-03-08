@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { TaskInterface } from '../../../../../core/task/data/task.interface';
-import { ProfileInterface } from '../../../../../core/profile/core/data/profile.interface';
-import { getProfileRepresentation } from '../../../../../core/profile/core/util/profile-representation';
-import { MatchInterface } from '../../../../../core/task/data/match.interface';
+import { TaskInterface } from '../../../../../../core/task/data/task.interface';
+import { ProfileInterface } from '../../../../../../core/profile/core/data/profile.interface';
+import { getProfileRepresentation } from '../../../../../../core/profile/core/util/profile-representation';
+import { MatchInterface } from '../../../../../../core/task/data/match.interface';
 import { MatDialog } from '@angular/material/dialog';
-import { fullScreenConfig } from '../../../../../core/shared/data/mat-dialog.configs';
+import { fullScreenConfig } from '../../../../../../core/shared/data/mat-dialog.configs';
 import { ShowExecutorComponent } from '../show-executor/show-executor.component';
-import { AuthorFacade } from '../../../../../core/task/facade/author.facade';
+import { AuthorFacade } from '../../../../../../core/task/facade/author.facade';
 
 @Component({
     selector: 'fj-task-matches',

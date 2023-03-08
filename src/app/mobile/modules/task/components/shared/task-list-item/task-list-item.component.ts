@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { TaskInterface } from '../../../../../core/task/data/task.interface';
+import { TaskInterface } from '../../../../../../core/task/data/task.interface';
 
 @Component({
     selector: 'fj-task-list-item',

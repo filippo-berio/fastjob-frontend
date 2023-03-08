@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { TaskInterface } from '../../../../../core/task/data/task.interface';
-import { ExecutorFacade } from '../../../../../core/task/facade/executor.facade';
+import { TaskInterface } from '../../../../../../core/task/data/task.interface';
+import { ExecutorFacade } from '../../../../../../core/task/facade/executor.facade';
 import { Observable } from 'rxjs';
 
 @Component({

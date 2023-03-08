@@ -1,12 +1,12 @@
 import { Component, OnInit, Type, ViewChild } from '@angular/core';
 import { DynamicDirective } from '../../../../../core/shared/directives/dynamic.directive';
 import { AppMode } from '../../../../../core/settings/data/app-mode.type';
-import { AuthorTasksComponent } from '../author-tasks/author-tasks.component';
-import { ExecutorTasksComponent } from '../executor-tasks/executor-tasks.component';
+import { AuthorTasksComponent } from '../author/author-tasks/author-tasks.component';
+import { ExecutorTasksComponent } from '../executor/executor-tasks/executor-tasks.component';
 import { SettingsService } from '../../../../../core/settings/service/settings.service';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskInterface } from '../../../../../core/task/data/task.interface';
-import { TaskComponent } from '../task/task.component';
+import { TaskComponent } from '../shared/task/task.component';
 import { fullScreenConfig } from '../../../../../core/shared/data/mat-dialog.configs';
 
 @Component({
