@@ -3,7 +3,6 @@ import { TaskApi } from '../api/task.api';
 import { BehaviorSubject, finalize, map, Observable, tap } from 'rxjs';
 import { TaskInterface } from '../data/task.interface';
 import { ProfileInterface } from '../../profile/core/data/profile.interface';
-import { MatchInterface } from '../data/match.interface';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({
@@ -29,12 +28,12 @@ export class AuthorFacade {
         ).subscribe();
     }
 
-    openChat(match: MatchInterface) {
-        console.log('NAVIGATE TO CHAT WITH ', match.executor.firstName);
+    openChat(executor: ProfileInterface, task: TaskInterface) {
+        console.log('NAVIGATE TO CHAT WITH ', executor.firstName);
     }
 
-    makeOffer(match: MatchInterface) {
-        this.taskApi.makeOffer(match.task, match.executor).subscribe();
+    makeOffer(executor: ProfileInterface, task: TaskInterface) {
+        this.taskApi.makeOffer(task, executor).subscribe();
     }
 
     isTaskOffered(task: TaskInterface, executor: ProfileInterface): boolean {

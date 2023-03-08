@@ -6,35 +6,30 @@
 
 <div class="ion-padding">
     <div class="grid">
-        <p>В работе</p>
         <fj-task-list-item *ngFor="let task of work$ | async"
                            [task]="task"
                            (click)="onTaskClick(task)"
         >
         </fj-task-list-item>
 
-        <p>Офферы</p>
-        <fj-task-list-item *ngFor="let task of offers$ | async"
-                           [task]="task"
-                           (click)="onTaskClick(task)"
+        <fj-author-task-list-item *ngFor="let task of offers$ | async"
+                                  [task]="task"
+                                  (click)="onTaskClick(task)"
         >
-        </fj-task-list-item>
+        </fj-author-task-list-item>
 
-        <p>С метчами</p>
-        <fj-task-list-item *ngFor="let task of matches$ | async"
-                           [task]="task"
-                           (click)="onTaskClick(task)"
+        <fj-author-task-list-item *ngFor="let task of matches$ | async"
+                                  [task]="task"
+                                  (click)="onTaskClick(task)"
         >
-        </fj-task-list-item>
+        </fj-author-task-list-item>
 
-        <p>Ожидают</p>
         <fj-task-list-item *ngFor="let task of wait$ | async"
                            [task]="task"
                            (click)="onTaskClick(task)"
         >
         </fj-task-list-item>
 
-        <p>Выполненные</p>
         <fj-task-list-item *ngFor="let task of finished$ | async"
                            [task]="task"
                            (click)="onTaskClick(task)"

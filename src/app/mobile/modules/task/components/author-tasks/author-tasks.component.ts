@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatchInterface } from '../../../../../core/task/data/match.interface';
 import { AuthorFacade } from '../../../../../core/task/facade/author.facade';
 import { filter, map, Observable } from 'rxjs';
 import { TaskInterface } from '../../../../../core/task/data/task.interface';
@@ -49,6 +50,10 @@ export class AuthorTasksComponent implements OnInit {
 
     onTaskClick(task: TaskInterface) {
         this.openTask.emit(task);
+    }
+
+    getMatches(task: TaskInterface): MatchInterface[] {
+        return task.matches?.filter(m => !task.offers?.find(of => of.profile.id === m.executor.id)) ?? [];
     }
 
     private isTaskFinished(task: TaskInterface): boolean {

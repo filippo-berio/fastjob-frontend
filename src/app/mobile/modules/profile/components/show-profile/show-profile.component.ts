@@ -22,7 +22,7 @@ export class ShowProfileComponent implements OnInit {
 
     ngOnInit() {
         this.profileTitle = getProfileRepresentation(this.profile);
-        this.mainPhotoPath = getProfileMainPhotoPath(this.profile);
+        this.mainPhotoPath = getProfileMainPhotoPath(this.profile) ?? '';
     }
 
 }

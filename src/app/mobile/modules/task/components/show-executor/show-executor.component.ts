@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ProfileInterface } from '../../../../../core/profile/core/data/profile.interface';
 import { MatchInterface } from '../../../../../core/task/data/match.interface';
+import { TaskInterface } from '../../../../../core/task/data/task.interface';
 import { AuthorFacade } from '../../../../../core/task/facade/author.facade';
 
 @Component({
@@ -9,6 +11,8 @@ import { AuthorFacade } from '../../../../../core/task/facade/author.facade';
 })
 export class ShowExecutorComponent implements OnInit {
     @Input() match: MatchInterface;
+    @Input() executor: ProfileInterface;
+    @Input() task: TaskInterface;
 
     makeOfferButtonText = 'Назначить исполнителя';
     offerButtonDisabled = false;
@@ -19,20 +23,20 @@ export class ShowExecutorComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.match.task.executor) {
+        if (this.task.executor) {
             this.disableOfferButton('У задачи уже назначен исполнитель');
         }
-        if (this.facade.isTaskOffered(this.match.task, this.match.executor)) {
+        if (this.facade.isTaskOffered(this.task, this.executor)) {
             this.disableOfferButton('Оффер отправлен')
         }
     }
 
     openChat() {
-        this.facade.openChat(this.match);
+        this.facade.openChat(this.executor, this.task);
     }
 
     offerTask() {
-        this.facade.makeOffer(this.match);
+        this.facade.makeOffer(this.executor, this.task);
         this.disableOfferButton('Оффер отправлен');
     }
 

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthorTaskListItemComponent } from './components/author-task-list-item/author-task-list-item.component';
 import { TaskPageComponent } from './components/task-page/task-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MenuMobileModule } from '../menu/menu-mobile.module';
@@ -39,6 +40,7 @@ const routes: Routes = [
         TaskMatchesComponent,
         ShowExecutorComponent,
         FinishTaskComponent,
+        AuthorTaskListItemComponent,
     ],
     imports: [
         CommonModule,
@@ -54,8 +56,9 @@ const routes: Routes = [
         TuiTextAreaModule,
         TuiRatingModule,
     ],
-    providers: [
-    ]
+    exports: [
+    ],
+    providers: []
 })
 export class TaskMobileModule {
 }

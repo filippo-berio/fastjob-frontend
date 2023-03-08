@@ -34,11 +34,12 @@ export class TaskMatchesComponent implements OnInit {
         const componentRef = this.dialog.open(ShowExecutorComponent, {
             ...fullScreenConfig,
         })
-        componentRef.componentInstance.match = match;
+        componentRef.componentInstance.task = match.task;
+        componentRef.componentInstance.executor = match.executor;
     }
 
     openChat(event: Event, match: MatchInterface) {
         event.stopPropagation();
-        this.facade.openChat(match);
+        this.facade.openChat(match.executor, match.task);
     }
 }

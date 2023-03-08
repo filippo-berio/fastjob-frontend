@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
             this.profile = profile;
             this.form = this.facade.buildForm();
             this.profileRepresentation = getProfileRepresentation(profile);
-            this.mainPhotoPath = getProfileMainPhotoPath(this.profile);
+            this.mainPhotoPath = getProfileMainPhotoPath(this.profile) ?? '';
         });
         if (window.history.state?.openCategories) {
             setTimeout(() => this.editCategories(), 300);

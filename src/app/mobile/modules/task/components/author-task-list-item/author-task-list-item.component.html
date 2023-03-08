@@ -1,0 +1,30 @@
+<fj-task-list-item [task]="task">
+    <ng-container ngProjectAs="icon">
+        <div class="flex relative z-0 -space-x-2 overflow-hidden">
+            <ng-container [ngSwitch]="!!task.executor">
+                <ng-container *ngSwitchCase="true">
+                    <fj-profile-icon [executor]="task.executor!"
+                                     size="xs"
+                                     ring="ring-black"
+                                     (click)="onExecutorIconClick($event, task.executor!)"
+                    ></fj-profile-icon>
+                </ng-container>
+
+                <ng-container *ngSwitchCase="false">
+                    <fj-profile-icon [executor]="match.executor"
+                                     (click)="onExecutorIconClick($event, match.executor)"
+                                     size="xs"
+                                     *ngFor="let match of getMatches(task)"
+                                     [ngClass]="'grayscale'"
+                    ></fj-profile-icon>
+
+                    <fj-profile-icon [executor]="offer.profile"
+                                     size="xs"
+                                     (click)="onExecutorIconClick($event, offer.profile)"
+                                     *ngFor="let offer of task.offers"
+                    ></fj-profile-icon>
+                </ng-container>
+            </ng-container>
+        </div>
+    </ng-container>
+</fj-task-list-item>

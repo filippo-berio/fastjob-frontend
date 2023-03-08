@@ -13,6 +13,7 @@ import { LocationMobileModule } from '../location/location-mobile.module';
 import { MenuMobileModule } from '../menu/menu-mobile.module';
 import { SharedMobileModule } from '../shared/shared-mobile.module';
 import { AddProfileInfoButtonComponent } from './components/add-profile-info-button/add-profile-info-button.component';
+import { ProfileIconComponent } from './components/profile-icon/profile-icon.component';
 import { ProfileLayoutComponent } from './components/profile-layout/profile-layout.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterProfileComponent } from './components/register-profile/register-profile.component';
@@ -39,6 +40,7 @@ const routes: Route[] = [
         ProfileLayoutComponent,
         AddProfileInfoButtonComponent,
         ShowProfileComponent,
+        ProfileIconComponent,
     ],
     imports: [
         CommonModule,
@@ -56,6 +58,7 @@ const routes: Route[] = [
     exports: [
         AddProfileInfoButtonComponent,
         ShowProfileComponent,
+        ProfileIconComponent,
     ]
 })
 export class ProfileMobileModule {
