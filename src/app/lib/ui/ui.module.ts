@@ -8,11 +8,11 @@ import {
     TuiTextfieldControllerModule
 } from '@taiga-ui/core';
 import { SelectTypeaheadComponent } from './components/select-modal/select-typeahead.component';
-import { SwipeContainerComponent } from './components/swipe-container/swipe-container.component';
+import { SwipeableDirective } from './directives/swipeable.directive';
 
 const declarations = [
     SelectTypeaheadComponent,
-    SwipeContainerComponent,
+    SwipeableDirective,
 ];
 
 @NgModule({
