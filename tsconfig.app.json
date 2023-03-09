@@ -6,7 +6,7 @@
         "types": []
     },
     "files": [
-        "src/app/mobile/ionic/main.ionic.ts",
+        "src/app/mobile/ionic/main.ts",
         "src/app/mobile/web/main.mobile.ts",
         "src/polyfills.ts"
     ],

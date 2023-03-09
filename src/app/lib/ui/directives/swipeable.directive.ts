@@ -1,5 +1,6 @@
 import { Directive, ElementRef, EventEmitter, OnInit, Output } from '@angular/core';
-import { createGesture } from '@ionic/angular';
+import { Haptics } from '@capacitor/haptics';
+import { createGesture, GestureDetail } from '@ionic/angular';
 import { SwipeDirection } from '../data/swipe-direction';
 
 @Directive({
@@ -8,14 +9,18 @@ import { SwipeDirection } from '../data/swipe-direction';
 export class SwipeableDirective implements OnInit {
     @Output() swipe = new EventEmitter<SwipeDirection>();
 
+    private lastSwipeDirection?: SwipeDirection;
+
+    private windowWidth = window.innerWidth;
+
     constructor(
         private hostElement: ElementRef,
-        // private vibration: Vibration
     ) {
     }
 
     ngOnInit() {
         this.initGesture();
+        this.windowWidth = window.innerWidth;
     }
 
     onSwipe(direction: SwipeDirection) {
@@ -24,7 +29,6 @@ export class SwipeableDirective implements OnInit {
 
     private initGesture() {
         const style = this.hostElement.nativeElement.style;
-        const windowWidth = window.innerWidth;
 
         const gesture = createGesture({
             el: this.hostElement.nativeElement,
@@ -36,15 +40,17 @@ export class SwipeableDirective implements OnInit {
                 style.transform = `translateX(${ev.deltaX}px) rotate(${
                     ev.deltaX / 20
                 }deg) translateY(${ev.deltaY}px)`;
+
+                this.handleVibration(ev);
             },
             onEnd: (ev) => {
                 style.transition = '0.3s ease-out';
-
-                if (ev.deltaX > windowWidth / 2) {
-                    style.transform = `translateX(${windowWidth * 1.5}px)`;
+                const swipeDirection = this.getCurrentSwipeDirection(ev);
+                if (swipeDirection === 'right') {
+                    style.transform = `translateX(${this.windowWidth * 1.5}px)`;
                     // this.match.emit(true);
-                } else if (ev.deltaX < -windowWidth / 2) {
-                    style.transform = `translateX(-${windowWidth * 1.5}px)`;
+                } else if (swipeDirection === 'left') {
+                    style.transform = `translateX(-${this.windowWidth * 1.5}px)`;
                     // this.match.emit(false);
                 } else {
                     style.transform = '';
@@ -53,5 +59,35 @@ export class SwipeableDirective implements OnInit {
         });
 
         gesture.enable()
+    }
+
+    private getCurrentSwipeDirection(ev: GestureDetail): SwipeDirection | null {
+        if (ev.deltaX > this.windowWidth / 2) {
+            return 'right';
+        }
+        if (ev.deltaX < -this.windowWidth / 2) {
+            return 'left';
+        }
+        return null;
+    }
+
+    private handleVibration(ev: GestureDetail) {
+        const direction = this.getCurrentSwipeDirection(ev);
+        if (direction === this.lastSwipeDirection) {
+            return;
+        }
+        if (!direction) {
+            this.lastSwipeDirection = undefined;
+            return;
+        }
+        this.lastSwipeDirection = direction;
+        this.vibrate();
+    }
+
+    private vibrate() {
+        Haptics.vibrate({
+            duration: 50,
+        }).then();
+        console.log('Vibrating...')
     }
 }
