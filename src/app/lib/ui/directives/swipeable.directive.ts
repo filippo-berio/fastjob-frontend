@@ -48,10 +48,10 @@ export class SwipeableDirective implements OnInit {
                 const swipeDirection = this.getCurrentSwipeDirection(ev);
                 if (swipeDirection === 'right') {
                     style.transform = `translateX(${this.windowWidth * 1.5}px)`;
-                    // this.match.emit(true);
+                    this.onSwipe('right');
                 } else if (swipeDirection === 'left') {
                     style.transform = `translateX(-${this.windowWidth * 1.5}px)`;
-                    // this.match.emit(false);
+                    this.onSwipe('left');
                 } else {
                     style.transform = '';
                 }
