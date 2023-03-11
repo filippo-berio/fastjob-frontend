@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { IonTabs } from '@ionic/angular';
 
 interface Tab {
     icon: string;
@@ -18,8 +19,9 @@ export type MenuTabType = 'settings'
     styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-    constructor() {
-    }
+    @ViewChild('tabs', {
+        static: true,
+    }) tabsComponent: IonTabs;
 
     private tabs: Record<MenuTabType, Tab> = {
         settings: {
@@ -49,8 +51,9 @@ export class AppComponent {
         },
     };
 
-
     getIcon(tab: MenuTabType) {
-        return this.tabs[tab].icon;
+        const selected = this.tabsComponent.tabBar?.selectedTab;
+        const tabIcons = this.tabs[tab];
+        return tab === selected ? tabIcons.iconSelected : tabIcons.icon;
     }
 }
