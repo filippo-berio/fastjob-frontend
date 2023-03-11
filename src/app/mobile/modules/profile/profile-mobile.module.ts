@@ -8,6 +8,7 @@ import { TuiButtonModule } from '@taiga-ui/core';
 import { TuiInputDateModule, TuiInputModule } from '@taiga-ui/kit';
 import { NoProfileGuard } from '../../../core/profile/core/guards/no-profile.guard';
 import { ProfileGuard } from '../../../core/profile/core/guards/profile.guard';
+import { SharedModule } from '../../../core/shared/shared.module';
 import { CategoryMobileModule } from '../category/category-mobile.module';
 import { LocationMobileModule } from '../location/location-mobile.module';
 import { SharedMobileModule } from '../shared/shared-mobile.module';
@@ -53,6 +54,7 @@ const routes: Route[] = [
         MatDialogModule,
         CategoryMobileModule,
         LocationMobileModule,
+        SharedModule,
     ],
     exports: [
         AddProfileInfoButtonComponent,

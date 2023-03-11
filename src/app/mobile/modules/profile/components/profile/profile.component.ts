@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileInterface } from '../../../../../core/profile/core/data/profile.interface';
@@ -11,6 +11,7 @@ import { CityPickerComponent } from '../../../location/components/city-picker/ci
 import { ModalInputComponent } from '../../../shared/components/modal-input/modal-input.component';
 import { ModalTextareaComponent } from '../../../shared/components/modal-textarea/modal-textarea.component';
 import { LoginFacade } from '../../../../../core/auth/facade/login.facade';
+import { ProfileLayoutComponent } from '../profile-layout/profile-layout.component';
 
 @Component({
     selector: 'fj-profile',
@@ -18,10 +19,21 @@ import { LoginFacade } from '../../../../../core/auth/facade/login.facade';
     styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+    @ViewChild(ProfileLayoutComponent, {
+        static: true
+    }) profileName: ElementRef;
+
     profile: ProfileInterface;
     profileRepresentation: string;
     form: FormGroup;
     mainPhotoPath: string;
+
+    profileLayoutClickHandlers = {
+        '#profileName': () => this.editName(),
+        '#profileDescription': () => this.editDescription(),
+        '#profileCategories': () => this.editCategories(),
+        '#profileCity': () => this.editCity(),
+    }
 
     constructor(
         private facade: ProfileSettingsFacade,

@@ -12,7 +12,7 @@ import {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileIconComponent implements OnInit {
-    @Input() executor: ProfileInterface;
+    @Input() profile: ProfileInterface;
     @Input() size: 'xs' | 'xl';
     @Input() ring: 'ring-white' | 'ring-black' = 'ring-white';
 
@@ -36,8 +36,8 @@ export class ProfileIconComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.photoPath = getProfileMainPhotoPath(this.executor);
-        this.placeholder = getProfileInitials(this.executor);
+        this.photoPath = getProfileMainPhotoPath(this.profile);
+        this.placeholder = getProfileInitials(this.profile);
         this.imgClass = this.iconSizeMap[this.size].img;
         this.placeholderClass = this.iconSizeMap[this.size].placeholder;
     }

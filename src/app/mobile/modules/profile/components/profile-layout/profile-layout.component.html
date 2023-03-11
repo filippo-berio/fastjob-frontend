@@ -1,10 +1,58 @@
-<div class="mt-10">
-    <div class="flex justify-center">
-        <div class="rounded-full w-36">
+<div class="grid gap-4">
+    <div class="flex justify-center grid gap-3">
+        <fj-profile-icon size="xl"
+                         [profile]="profile"
+        ></fj-profile-icon>
 
-            <img [src]="imagePath" alt="Profile photo image"
-                 class="rounded-full"
-            >
+        <div class="flex justify-center" id="profileName">
+            <h4 class="text-2xl">{{profileRepresentation}}</h4>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="grid gap-4">
+            <div id="profileDescription" class="grid">
+                <span class="text-neutral-500 text-xs">Описание</span>
+
+                <ng-container [ngSwitch]="!!profile.description">
+                    <ng-container *ngSwitchCase="true">
+                        <span class="text-lg">{{profile.description}}</span>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="false">
+                        Не указано
+                    </ng-container>
+                </ng-container>
+            </div>
+
+            <div id="profileCategories" class="grid">
+                <span class="text-neutral-500 text-xs">Категории</span>
+
+                <ng-container [ngSwitch]="profile.categories.length > 0">
+                    <ng-container *ngSwitchCase="true">
+                        <fj-category-slider class="mt-1" [categories]="profile.categories"></fj-category-slider>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="false">
+                        Не указано
+                    </ng-container>
+                </ng-container>
+            </div>
+
+            <div id="profileCity" class="grid">
+                <span class="text-neutral-500 text-xs">Населенный пункт</span>
+
+                <ng-container [ngSwitch]="!!profile.city">
+                    <ng-container *ngSwitchCase="true">
+                        <span class="text-lg">{{profile.city?.title}}</span>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="false">
+                        Не указано
+                    </ng-container>
+                </ng-container>
+            </div>
         </div>
     </div>
 </div>
+

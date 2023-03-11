@@ -1,66 +1,30 @@
-<div class="mt-6 ion-padding">
-    <div class="grid gap-4">
-        <div class="flex justify-center grid gap-3">
-            <fj-profile-icon size="xl"
-                             [executor]="profile"
-            ></fj-profile-icon>
+<ion-content class="ion-padding flex">
+    <fj-profile-layout [profile]="profile"
+                       withClickHandlers
+                       [clickHandlers]=profileLayoutClickHandlers
+    ></fj-profile-layout>
 
-            <div class="flex justify-center" (click)="editName()">
-                <h4 class="text-2xl">{{profileRepresentation}}</h4>
-            </div>
-        </div>
+    <div class="my-4">
+        <fj-add-profile-info-button *ngIf="!profile.description"
+                                    (click)="editDescription()"
+        >Добавить описание</fj-add-profile-info-button>
 
-        <div class="">
-            <div class="grid gap-4">
-                <div (click)="editDescription()" class="grid">
-                    <ng-container [ngSwitch]="!!profile.description">
-                        <ng-container *ngSwitchCase="true">
-                            <span class="text-neutral-500 text-xs">Описание</span>
-                            <span class="text-lg">{{profile.description}}</span>
-                        </ng-container>
+        <fj-add-profile-info-button *ngIf="!profile.categories.length"
 
-                        <ng-container *ngSwitchCase="false">
-                            <fj-add-profile-info-button>Добавить описание</fj-add-profile-info-button>
-                        </ng-container>
-                    </ng-container>
-                </div>
+                                    (click)="editCategories()"
+        >Добавить категории</fj-add-profile-info-button>
 
-                <div (click)="editCategories()">
-                    <ng-container [ngSwitch]="profile.categories.length > 0">
-                        <ng-container *ngSwitchCase="true">
-                            <span class="text-neutral-500 text-xs">Категории</span>
-                            <fj-category-slider class="mt-1" [categories]="profile.categories"></fj-category-slider>
-                        </ng-container>
+        <fj-add-profile-info-button *ngIf="!profile.city"
 
-                        <ng-container *ngSwitchCase="false">
-                            <fj-add-profile-info-button>Добавить категории</fj-add-profile-info-button>
-                        </ng-container>
-                    </ng-container>
-                </div>
-
-                <div (click)="editCity()">
-                    <ng-container [ngSwitch]="!!profile.city">
-                        <ng-container *ngSwitchCase="true">
-                            <div class="grid">
-                                <span class="text-neutral-500 text-xs">Населенный пункт</span>
-                                <span class="text-lg">{{profile.city?.title}}</span>
-                            </div>
-                        </ng-container>
-
-                        <ng-container *ngSwitchCase="false">
-                            <fj-add-profile-info-button>Добавить населённый пункт</fj-add-profile-info-button>
-                        </ng-container>
-                    </ng-container>
-                </div>
-
-                <button tuiButton
-                        (click)="logout()"
-                        size="s"
-                >
-                    Выйти из аккаунта
-                </button>
-            </div>
-        </div>
+                                    (click)="editCity()"
+        >Добавить населённый пункт</fj-add-profile-info-button>
     </div>
-</div>
+
+    <button tuiButton
+            (click)="logout()"
+            size="s"
+    >
+        Выйти из аккаунта
+    </button>
+</ion-content>
 
