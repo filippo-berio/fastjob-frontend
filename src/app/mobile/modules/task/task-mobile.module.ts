@@ -4,7 +4,6 @@ import { AuthorTaskListItemComponent } from './components/author/author-task-lis
 import { TaskListComponent } from './components/shared/task-list/task-list.component';
 import { TaskPageComponent } from './components/task-page/task-page.component';
 import { RouterModule, Routes } from '@angular/router';
-import { MenuMobileModule } from '../menu/menu-mobile.module';
 import { SharedModule } from '../../../core/shared/shared.module';
 import { AuthorTasksComponent } from './components/author/author-tasks/author-tasks.component';
 import { ExecutorTasksComponent } from './components/executor/executor-tasks/executor-tasks.component';
@@ -47,7 +46,7 @@ const routes: Routes = [
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
-        MenuMobileModule,
+        // MenuMobileModule,
         SharedModule,
         MatDialogModule,
         IonicModule,

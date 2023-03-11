@@ -1,5 +1,35 @@
 <ion-app>
     <tui-root>
-        <ion-router-outlet></ion-router-outlet>
+        <ion-tabs>
+            <ion-router-outlet></ion-router-outlet>
+            <ion-tab-bar slot="bottom">
+                <ion-tab-button tab="settings"
+                >
+                    <ion-icon [name]="getIcon('settings')"></ion-icon>
+                </ion-tab-button>
+
+                <ion-tab-button tab="tasks"
+                >
+                    <ion-icon [name]="getIcon('tasks')"></ion-icon>
+                </ion-tab-button>
+
+                <ion-tab-button tab="home"
+                >
+                    <ion-icon [name]="getIcon('home')"></ion-icon>
+                </ion-tab-button>
+
+                <ion-tab-button tab="chat"
+                >
+                    <ion-icon [name]="getIcon('chat')"></ion-icon>
+                </ion-tab-button>
+
+                <ion-tab-button tab="profile"
+                >
+                    <ion-icon [name]="getIcon('profile')"></ion-icon>
+                </ion-tab-button>
+            </ion-tab-bar>
+
+        </ion-tabs>
+
     </tui-root>
 </ion-app>

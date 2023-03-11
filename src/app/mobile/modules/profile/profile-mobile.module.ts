@@ -10,7 +10,6 @@ import { NoProfileGuard } from '../../../core/profile/core/guards/no-profile.gua
 import { ProfileGuard } from '../../../core/profile/core/guards/profile.guard';
 import { CategoryMobileModule } from '../category/category-mobile.module';
 import { LocationMobileModule } from '../location/location-mobile.module';
-import { MenuMobileModule } from '../menu/menu-mobile.module';
 import { SharedMobileModule } from '../shared/shared-mobile.module';
 import { AddProfileInfoButtonComponent } from './components/add-profile-info-button/add-profile-info-button.component';
 import { ProfileIconComponent } from './components/profile-icon/profile-icon.component';
@@ -48,7 +47,7 @@ const routes: Route[] = [
         TuiInputModule,
         TuiInputDateModule,
         TuiButtonModule,
-        MenuMobileModule,
+        // MenuMobileModule,
         IonicModule,
         SharedMobileModule,
         MatDialogModule,
