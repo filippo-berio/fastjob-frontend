@@ -17,4 +17,5 @@ export interface TaskInterface {
     matches?: MatchInterface[];
     offers?: OfferInterface[];
     status: TaskStatus;
+    photos: string[];
 }

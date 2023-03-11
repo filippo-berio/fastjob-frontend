@@ -30,7 +30,6 @@ import { UiModule } from 'src/app/lib/ui/ui.module';
     imports: [
         CommonModule,
         AuthModule,
-        // MenuMobileModule,
         IonicModule,
         ProfileMobileModule,
         TuiButtonModule,

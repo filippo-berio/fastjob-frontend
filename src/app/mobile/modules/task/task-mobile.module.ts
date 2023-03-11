@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TuiCurrencyPipeModule } from '@taiga-ui/addon-commerce';
+import { SwiperModule } from 'swiper/angular';
 import { AuthorTaskListItemComponent } from './components/author/author-task-list-item/author-task-list-item.component';
 import { TaskListComponent } from './components/shared/task-list/task-list.component';
+import { TaskPhotosSliderComponent } from './components/shared/task-photos-slider/task-photos-slider.component';
 import { TaskPageComponent } from './components/task-page/task-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../../../core/shared/shared.module';
@@ -19,7 +22,7 @@ import { ShowExecutorComponent } from './components/author/show-executor/show-ex
 import { ProfileMobileModule } from '../profile/profile-mobile.module';
 import { FinishTaskComponent } from './components/author/finish-task/finish-task.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TuiRatingModule, TuiTextAreaModule } from '@taiga-ui/kit';
+import { TuiCarouselModule, TuiRatingModule, TuiTextAreaModule } from '@taiga-ui/kit';
 
 const routes: Routes = [
     {
@@ -42,11 +45,11 @@ const routes: Routes = [
         FinishTaskComponent,
         AuthorTaskListItemComponent,
         TaskListComponent,
+        TaskPhotosSliderComponent,
     ],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
-        // MenuMobileModule,
         SharedModule,
         MatDialogModule,
         IonicModule,
@@ -56,6 +59,9 @@ const routes: Routes = [
         ReactiveFormsModule,
         TuiTextAreaModule,
         TuiRatingModule,
+        TuiCurrencyPipeModule,
+        SwiperModule,
+        TuiCarouselModule,
     ],
     exports: [
     ],

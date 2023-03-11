@@ -8,7 +8,8 @@
                             {{task.title}}
                         </p>
                         <p class="mt-2 flex items-center text-sm text-gray-500">
-                            <span class="truncate">{{task.price ?? 'По договоренности'}}</span>
+                            <span *ngIf="task.price">{{task.price}} {{ 'RUB' | tuiCurrency }}</span>
+                            <span *ngIf="!task.price">По договоренности</span>
                         </p>
                     </div>
                 </div>

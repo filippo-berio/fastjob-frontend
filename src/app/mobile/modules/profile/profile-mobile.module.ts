@@ -48,7 +48,6 @@ const routes: Route[] = [
         TuiInputModule,
         TuiInputDateModule,
         TuiButtonModule,
-        // MenuMobileModule,
         IonicModule,
         SharedMobileModule,
         MatDialogModule,

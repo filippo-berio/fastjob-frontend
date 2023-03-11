@@ -16,7 +16,6 @@ import { ChatPageComponent } from './components/chat-page/chat-page.component';
                 component: ChatPageComponent,
             }
         ]),
-        // MenuMobileModule
     ]
 })
 export class ChatMobileModule {

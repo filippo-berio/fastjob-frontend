@@ -1,0 +1,47 @@
+<tui-carousel
+    [draggable]="true"
+    [itemsCount]="3"
+    [(index)]="index"
+    [style.--tui-carousel-padding]="'0 4px 0 0'"
+>
+
+    <ng-container *ngFor="let item of task.photos; let i = index">
+        {{item}}
+        <img
+            *tuiItem
+            alt="fsdfdsf"
+            draggable="false"
+            [src]="item"
+            class="item"
+        />
+    </ng-container>
+</tui-carousel>
+
+<swiper [slidesPerView]="swipesPerView" [spaceBetween]="4">
+
+<!--    <tui-carousel-->
+<!--        [draggable]="true"-->
+<!--        [itemsCount]="3"-->
+<!--        [(index)]="index"-->
+<!--    >-->
+
+<!--        <ng-container *ngFor="let item of task.photos; let i = index">-->
+<!--            {{item}}-->
+<!--            <img-->
+<!--                *tuiItem-->
+<!--                alt="fsdfdsf"-->
+<!--                draggable="false"-->
+<!--                [src]="item"-->
+<!--                class="item"-->
+<!--            />-->
+<!--        </ng-container>-->
+<!--    </tui-carousel>-->
+<!--        <ng-template swiperSlide *ngFor="let photo of task.photos">-->
+<!--                    <img [src]="photo" alt=""-->
+<!--                         [width]="slideWidth"-->
+<!--                    >-->
+<!--        </ng-template>-->
+<!--    <ng-template swiperSlide>Slide 1</ng-template>-->
+<!--    <ng-template swiperSlide>Slide 1</ng-template>-->
+<!--    <ng-template swiperSlide>Slide 1</ng-template>-->
+</swiper>

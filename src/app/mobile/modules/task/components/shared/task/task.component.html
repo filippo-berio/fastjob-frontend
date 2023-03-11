@@ -1,9 +1,17 @@
-<div class="ion-padding">
-    <div class="mb-4">
-        <p>{{task.title}}</p>
-        <p>{{task.price}}</p>
-        <p>{{task.description}}</p>
+<ion-content class="ion-padding">
+    <div class="grid gap-4">
+        <p class="text-xl">{{task.title}}</p>
+        <p class="text-xl text-gray-500" *ngIf="task.price">{{task.price}} {{ 'RUB' | tuiCurrency }}</p>
+        <p class="text-xl text-gray-500" *ngIf="!task.price">По договоренности</p>
+
+        <fj-task-photos-slider [task]="task"></fj-task-photos-slider>
+
+        <div class="grid">
+            <span class="text-neutral-500 text-xs">Описание</span>
+            <p class="text-lg" *ngIf="task.description">{{task.description}}</p>
+            <p class="" *ngIf="!task.description">Не указано</p>
+        </div>
     </div>
 
     <ng-template dynamic></ng-template>
-</div>
+</ion-content>
