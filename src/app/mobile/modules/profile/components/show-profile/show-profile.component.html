@@ -1,39 +1,7 @@
-<div class="mt-6 ion-padding">
-    <div class="grid gap-4">
-        <div class="flex justify-center grid gap-3">
-            <div class="rounded-full w-36">
-                <img [src]="mainPhotoPath" alt="Profile photo image"
-                     class="rounded-full"
-                >
-            </div>
-
-            <div class="flex justify-center">
-                <h4 class="text-2xl">{{profileTitle}}</h4>
-            </div>
-        </div>
-
-        <div>
+<ion-content class="ion-padding flex">
+    <fj-profile-layout [profile]="profile">
+        <ng-container ngProjectAs="actions">
             <ng-content select="actions"></ng-content>
-        </div>
-        <div class="">
-            <div class="grid gap-4">
-                <div class="grid" *ngIf="profile.description">
-                    <span class="text-neutral-500 text-xs">Описание</span>
-                    <span class="text-lg">{{profile.description}}</span>
-                </div>
-
-                <div *ngIf="profile.categories?.length">
-                    <span class="text-neutral-500 text-xs">Категории</span>
-                    <fj-category-slider class="mt-1" [categories]="profile.categories"></fj-category-slider>
-                </div>
-
-                <div *ngIf="profile.city">
-                    <div class="grid">
-                        <span class="text-neutral-500 text-xs">Населенный пункт</span>
-                        <span class="text-lg">{{profile.city.title}}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        </ng-container>
+    </fj-profile-layout>
+</ion-content>
