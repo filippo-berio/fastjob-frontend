@@ -1,5 +1,8 @@
 <div class="ion-padding">
-    <fj-select-typeahead [items]="cityItems" (onSelect)="select($event)">
+    <fj-select-typeahead (onSelect)="select($event)"
+                         *ngIf="cityItems$ | async; else loading"
+                         [items]="(cityItems$ | async) ?? []"
+    >
         <ng-template let-item>
             <div class="grid">
                 <span>{{item.title}}</span>
@@ -8,3 +11,7 @@
         </ng-template>
     </fj-select-typeahead>
 </div>
+
+<ng-template #loading>
+    <tui-loader></tui-loader>
+</ng-template>

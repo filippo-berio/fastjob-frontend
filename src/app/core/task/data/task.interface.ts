@@ -1,3 +1,4 @@
+import { Address } from '../../location/data/address.interface';
 import { ProfileInterface } from '../../profile/core/data/profile.interface';
 import { CategoryInterface } from '../../categories/data/category.interface';
 import { MatchInterface } from './match.interface';
@@ -18,4 +19,5 @@ export interface TaskInterface {
     offers?: OfferInterface[];
     status: TaskStatus;
     photos: string[];
+    address?: Address;
 }

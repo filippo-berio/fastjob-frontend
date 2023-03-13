@@ -13,7 +13,8 @@ import { TuiRootModule } from '@taiga-ui/core';
         TuiRootModule,
         IonicModule.forRoot({
             rippleEffect: false,
-            animated: false,
+            mode: 'ios',
+            // animated: false,
         }),
         RouterOutlet,
     ],

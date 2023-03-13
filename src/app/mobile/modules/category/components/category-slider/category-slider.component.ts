@@ -8,6 +8,7 @@ import { CategoryInterface } from '../../../../../core/categories/data/category.
 })
 export class CategorySliderComponent implements OnInit {
     @Input() categories: CategoryInterface[] = [];
+    index = 0;
 
     constructor() {
     }

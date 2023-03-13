@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TuiCurrencyPipeModule } from '@taiga-ui/addon-commerce';
-import { SwiperModule } from 'swiper/angular';
+import { LocationModule } from '../../../core/location/location.module';
+import { TaskModule } from '../../../core/task/task.module';
+import { UiModule } from '../../../lib/ui/ui.module';
+import { CategoryMobileModule } from '../category/category-mobile.module';
 import { AuthorTaskListItemComponent } from './components/author/author-task-list-item/author-task-list-item.component';
+import { ShowExecutorModalComponent } from './components/author/show-executor-modal/show-executor-modal.component';
 import { TaskListComponent } from './components/shared/task-list/task-list.component';
 import { TaskPhotosSliderComponent } from './components/shared/task-photos-slider/task-photos-slider.component';
 import { TaskPageComponent } from './components/task-page/task-page.component';
@@ -22,7 +26,7 @@ import { ShowExecutorComponent } from './components/author/show-executor/show-ex
 import { ProfileMobileModule } from '../profile/profile-mobile.module';
 import { FinishTaskComponent } from './components/author/finish-task/finish-task.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TuiCarouselModule, TuiRatingModule, TuiTextAreaModule } from '@taiga-ui/kit';
+import { TuiAccordionModule, TuiCarouselModule, TuiRatingModule, TuiTextAreaModule } from '@taiga-ui/kit';
 
 const routes: Routes = [
     {
@@ -46,6 +50,7 @@ const routes: Routes = [
         AuthorTaskListItemComponent,
         TaskListComponent,
         TaskPhotosSliderComponent,
+        ShowExecutorModalComponent,
     ],
     imports: [
         CommonModule,
@@ -60,8 +65,12 @@ const routes: Routes = [
         TuiTextAreaModule,
         TuiRatingModule,
         TuiCurrencyPipeModule,
-        SwiperModule,
+        CategoryMobileModule,
         TuiCarouselModule,
+        LocationModule,
+        TaskModule,
+        TuiAccordionModule,
+        UiModule,
     ],
     exports: [
     ],

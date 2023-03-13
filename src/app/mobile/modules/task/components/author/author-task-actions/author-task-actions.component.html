@@ -1,22 +1,31 @@
 <div class="grid">
     <div class="flex justify-around">
-        <button (click)="openMatches()"
-                *ngIf="task.matches?.length"
-                tuiButton
-                appearance="outline"
-                size="s"
-        >Метчи</button>
+        <fj-circle-button icon="people-outline"
+                          (click)="openMatches()"
+                          *ngIf="task.matches?.length"
+        >Метчи</fj-circle-button>
 
-        <button (click)="searchExecutors()"
-                tuiButton
-                appearance="outline"
-                size="s"
-        >Поиск исполнителя</button>
+        <fj-circle-button icon="search-outline"
+                          (click)="searchExecutors()"
+                          *ngIf="!task.executor"
+        >Исполнители</fj-circle-button>
+
+        <fj-circle-button icon="checkmark-done-outline-outline"
+                          (click)="searchExecutors()"
+                          *ngIf="canFinishTask$ | async"
+        >Задача выполнена</fj-circle-button>
     </div>
 
-    <button tuiButton
-            size="m"
-            *ngIf="canFinishTask$ | async"
-            (click)="finishTask()"
-    >Задача выполнена</button>
 </div>
+
+<ion-modal [isOpen]="showMatches"
+           [initialBreakpoint]="0.8"
+           [breakpoints]="[0, 0.8]"
+           (didDismiss)="showMatches = false"
+>
+    <ng-template>
+        <div class="ion-padding">
+            <fj-task-matches [task]="task"></fj-task-matches>
+        </div>
+    </ng-template>
+</ion-modal>

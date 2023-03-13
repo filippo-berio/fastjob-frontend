@@ -19,6 +19,8 @@ export class TaskPageComponent implements OnInit {
         static: true
     }) container: DynamicDirective;
 
+    openedTask: TaskInterface | null = null;
+
     private contentComponents: Record<AppMode, Type<any>> = {
         author: AuthorTasksComponent,
         executor: ExecutorTasksComponent,
@@ -38,9 +40,10 @@ export class TaskPageComponent implements OnInit {
     }
 
     private openTaskModal(task: TaskInterface) {
-        const modalRef = this.dialog.open(TaskComponent, {
-            ...fullScreenConfig,
-        });
-        modalRef.componentInstance.task = task;
+        this.openedTask = task;
+        // const modalRef = this.dialog.open(TaskComponent, {
+        //     ...fullScreenConfig,
+        // });
+        // modalRef.componentInstance.task = task;
     }
 }

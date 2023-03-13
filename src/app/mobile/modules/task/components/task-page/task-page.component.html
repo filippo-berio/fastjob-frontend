@@ -1,2 +1,11 @@
 <ng-template dynamic></ng-template>
 
+<ion-modal [isOpen]="!!openedTask"
+           [initialBreakpoint]="0.6"
+           [breakpoints]="[0, 0.6, 1]"
+           (didDismiss)="openedTask = null"
+>
+    <ng-template>
+        <fj-task [task]="openedTask!" class="block"></fj-task>
+    </ng-template>
+</ion-modal>

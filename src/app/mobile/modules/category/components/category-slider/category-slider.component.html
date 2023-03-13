@@ -1,6 +1,8 @@
-<div>
-    <tui-badge class="tui-space_right-2"
-               [value]="category.title"
-               *ngFor="let category of categories"
-    ></tui-badge>
+<div class="flex overflow-x-scroll scrollbar-hide">
+    <div class="flex-none">
+        <tui-badge class="tui-space_right-2 block mr-1"
+                   *ngFor="let category of categories"
+                   [value]="category.title"
+        ></tui-badge>
+    </div>
 </div>

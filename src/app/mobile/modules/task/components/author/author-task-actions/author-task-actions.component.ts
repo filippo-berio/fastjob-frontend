@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TaskInterface } from '../../../../../../core/task/data/task.interface';
 import { MatDialog } from '@angular/material/dialog';
-import { TaskMatchesComponent } from '../task-matches/task-matches.component';
 import { fullScreenConfig } from '../../../../../../core/shared/data/mat-dialog.configs';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -16,6 +15,7 @@ import { FinishTaskComponent } from '../finish-task/finish-task.component';
 export class AuthorTaskActionsComponent implements OnInit {
     @Input() task: TaskInterface;
     canFinishTask$: Observable<boolean>;
+    showMatches = false;
 
     constructor(
         private facade: AuthorFacade,
@@ -29,10 +29,7 @@ export class AuthorTaskActionsComponent implements OnInit {
     }
 
     openMatches() {
-        const componentRef = this.dialog.open(TaskMatchesComponent, {
-            ...fullScreenConfig
-        });
-        componentRef.componentInstance.task = this.task;
+        this.showMatches = true;
     }
 
     searchExecutors() {

@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProfileInterface } from '../../../../../../core/profile/core/data/profile.interface';
-import { MatchInterface } from '../../../../../../core/task/data/match.interface';
 import { TaskInterface } from '../../../../../../core/task/data/task.interface';
 import { AuthorFacade } from '../../../../../../core/task/facade/author.facade';
 
@@ -10,7 +9,6 @@ import { AuthorFacade } from '../../../../../../core/task/facade/author.facade';
     styleUrls: ['./show-executor.component.scss'],
 })
 export class ShowExecutorComponent implements OnInit {
-    @Input() match: MatchInterface;
     @Input() executor: ProfileInterface;
     @Input() task: TaskInterface;
 

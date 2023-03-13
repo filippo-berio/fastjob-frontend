@@ -1,0 +1,12 @@
+<ion-modal [isOpen]="!!openedProfile"
+           [initialBreakpoint]="0.9"
+           [breakpoints]="[0, 0.9, 1]"
+           (didDismiss)="openedProfile = null"
+>
+    <ng-template>
+        <fj-show-executor [executor]="openedProfile!"
+                          [task]="task"
+                          class="ion-padding m-2"
+        ></fj-show-executor>
+    </ng-template>
+</ion-modal>

@@ -1,0 +1,11 @@
+<fj-slider>
+    <div class="block rounded-xl shadow p-1 m-1"
+         *ngFor="let profile of profiles; let i = index"
+         (click)="onProfileClick(i)"
+    >
+        <div class="flex gap-1 items-center">
+            <fj-profile-icon [profile]="profile" size="xs"></fj-profile-icon>
+            {{profile.firstName}}
+        </div>
+    </div>
+</fj-slider>

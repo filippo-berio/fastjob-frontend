@@ -4,6 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { TuiButtonModule, TuiLoaderModule } from '@taiga-ui/core';
 import { AuthModule } from '../../../core/auth/auth.module';
 import { HomeModule } from '../../../core/home/home.module';
+import { TaskModule } from '../../../core/task/task.module';
 import { ProfileMobileModule } from '../profile/profile-mobile.module';
 import { HomeComponent } from './components/home/home.component';
 import { ToProfileSettingsComponent } from './components/to-profile-settings/to-profile-settings.component';
@@ -39,6 +40,7 @@ import { UiModule } from 'src/app/lib/ui/ui.module';
         SharedModule,
         UiModule,
         TuiLoaderModule,
+        TaskModule,
     ],
     providers: [
     ],

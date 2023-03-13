@@ -1,7 +1,5 @@
-<ion-content class="ion-padding flex">
-    <fj-profile-layout [profile]="profile">
-        <ng-container ngProjectAs="actions">
-            <ng-content select="actions"></ng-content>
-        </ng-container>
-    </fj-profile-layout>
-</ion-content>
+<fj-profile-layout [profile]="profile">
+    <ng-container ngProjectAs="actions">
+        <ng-content select="actions"></ng-content>
+    </ng-container>
+</fj-profile-layout>

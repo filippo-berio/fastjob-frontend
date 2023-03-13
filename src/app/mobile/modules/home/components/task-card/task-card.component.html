@@ -2,6 +2,6 @@
                 [profile]="card.task.author"
 >
     <p>{{card.task.title}}</p>
-    <p>{{card.task.price }} {{ 'RUB' | tuiCurrency }}</p>
+    <p>{{card.task.price | taskPrice }}</p>
     <p *ngIf="card.task.remote">Удаленно</p>
 </fj-card-layout>

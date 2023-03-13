@@ -1,13 +1,19 @@
-<div class="ion-padding">
-    <ion-card *ngFor="let match of task.matches"
-              (click)="openProfile(match)"
-    >
-        <ion-card-content>
-            <div class="flex justify-between">
-                {{profileRepresentation(match.executor)}}
-
-                <ion-icon name="chatbubble-ellipses-outline" (click)="openChat($event, match)"></ion-icon>
+<div class="bg-white shadow overflow-hidden rounded-xl">
+    <ul role="list" class="divide-y divide-gray-200">
+        <li *ngFor="let profile of profiles"
+            (click)="showExecutor.open(profile)"
+        >
+            <div class="p-2 flex justify-between items-center">
+                <div class="flex gap-1 items-center">
+                    <fj-profile-icon size="xs" [profile]="profile"></fj-profile-icon>
+                    <span class="text-lg">{{profile.firstName}}</span>
+                </div>
+                <ion-icon name="chatbubble-ellipses-outline" class="text-lg" (click)="openChat($event, profile)"></ion-icon>
             </div>
-        </ion-card-content>
-    </ion-card>
+        </li>
+    </ul>
 </div>
+
+<fj-show-executor-modal [task]="task"
+                        #showExecutor
+></fj-show-executor-modal>

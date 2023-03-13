@@ -6,25 +6,29 @@
                     <fj-profile-icon [profile]="task.executor!"
                                      size="xs"
                                      ring="ring-black"
-                                     (click)="onExecutorIconClick($event, task.executor!)"
+                                     (click)="$event.stopPropagation(); showExecutor.open(task.executor!)"
                     ></fj-profile-icon>
                 </ng-container>
 
                 <ng-container *ngSwitchCase="false">
                     <fj-profile-icon [profile]="match.executor"
-                                     (click)="onExecutorIconClick($event, match.executor)"
+                                     (click)="$event.stopPropagation(); showExecutor.open(match.executor)"
                                      size="xs"
-                                     *ngFor="let match of getMatches(task)"
+                                     *ngFor="let match of taskMatches"
                                      [ngClass]="'grayscale'"
                     ></fj-profile-icon>
 
                     <fj-profile-icon [profile]="offer.profile"
                                      size="xs"
-                                     (click)="onExecutorIconClick($event, offer.profile)"
-                                     *ngFor="let offer of task.offers"
+                                     (click)="$event.stopPropagation(); showExecutor.open(offer.profile)"
+                                     *ngFor="let offer of taskOffers"
                     ></fj-profile-icon>
                 </ng-container>
             </ng-container>
         </div>
     </ng-container>
 </fj-task-list-item>
+
+<fj-show-executor-modal [task]="task"
+                        #showExecutor
+></fj-show-executor-modal>

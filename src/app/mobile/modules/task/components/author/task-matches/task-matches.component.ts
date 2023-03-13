@@ -1,11 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { TaskInterface } from '../../../../../../core/task/data/task.interface';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ProfileInterface } from '../../../../../../core/profile/core/data/profile.interface';
 import { getProfileRepresentation } from '../../../../../../core/profile/core/util/profile-representation';
-import { MatchInterface } from '../../../../../../core/task/data/match.interface';
 import { MatDialog } from '@angular/material/dialog';
-import { fullScreenConfig } from '../../../../../../core/shared/data/mat-dialog.configs';
-import { ShowExecutorComponent } from '../show-executor/show-executor.component';
+import { TaskExecutorsBaseComponent } from '../base/task-executors.base.component';
 import { AuthorFacade } from '../../../../../../core/task/facade/author.facade';
 
 @Component({
@@ -14,32 +11,42 @@ import { AuthorFacade } from '../../../../../../core/task/facade/author.facade';
     styleUrls: ['./task-matches.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TaskMatchesComponent implements OnInit {
-    @Input() task: TaskInterface;
+export class TaskMatchesComponent extends TaskExecutorsBaseComponent implements OnInit {
+
+    profiles: ProfileInterface[];
+
+    openedProfile: ProfileInterface | null = null;
 
     constructor(
         private dialog: MatDialog,
         private facade: AuthorFacade,
     ) {
+        super();
     }
 
-    ngOnInit() {
+    override ngOnInit() {
+        super.ngOnInit();
+        this.profiles = [
+            ...this.taskOffers.map(of => of.profile),
+            ...this.taskMatches.map(m => m.executor),
+        ];
     }
 
     profileRepresentation(profile: ProfileInterface) {
         return getProfileRepresentation(profile);
     }
 
-    openProfile(match: MatchInterface) {
-        const componentRef = this.dialog.open(ShowExecutorComponent, {
-            ...fullScreenConfig,
-        })
-        componentRef.componentInstance.task = match.task;
-        componentRef.componentInstance.executor = match.executor;
+    openProfile(profile: ProfileInterface) {
+        this.openedProfile = profile;
+        // const componentRef = this.dialog.open(ShowExecutorComponent, {
+        //     ...fullScreenConfig,
+        // })
+        // componentRef.componentInstance.task = this.task;
+        // componentRef.componentInstance.executor = this.profiles[index];
     }
 
-    openChat(event: Event, match: MatchInterface) {
+    openChat(event: Event, profile: ProfileInterface) {
         event.stopPropagation();
-        this.facade.openChat(match.executor, match.task);
+        this.facade.openChat(profile, this.task);
     }
 }

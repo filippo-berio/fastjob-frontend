@@ -1,17 +1,27 @@
-<ion-content class="ion-padding">
-    <div class="grid gap-4">
-        <p class="text-xl">{{task.title}}</p>
-        <p class="text-xl text-gray-500" *ngIf="task.price">{{task.price}} {{ 'RUB' | tuiCurrency }}</p>
-        <p class="text-xl text-gray-500" *ngIf="!task.price">По договоренности</p>
+<div class="ion-padding">
+    <div class="grid gap-4 mb-4">
+        <div>
+            <p class="text-2xl">{{task.title}}</p>
+            <p class="text-xl text-gray-500">{{task.price | taskPrice }}</p>
+        </div>
 
-        <fj-task-photos-slider [task]="task"></fj-task-photos-slider>
+        <ng-template dynamic></ng-template>
 
-        <div class="grid">
-            <span class="text-neutral-500 text-xs">Описание</span>
-            <p class="text-lg" *ngIf="task.description">{{task.description}}</p>
-            <p class="" *ngIf="!task.description">Не указано</p>
+        <fj-task-photos-slider [task]="task" *ngIf="task.photos.length"></fj-task-photos-slider>
+
+        <fj-category-slider [categories]="task.categories"></fj-category-slider>
+
+        <div class="divide-y divide-gray-200">
+            <div class="grid py-1">
+                <span class="text-neutral-500 text-md">Описание</span>
+                <p class="text-lg">{{task.description | missing}}</p>
+            </div>
+
+            <div class="grid py-1">
+                <span class="text-neutral-500 text-md">Адрес</span>
+                <p class="text-lg">{{task.address | address | missing : 'Не указан'}}</p>
+            </div>
         </div>
     </div>
 
-    <ng-template dynamic></ng-template>
-</ion-content>
+</div>
