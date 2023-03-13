@@ -9,6 +9,7 @@ export class CircleButtonComponent implements OnInit {
 
     @Input() text: string;
     @Input() icon: string;
+    @Input() disabled: boolean;
 
     constructor() {
     }

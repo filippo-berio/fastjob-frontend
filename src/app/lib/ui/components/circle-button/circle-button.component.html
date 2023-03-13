@@ -1,5 +1,8 @@
 <div class="grid justify-center">
-    <button class="rounded-full border-gray-300 border h-20 w-20 content-center">
+    <button class="rounded-full border-gray-300 border h-20 w-20 content-center"
+            [disabled]="disabled"
+            [ngClass]="disabled ? 'text-gray-400' : ''"
+    >
         <ion-icon [name]="icon" class="font-light text-4xl"></ion-icon>
     </button>
 
