@@ -1,4 +1,5 @@
 import { Component, OnInit, Type, ViewChild } from '@angular/core';
+import { ViewWillEnter } from '@ionic/angular';
 import { DynamicDirective } from '../../../../../core/shared/directives/dynamic.directive';
 import { AppMode } from '../../../../../core/settings/data/app-mode.type';
 import { AuthorTasksComponent } from '../author/author-tasks/author-tasks.component';
@@ -14,7 +15,7 @@ import { fullScreenConfig } from '../../../../../core/shared/data/mat-dialog.con
     templateUrl: './task-page.component.html',
     styleUrls: ['./task-page.component.scss'],
 })
-export class TaskPageComponent implements OnInit {
+export class TaskPageComponent implements ViewWillEnter {
     @ViewChild(DynamicDirective, {
         static: true
     }) container: DynamicDirective;
@@ -32,7 +33,7 @@ export class TaskPageComponent implements OnInit {
     ) {
     }
 
-    ngOnInit() {
+    ionViewWillEnter() {
         const component = this.contentComponents[this.settingsService.currentMode];
         this.container.viewContainerRef.clear();
         const componentRef = this.container.viewContainerRef.createComponent(component);

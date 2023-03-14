@@ -11,6 +11,7 @@ import { getProfileRepresentation } from '../../../../../core/profile/core/util/
 })
 export class ProfileLayoutComponent implements OnInit {
     @Input() profile: ProfileInterface;
+    @Input() showMissing = true;
 
     profileRepresentation: string;
     mainPhotoPath: string;

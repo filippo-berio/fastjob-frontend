@@ -11,6 +11,7 @@ export interface TaskInterface {
     title: string;
     author: ProfileInterface,
     remote: boolean;
+    createdAt: string;
     categories: CategoryInterface[];
     price?: number;
     description?: string;

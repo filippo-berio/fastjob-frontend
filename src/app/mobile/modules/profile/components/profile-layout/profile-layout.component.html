@@ -1,4 +1,4 @@
-<div class="grid gap-4">
+<div class="grid gap-2">
     <div class="flex justify-center grid gap-3">
         <fj-profile-icon size="xl"
                          [profile]="profile"
@@ -9,36 +9,34 @@
         </div>
     </div>
 
-    <div>
+    <div class="py-1">
         <ng-content select="actions"></ng-content>
     </div>
 
     <div class="">
-        <div class="grid gap-4">
-            <div id="profileDescription" class="grid">
+        <div class="grid divide-y divide-gray-200">
+            <div id="profileDescription" class="grid p-2"
+                 *ngIf="showMissing || profile.description"
+            >
                 <span class="text-neutral-500 text-xs">Описание</span>
-                <span class="text-lg" *ngIf="profile.description">{{profile.description}}</span>
-                <span class="text-lg" *ngIf="!profile.description">Не указано</span>
+                <span class="text-lg">{{profile.description | missing}}</span>
             </div>
 
-            <div id="profileCategories" class="grid">
+            <div id="profileCategories" class="grid p-2"
+                 *ngIf="showMissing || profile.categories.length > 0"
+            >
                 <span class="text-neutral-500 text-xs">Категории</span>
-
-                <ng-container [ngSwitch]="profile.categories.length > 0">
-                    <ng-container *ngSwitchCase="true">
-                        <fj-category-slider class="mt-1" [categories]="profile.categories"></fj-category-slider>
-                    </ng-container>
-
-                    <ng-container *ngSwitchCase="false">
-                        Не указано
-                    </ng-container>
-                </ng-container>
+                <fj-category-slider class="mt-1" [categories]="profile.categories"
+                                    *ngIf="profile.categories.length > 0"
+                ></fj-category-slider>
+                <span class="text-lg" *ngIf="!profile.categories.length">Не указано</span>
             </div>
 
-            <div id="profileCity" class="grid">
+            <div id="profileCity" class="grid p-2"
+                 *ngIf="showMissing || profile.city"
+            >
                 <span class="text-neutral-500 text-xs">Населенный пункт</span>
-                <span class="text-lg" *ngIf="profile.city?.title">{{profile.city?.title}}</span>
-                <span class="text-lg" *ngIf="!profile.city?.title">Не указано</span>
+                <span class="text-lg">{{profile.city?.title | missing}}</span>
             </div>
         </div>
     </div>

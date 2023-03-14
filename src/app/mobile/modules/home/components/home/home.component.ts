@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, Inject, OnInit, Type } from '@angular/core';
+import { ViewWillEnter } from '@ionic/angular';
 import { HomeFacade } from '../../../../../core/home/facade/home.facade';
 import { ProfileInterface } from '../../../../../core/profile/core/data/profile.interface';
 import { Swipeable } from '../../../../../core/home/data/swipeable.interface';
@@ -12,7 +13,7 @@ import { Observable } from 'rxjs';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, ViewWillEnter {
 
     loading$: Observable<boolean>;
 
@@ -30,16 +31,17 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        const profileSub = this.facade.profile$().subscribe(p => this.profile = p);
-        const cardSub = this.facade.currentCard$.subscribe(card => {
+        this.facade.profile$().subscribe(p => this.profile = p);
+        this.facade.currentCard$.subscribe(card => {
             this.card = card;
             this.cardComponent = this.cardComponentFactory();
             this.changeDetection.detectChanges();
         });
-        this.facade.init();
         this.loading$ = this.facade.loading$;
+    }
 
-        this.subscribeRegistry.register(profileSub, cardSub);
+    ionViewWillEnter() {
+        this.facade.init();
     }
 
     isProfileConfigured(): boolean {

@@ -10,7 +10,7 @@ interface Tab {
 export type MenuTabType = 'settings'
     | 'tasks'
     | 'home'
-    | 'chat'
+    | 'chats'
     | 'profile';
 
 @Component({
@@ -39,7 +39,7 @@ export class AppComponent {
             iconSelected: 'flash',
             route: 'home'
         },
-        chat: {
+        chats: {
             icon: 'chatbubble-ellipses-outline',
             iconSelected: 'chatbubble-ellipses',
             route: 'chats'

@@ -1,10 +1,21 @@
-import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import {
+    AfterViewChecked,
+    Directive,
+    ElementRef,
+    Input,
+    OnChanges,
+    OnInit,
+    Renderer2,
+    SimpleChanges
+} from '@angular/core';
 
 @Directive({
     selector: '[withClickHandlers]'
 })
-export class WithClickHandlersDirective implements OnInit {
+export class WithClickHandlersDirective implements AfterViewChecked {
     @Input() clickHandlers: Record<string, () => any>;
+
+    private handledSelectors: string[] = [];
 
     constructor(
         private el: ElementRef,
@@ -12,12 +23,17 @@ export class WithClickHandlersDirective implements OnInit {
     ) {
     }
 
-    ngOnInit() {
+    ngAfterViewChecked() {
         Object.keys(this.clickHandlers).forEach(selector => {
             const element = this.el.nativeElement as HTMLElement;
             const elementToHandle = element.querySelector(selector);
             if (elementToHandle) {
-                this.renderer.listen(elementToHandle, 'click', this.clickHandlers[selector]);
+                if (this.handledSelectors.indexOf(selector) === -1) {
+                    this.handledSelectors.push(selector);
+                    this.renderer.listen(elementToHandle, 'click', this.clickHandlers[selector]);
+                }
+            } else {
+                this.handledSelectors = this.handledSelectors.filter(s => s !== selector);
             }
         })
     }

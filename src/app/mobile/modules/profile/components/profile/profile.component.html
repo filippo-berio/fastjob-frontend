@@ -2,23 +2,26 @@
     <fj-profile-layout [profile]="profile"
                        withClickHandlers
                        [clickHandlers]=profileLayoutClickHandlers
-    ></fj-profile-layout>
+                       [showMissing]="false"
+    >
+        <ng-container ngProjectAs="actions">
+            <div class="grid gap-1">
+                <fj-add-profile-info-button *ngIf="!profile.description"
+                                            (click)="editDescription()"
+                >Добавить описание</fj-add-profile-info-button>
 
-    <div class="my-4">
-        <fj-add-profile-info-button *ngIf="!profile.description"
-                                    (click)="editDescription()"
-        >Добавить описание</fj-add-profile-info-button>
+                <fj-add-profile-info-button *ngIf="!profile.categories.length"
 
-        <fj-add-profile-info-button *ngIf="!profile.categories.length"
+                                            (click)="editCategories()"
+                >Добавить категории</fj-add-profile-info-button>
 
-                                    (click)="editCategories()"
-        >Добавить категории</fj-add-profile-info-button>
+                <fj-add-profile-info-button *ngIf="!profile.city"
 
-        <fj-add-profile-info-button *ngIf="!profile.city"
-
-                                    (click)="editCity()"
-        >Добавить населённый пункт</fj-add-profile-info-button>
-    </div>
+                                            (click)="editCity()"
+                >Добавить населённый пункт</fj-add-profile-info-button>
+            </div>
+        </ng-container>
+    </fj-profile-layout>
 
     <button tuiButton
             (click)="logout()"

@@ -7,7 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CircleButtonComponent implements OnInit {
 
-    @Input() text: string;
     @Input() icon: string;
     @Input() disabled: boolean;
 
