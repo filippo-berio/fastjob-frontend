@@ -1,4 +1,5 @@
 import { Component, ComponentRef, OnInit, Type, ViewChild } from '@angular/core';
+import { ViewWillEnter } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { ConfirmationFacade } from '../../../../../core/auth/facade/confirmation.facade';
 import { DynamicDirective } from '../../../../../core/shared/directives/dynamic.directive';
@@ -12,7 +13,7 @@ import { ConfirmationStepBaseComponent } from '../confirmation-steps/confirmatio
     templateUrl: './confirm-user.component.html',
     styleUrls: ['../confirmation-steps/confirm-step-code/confirm-step-code.component.scss']
 })
-export class ConfirmUserComponent implements OnInit {
+export class ConfirmUserComponent implements ViewWillEnter {
     @ViewChild(DynamicDirective, {
         static: true
     }) stepContainer: DynamicDirective;
@@ -32,9 +33,10 @@ export class ConfirmUserComponent implements OnInit {
     ) {
     }
 
-    ngOnInit() {
+    ionViewWillEnter() {
         this.confirmationFacade.step$.subscribe(step => this.setStep(step));
         this.confirmationFacade.loading$.subscribe(value => this.loading = value);
+        this.confirmationFacade.init();
     }
 
     private nextStep(value: string) {

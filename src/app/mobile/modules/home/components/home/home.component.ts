@@ -7,6 +7,7 @@ import { CardComponentFactoryType, CardComponentToken } from '../../tokens/card-
 import { SubscribeRegistry } from '../../../../../core/shared/services/subscribe.registry';
 import { SettingsService } from '../../../../../core/settings/service/settings.service';
 import { Observable } from 'rxjs';
+import { AppMode } from 'src/app/core/settings/data/app-mode.type';
 
 @Component({
     selector: 'fj-home',
@@ -19,7 +20,7 @@ export class HomeComponent implements OnInit, ViewWillEnter {
 
     profile: ProfileInterface;
     card: Swipeable | null
-    cardComponent: Type<any>;
+    mode: AppMode;
 
     constructor(
         private facade: HomeFacade,
@@ -34,10 +35,8 @@ export class HomeComponent implements OnInit, ViewWillEnter {
         this.facade.profile$().subscribe(p => this.profile = p);
         this.facade.currentCard$.subscribe(card => {
             this.card = card;
-            this.cardComponent = this.cardComponentFactory();
-            this.changeDetection.detectChanges();
         });
-        this.loading$ = this.facade.loading$;
+        this.mode = this.settings.currentMode;
     }
 
     ionViewWillEnter() {
@@ -48,11 +47,4 @@ export class HomeComponent implements OnInit, ViewWillEnter {
         return this.settings.currentMode === 'author' || this.profile.categories.length > 0;
     }
 
-    accept() {
-        this.facade.swipe('accept');
-    }
-
-    reject() {
-        this.facade.swipe('reject');
-    }
 }

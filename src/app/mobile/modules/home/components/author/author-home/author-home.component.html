@@ -1,0 +1,18 @@
+<div class="h-full flex flex-col">
+    <ng-container *ngIf="card; else noCards">
+        <fj-executor-card [card]="card"
+                       class="h-[90%] block"
+                       (accept)="accept()"
+                       (reject)="reject()"
+        >
+        </fj-executor-card>
+
+        <div class="w-full flex-1 mt-auto"></div>
+    </ng-container>
+</div>
+
+<ng-template #noCards>
+    <fj-no-swipe-cards>
+        НЕЧЕГО СВАЙПАТЬ
+    </fj-no-swipe-cards>
+</ng-template>

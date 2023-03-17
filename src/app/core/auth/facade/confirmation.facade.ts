@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, interval } from 'rxjs';
+import { BehaviorSubject, catchError, interval, Subject } from 'rxjs';
 import { CredentialsStore } from 'src/app/core/auth/core/store/credentials.store';
 import { AuthApi } from '../core/api/auth.api';
 import { AuthStore, UserConfirmationStepType } from '../core/store/auth.store';
@@ -11,7 +11,7 @@ import { AuthStore, UserConfirmationStepType } from '../core/store/auth.store';
 export class ConfirmationFacade {
     private readonly smsTimeoutSeconds = 60;
 
-    private confirmationStep$ = new BehaviorSubject<UserConfirmationStepType>('phone');
+    private confirmationStep$ = new Subject<UserConfirmationStepType>();
 
     retries$ = this.store.confirmationRetries$.asObservable();
     step$ = this.confirmationStep$.asObservable();
@@ -25,6 +25,10 @@ export class ConfirmationFacade {
         private credentialsStore: CredentialsStore,
         private router: Router,
     ) {
+    }
+
+    init() {
+        this.confirmationStep$.next('phone');
     }
 
     setPhone(phone: string) {
@@ -54,7 +58,9 @@ export class ConfirmationFacade {
             }
 
             this.credentialsStore.setCredentials(result.tokens!.accessToken, result.tokens!.refreshToken);
-            this.router.navigateByUrl('/home');
+            this.router.navigateByUrl('/home', {
+                replaceUrl: true
+            });
         });
     }
 

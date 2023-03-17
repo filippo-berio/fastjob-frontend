@@ -1,10 +1,18 @@
-<ng-content></ng-content>
+<div class="block h-full ring-2 rounded-md" swipeable
+     (swipe)="onSwipe($event)"
+>
+    <div class="flex flex-col h-full">
+        <ng-content></ng-content>
 
-<fj-category-slider *ngIf="categories?.length"
-                    [categories]="categories"
-></fj-category-slider>
+        <div class="mt-auto divide-y divide-gray-200">
+            <fj-category-slider *ngIf="categories?.length"
+                                [categories]="categories"
+                                class="py-1"
+            ></fj-category-slider>
 
-<p class="font-semi-bold mt-auto">
-    {{profileTitle()}}
-</p>
-
+            <p class="font-semi-bold py-1">
+                {{profileTitle()}}
+            </p>
+        </div>
+    </div>
+</div>
