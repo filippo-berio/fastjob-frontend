@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Swipeable } from '../../../../../../core/home/data/swipeable.interface';
-import { HomeFacade } from '../../../../../../core/home/facade/home.facade';
+import { AuthorHomeFacade } from '../../../../../../core/home/facade/author-home.facade';
 
 @Component({
     selector: 'fj-author-home',
@@ -10,24 +9,16 @@ import { HomeFacade } from '../../../../../../core/home/facade/home.facade';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuthorHomeComponent implements OnInit {
-    @Input() card: Swipeable | null;
-
+    executor$ = this.facade.executor$;
     loading$: Observable<boolean>;
 
     constructor(
-        private facade: HomeFacade,
+        private facade: AuthorHomeFacade,
     ) {
     }
 
     ngOnInit() {
         this.loading$ = this.facade.loading$;
-    }
-
-    accept() {
-        this.facade.swipe('accept');
-    }
-
-    reject() {
-        this.facade.swipe('reject');
+        this.facade.init();
     }
 }

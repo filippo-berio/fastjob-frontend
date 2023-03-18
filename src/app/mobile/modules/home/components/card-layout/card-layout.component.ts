@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 import { ProfileInterface } from 'src/app/core/profile/core/data/profile.interface';
 import { CategoryInterface } from '../../../../../core/categories/data/category.interface';
 import { SwipeType } from '../../../../../core/home/data/swipe.type';
-import { HomeFacade } from '../../../../../core/home/facade/home.facade';
 import { getProfileRepresentation } from '../../../../../core/profile/core/util/profile-representation';
 import { SwipeDirection } from '../../../../../lib/ui/data/swipe-direction';
+import { SwipeState } from '../../services/swipe.state';
 
 @Component({
     selector: 'fj-card-layout',
@@ -25,7 +25,7 @@ export class CardLayoutComponent implements OnInit {
     ]);
 
     constructor(
-        private facade: HomeFacade,
+        private swipeState: SwipeState,
     ) {
     }
 
@@ -38,6 +38,6 @@ export class CardLayoutComponent implements OnInit {
 
     onSwipe(direction: SwipeDirection) {
         this.swipeDirectionEmitterMap.get(direction) &&
-            this.facade.swipe(this.swipeDirectionEmitterMap.get(direction)!);
+            this.swipeState.swipe.next(this.swipeDirectionEmitterMap.get(direction)!);
     }
 }

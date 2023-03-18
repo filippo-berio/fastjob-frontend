@@ -4,6 +4,7 @@ import { BehaviorSubject, finalize, map, Observable, tap } from 'rxjs';
 import { TaskInterface } from '../data/task.interface';
 import { ProfileInterface } from '../../profile/core/data/profile.interface';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthorTasksState } from '../services/author-tasks.state';
 
 @Injectable({
     providedIn: 'root'
@@ -18,11 +19,12 @@ export class AuthorFacade {
 
     constructor(
         private taskApi: TaskApi,
+        private tasksState: AuthorTasksState,
     ) {
     }
 
     init() {
-         this.taskApi.getAuthorTasks().pipe(
+         this.tasksState.tasks$().pipe(
             tap(tasks => this._tasks$.next(tasks)),
             finalize(() => this._loading$.next(false))
         ).subscribe();

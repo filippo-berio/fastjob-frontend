@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Swipeable } from '../../../../../core/home/data/swipeable.interface';
 import { profilePhotoPlaceholder } from '../../../../../core/profile/core/data/profile-photo-placeholder';
+import { ProfileInterface } from '../../../../../core/profile/core/data/profile.interface';
 
 @Component({
     selector: 'fj-executor-card',
@@ -9,6 +9,6 @@ import { profilePhotoPlaceholder } from '../../../../../core/profile/core/data/p
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExecutorCardComponent {
-    @Input() card: Swipeable;
+    @Input() executor: ProfileInterface;
     placeholder = profilePhotoPlaceholder;
 }

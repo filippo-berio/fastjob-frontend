@@ -1,9 +1,7 @@
 <div class="h-full flex flex-col">
-    <ng-container *ngIf="card; else noCards">
-        <fj-executor-card [card]="card"
-                       class="h-[90%] block"
-                       (accept)="accept()"
-                       (reject)="reject()"
+    <ng-container *ngIf="executor$ | async; else noExecutor">
+        <fj-executor-card [executor]="(executor$ | async)!"
+                          class="h-[90%] block"
         >
         </fj-executor-card>
 
@@ -11,8 +9,8 @@
     </ng-container>
 </div>
 
-<ng-template #noCards>
+<ng-template #noExecutor>
     <fj-no-swipe-cards>
-        НЕЧЕГО СВАЙПАТЬ
+        НЕЧЕГО СВАЙПАТЬ, АВТОР
     </fj-no-swipe-cards>
 </ng-template>

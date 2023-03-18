@@ -1,13 +1,13 @@
-<fj-card-layout [categories]="card.profile.categories"
-                [profile]="card.profile"
+<fj-card-layout [categories]="executor.categories"
+                [profile]="executor"
                 class="h-full"
 >
     <div class="flex flex-col">
-        <img [src]="card.profile.photos[0]" alt="Executor photo"
-             *ngIf="card.profile.photos.length"
+        <img [src]="executor.photos[0]" alt="Executor photo"
+             *ngIf="executor.photos.length"
         >
         <img [src]="placeholder" alt="Executor photo"
-             *ngIf="!card.profile.photos.length"
+             *ngIf="!executor.photos.length"
         >
     </div>
 </fj-card-layout>

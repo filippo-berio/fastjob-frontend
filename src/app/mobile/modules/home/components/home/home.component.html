@@ -6,7 +6,6 @@
 
 <ion-content class="ion-padding" [scrollY]="false">
     <fj-author-home *ngIf="mode === 'author'"
-                    [card]="card"
                     class="h-full"
     ></fj-author-home>
 </ion-content>
@@ -17,10 +16,4 @@
     >
         <fj-to-profile-settings></fj-to-profile-settings>
     </div>
-</ng-template>
-
-<ng-template #noCards>
-    <fj-no-swipe-cards>
-        НЕЧЕГО СВАЙПАТЬ
-    </fj-no-swipe-cards>
 </ng-template>

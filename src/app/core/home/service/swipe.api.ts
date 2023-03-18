@@ -27,8 +27,8 @@ export class SwipeApi {
         return this.http.get<TaskInterface>(this.backend + '/api/task/next');
     }
 
-    nextExecutor(): Observable<NextExecutorInterface | null> {
-        return this.http.get<NextExecutorInterface>(this.backend + '/api/executor/next');
+    nextExecutor(task: TaskInterface): Observable<NextExecutorInterface | null> {
+        return this.http.get<NextExecutorInterface>(this.backend + '/api/executor/next/' + task.id);
     }
 
     swipeExecutor(
