@@ -1,6 +1,7 @@
 <div class="h-full flex flex-col">
-    <ng-container *ngIf="executor$ | async; else noExecutor">
-        <fj-executor-card [executor]="(executor$ | async)!"
+    <ng-container *ngIf="executor; else noExecutor">
+        <fj-executor-card [executor]="executor!"
+                          *rerender="rerenderCardTrigger"
                           class="h-[90%] block"
         >
         </fj-executor-card>

@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, of, Subject, switchMap, tap } from 'rxjs';
 import { SwipeState } from '../../../mobile/modules/home/services/swipe.state';
 import { ProfileInterface } from '../../profile/core/data/profile.interface';
 import { createNullBehaviorSubject } from '../../shared/util/nullable-behavior-subject';
 import { TaskInterface } from '../../task/data/task.interface';
 import { AuthorTasksState } from '../../task/services/author-tasks.state';
+import { SwipeType } from '../data/swipe.type';
 import { SwipeApi } from '../service/swipe.api';
 
 @Injectable({
@@ -12,11 +13,14 @@ import { SwipeApi } from '../service/swipe.api';
 })
 export class AuthorHomeFacade {
     private _loading$ = new BehaviorSubject<boolean>(true);
-    private currentExecutor = createNullBehaviorSubject<ProfileInterface>();
+    private _executors$ = new BehaviorSubject<ProfileInterface[]>([]);
     private currentTask = createNullBehaviorSubject<TaskInterface>();
 
     loading$ = this._loading$.asObservable();
-    executor$ = this.currentExecutor.asObservable();
+    executors$ = this._executors$.asObservable();
+    currentExecutor$ = this._executors$.pipe(
+        map(executors => executors[0])
+    );
     swipingTask$ = this.currentTask.asObservable();
     authorTasks$ = new Subject<TaskInterface[]>;
 
@@ -28,11 +32,9 @@ export class AuthorHomeFacade {
     }
 
     init() {
-        this.swipeState.swipe.subscribe(type => this.swipeApi.swipeExecutor(
-            type,
-            this.currentExecutor.value!,
-            this.currentTask.value!
-        ));
+        this.swipeState.swipe.pipe(
+            switchMap(type => this.handleSwipe(type))
+        ).subscribe();
         this.tasksState.tasks$().pipe(
             tap(tasks => {
                 this.authorTasks$.next(tasks);
@@ -46,9 +48,38 @@ export class AuthorHomeFacade {
     switchTask(task: TaskInterface) {
         this.currentTask.next(task);
         this._loading$.next(true);
-        this.swipeApi.nextExecutor(task).subscribe((executor) => {
-            this.currentExecutor.next(executor?.profile ?? null);
+        this.swipeApi.nextExecutor(task).subscribe((executors) => {
+            this._executors$.next(executors);
             this._loading$.next(false);
         });
+    }
+
+    private shiftExecutors() {
+        const executors = this._executors$.value;
+        executors.shift();
+    }
+
+    private handleSwipe(type: SwipeType): Observable<ProfileInterface | null> {
+        const executors = this._executors$.value;
+        const swiped = executors.shift();
+        this._executors$.next(executors);
+        // const swipe$ = swiped ? this.swipeApi.swipeExecutor(
+        //     type,
+        //     swiped,
+        //     this.currentTask.value!
+        // ) : of(null)
+        const swipe$ = of(null)
+        return swipe$.pipe(
+            // tap(next => this.addNewExecutor(next)),
+            tap(next => this.addNewExecutor(swiped!)),
+        );
+    }
+
+    private addNewExecutor(executor: ProfileInterface | null) {
+        if (executor) {
+            const executors = this._executors$.value;
+            executors.push(executor);
+            this._executors$.next(executors);
+        }
     }
 }

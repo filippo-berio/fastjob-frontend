@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProfileInterface } from 'src/app/core/profile/core/data/profile.interface';
 import { CategoryInterface } from '../../../../../core/categories/data/category.interface';
 import { SwipeType } from '../../../../../core/home/data/swipe.type';
@@ -12,13 +12,14 @@ import { SwipeState } from '../../services/swipe.state';
     styleUrls: ['./card-layout.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardLayoutComponent implements OnInit {
+export class CardLayoutComponent {
     @Input() profile: ProfileInterface;
     @Input() categories: CategoryInterface[];
 
     @Output() accept = new EventEmitter();
     @Output() reject = new EventEmitter();
 
+    private swipeTimeout = 300;
     private swipeDirectionEmitterMap = new Map<SwipeDirection, SwipeType>([
         ['left', 'accept'],
         ['right', 'reject'],
@@ -29,15 +30,14 @@ export class CardLayoutComponent implements OnInit {
     ) {
     }
 
-    ngOnInit() {
-    }
-
     profileTitle() {
         return getProfileRepresentation(this.profile);
     }
 
     onSwipe(direction: SwipeDirection) {
-        this.swipeDirectionEmitterMap.get(direction) &&
+        setTimeout(() => {
+            this.swipeDirectionEmitterMap.get(direction) &&
             this.swipeState.swipe.next(this.swipeDirectionEmitterMap.get(direction)!);
+        }, this.swipeTimeout);
     }
 }

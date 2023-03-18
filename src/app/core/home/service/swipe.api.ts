@@ -27,16 +27,18 @@ export class SwipeApi {
         return this.http.get<TaskInterface>(this.backend + '/api/task/next');
     }
 
-    nextExecutor(task: TaskInterface): Observable<NextExecutorInterface | null> {
-        return this.http.get<NextExecutorInterface>(this.backend + '/api/executor/next/' + task.id);
+    nextExecutor(task: TaskInterface): Observable<ProfileInterface[]> {
+        return this.http.get<{ profile: ProfileInterface }[]>(this.backend + '/api/author/executors/' + task.id).pipe(
+            map(res => res.map(taskSwipe => taskSwipe.profile))
+        );
     }
 
     swipeExecutor(
         type: SwipeType,
         executor: ProfileInterface,
         task: TaskInterface,
-    ): Observable<NextExecutorInterface | null> {
-        return this.http.post<NextSwipeableResponse<NextExecutorInterface>>(this.backend + '/api/author/swipe', {
+    ): Observable<ProfileInterface | null> {
+        return this.http.post<NextSwipeableResponse<ProfileInterface>>(this.backend + '/api/author/swipe', {
             taskId: task.id,
             executorId: executor.id,
             type,
