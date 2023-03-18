@@ -6,6 +6,7 @@ import { createNullBehaviorSubject } from '../../shared/util/nullable-behavior-s
 import { TaskInterface } from '../../task/data/task.interface';
 import { AuthorTasksState } from '../../task/services/author-tasks.state';
 import { SwipeType } from '../data/swipe.type';
+import { AuthorHomeStorage } from '../service/author-home.storage';
 import { SwipeApi } from '../service/swipe.api';
 
 @Injectable({
@@ -28,6 +29,7 @@ export class AuthorHomeFacade {
         private swipeApi: SwipeApi,
         private swipeState: SwipeState,
         private tasksState: AuthorTasksState,
+        private authorHomeStorage: AuthorHomeStorage,
     ) {
     }
 
@@ -39,24 +41,22 @@ export class AuthorHomeFacade {
             tap(tasks => {
                 this.authorTasks$.next(tasks);
                 if (tasks.length > 0) {
-                    this.switchTask(tasks[0])
+                    const taskId = this.authorHomeStorage.taskId;
+                    const task = taskId ? tasks.find(t => t.id === taskId) : tasks[0];
+                    this.switchTask(task!)
                 }
             })
         ).subscribe();
     }
 
     switchTask(task: TaskInterface) {
+        console.log('switch to ', task.title)
         this.currentTask.next(task);
         this._loading$.next(true);
         this.swipeApi.nextExecutor(task).subscribe((executors) => {
             this._executors$.next(executors);
             this._loading$.next(false);
         });
-    }
-
-    private shiftExecutors() {
-        const executors = this._executors$.value;
-        executors.shift();
     }
 
     private handleSwipe(type: SwipeType): Observable<ProfileInterface | null> {

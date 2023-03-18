@@ -5,9 +5,11 @@
 </ion-header>
 
 <ion-content class="ion-padding" [scrollY]="false">
-    <fj-author-home *ngIf="mode === 'author'"
-                    class="h-full"
-    ></fj-author-home>
+    <ng-container *rerender="rerenderTrigger">
+        <fj-author-home *ngIf="mode === 'author'"
+                        class="h-full"
+        ></fj-author-home>
+    </ng-container>
 </ion-content>
 
 

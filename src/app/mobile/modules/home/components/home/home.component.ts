@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, Inject, OnInit, Type } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject } from '@angular/core';
+import { ViewWillEnter } from '@ionic/angular';
 import { CardComponentFactoryType, CardComponentToken } from '../../tokens/card-component.token';
 import { SubscribeRegistry } from '../../../../../core/shared/services/subscribe.registry';
 import { SettingsService } from '../../../../../core/settings/service/settings.service';
@@ -10,10 +11,10 @@ import { AppMode } from 'src/app/core/settings/data/app-mode.type';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements ViewWillEnter {
 
     loading$: Observable<boolean>;
-
+    rerenderTrigger = 0;
     mode: AppMode;
 
     constructor(
@@ -24,7 +25,8 @@ export class HomeComponent implements OnInit {
     ) {
     }
 
-    ngOnInit() {
+    ionViewWillEnter() {
+        this.rerenderTrigger++;
         this.mode = this.settings.currentMode;
     }
 }

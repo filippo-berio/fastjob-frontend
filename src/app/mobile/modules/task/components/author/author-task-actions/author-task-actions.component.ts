@@ -1,11 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { TaskInterface } from '../../../../../../core/task/data/task.interface';
-import { MatDialog } from '@angular/material/dialog';
-import { fullScreenConfig } from '../../../../../../core/shared/data/mat-dialog.configs';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthorFacade } from '../../../../../../core/task/facade/author.facade';
-import { FinishTaskComponent } from '../finish-task/finish-task.component';
+import { AuthorHomeStorage } from 'src/app/core/home/service/author-home.storage';
 
 @Component({
     selector: 'fj-author-task-actions',
@@ -19,8 +18,9 @@ export class AuthorTaskActionsComponent implements OnInit {
 
     constructor(
         private facade: AuthorFacade,
-        private dialog: MatDialog,
+        private modalController: ModalController,
         private router: Router,
+        private authorHomeStorage: AuthorHomeStorage,
     ) {
     }
 
@@ -33,12 +33,8 @@ export class AuthorTaskActionsComponent implements OnInit {
     }
 
     searchExecutors() {
-        this.dialog.closeAll();
+        this.modalController.dismiss();
+        this.authorHomeStorage.taskId = this.task.id;
         this.router.navigateByUrl('/home');
-    }
-
-    finishTask() {
-        const componentRef = this.dialog.open(FinishTaskComponent, fullScreenConfig);
-        componentRef.componentInstance.task = this.task;
     }
 }
