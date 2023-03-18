@@ -1,7 +1,7 @@
 import { InjectionToken, Type } from '@angular/core';
 import { SettingsService } from '../../../../core/settings/service/settings.service';
-import { ExecutorCardComponent } from '../components/executor-card/executor-card.component';
-import { TaskCardComponent } from '../components/task-card/task-card.component';
+import { ExecutorCardComponent } from '../components/author/executor-card/executor-card.component';
+import { TaskCardComponent } from '../components/executor/task-card/task-card.component';
 
 export type CardComponentFactoryType = () => Type<any>;
 

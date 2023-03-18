@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { profilePhotoPlaceholder } from '../../../../../core/profile/core/data/profile-photo-placeholder';
-import { ProfileInterface } from '../../../../../core/profile/core/data/profile.interface';
+import { profilePhotoPlaceholder } from '../../../../../../core/profile/core/data/profile-photo-placeholder';
+import { ProfileInterface } from '../../../../../../core/profile/core/data/profile.interface';
 
 @Component({
     selector: 'fj-executor-card',

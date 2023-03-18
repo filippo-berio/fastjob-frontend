@@ -1,0 +1,7 @@
+<fj-card-layout [categories]="task.categories"
+                [profile]="task.author"
+>
+    <p>{{task.title}}</p>
+    <p>{{task.price | taskPrice }}</p>
+    <p *ngIf="task.remote">Удаленно</p>
+</fj-card-layout>

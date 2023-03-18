@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Swipeable } from '../../../../../core/home/data/swipeable.interface';
+import { TaskInterface } from '../../../../../../core/task/data/task.interface';
 
 @Component({
     selector: 'fj-task-card',
@@ -8,6 +8,6 @@ import { Swipeable } from '../../../../../core/home/data/swipeable.interface';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskCardComponent {
-    @Input() card: Swipeable;
+    @Input() task: TaskInterface;
 
 }

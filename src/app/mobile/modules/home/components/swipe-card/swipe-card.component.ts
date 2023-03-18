@@ -1,10 +1,8 @@
 import {
     Component,
     EventEmitter,
-    Input,
     Output,
 } from '@angular/core';
-import { Swipeable } from '../../../../../core/home/data/swipeable.interface';
 import { SwipeDirection } from '../../../../../lib/ui/data/swipe-direction';
 
 @Component({
@@ -13,7 +11,6 @@ import { SwipeDirection } from '../../../../../lib/ui/data/swipe-direction';
     styleUrls: ['./swipe-card.component.scss'],
 })
 export class SwipeCardComponent {
-    @Input() card: Swipeable;
     @Output() accept = new EventEmitter();
     @Output() reject = new EventEmitter();
 

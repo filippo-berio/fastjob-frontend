@@ -18,9 +18,11 @@ export class AuthorHomeFacade {
     private currentTask = createNullBehaviorSubject<TaskInterface>();
 
     loading$ = this._loading$.asObservable();
-    executors$ = this._executors$.asObservable();
     currentExecutor$ = this._executors$.pipe(
         map(executors => executors[0])
+    );
+    otherExecutors$ = this._executors$.pipe(
+        map(executors => executors.slice(1))
     );
     swipingTask$ = this.currentTask.asObservable();
     authorTasks$ = new Subject<TaskInterface[]>;
@@ -42,8 +44,11 @@ export class AuthorHomeFacade {
                 this.authorTasks$.next(tasks);
                 if (tasks.length > 0) {
                     const taskId = this.authorHomeStorage.taskId;
-                    const task = taskId ? tasks.find(t => t.id === taskId) : tasks[0];
-                    this.switchTask(task!)
+                    let task = tasks[0];
+                    if (taskId) {
+                        task = tasks.find(t => t.id === taskId) ?? task;
+                    }
+                    this.switchTask(task)
                 }
             })
         ).subscribe();
@@ -53,7 +58,7 @@ export class AuthorHomeFacade {
         console.log('switch to ', task.title)
         this.currentTask.next(task);
         this._loading$.next(true);
-        this.swipeApi.nextExecutor(task).subscribe((executors) => {
+        this.swipeApi.nextExecutors(task).subscribe((executors) => {
             this._executors$.next(executors);
             this._loading$.next(false);
         });

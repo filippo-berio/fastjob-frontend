@@ -1,0 +1,15 @@
+<div class="h-full flex flex-col">
+    <ng-container *ngIf="task; else noTask">
+        <fj-task-card [task]="task!"
+                      *rerender="rerenderCardTrigger"
+                      class="h-[90%] block"
+        >
+        </fj-task-card>
+    </ng-container>
+</div>
+
+<ng-template #noTask>
+    <fj-no-swipe-cards>
+        НЕЧЕГО СВАЙПАТЬ, ИСПОЛНИТЕЛЬ
+    </fj-no-swipe-cards>
+</ng-template>

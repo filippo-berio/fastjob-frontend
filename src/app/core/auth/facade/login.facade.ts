@@ -14,8 +14,6 @@ export class LoginFacade {
 
     logout() {
         this.credentials.clear();
-        this.router.navigateByUrl('/auth', {
-            replaceUrl: true
-        });
+        this.router.navigateByUrl('/auth');
     }
 }

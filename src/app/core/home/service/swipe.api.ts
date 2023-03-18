@@ -5,7 +5,6 @@ import { ProfileInterface } from '../../profile/core/data/profile.interface';
 import { SwipeType } from '../data/swipe.type';
 import { TaskInterface } from '../../task/data/task.interface';
 import { map, Observable } from 'rxjs';
-import { NextExecutorInterface } from '../data/next-executor.interface';
 
 export interface NextSwipeableResponse<T> {
     next: T;
@@ -23,11 +22,11 @@ export class SwipeApi {
     ) {
     }
 
-    nextTask(): Observable<TaskInterface | null> {
-        return this.http.get<TaskInterface>(this.backend + '/api/task/next');
+    nextTasks(): Observable<TaskInterface[]> {
+        return this.http.get<TaskInterface[]>(this.backend + '/api/executor/next-tasks');
     }
 
-    nextExecutor(task: TaskInterface): Observable<ProfileInterface[]> {
+    nextExecutors(task: TaskInterface): Observable<ProfileInterface[]> {
         return this.http.get<{ profile: ProfileInterface }[]>(this.backend + '/api/author/executors/' + task.id).pipe(
             map(res => res.map(taskSwipe => taskSwipe.profile))
         );
@@ -50,8 +49,8 @@ export class SwipeApi {
     swipeTask(
         type: SwipeType,
         task: TaskInterface,
-    ): Observable<TaskInterface | null> {
-        return this.http.post<NextSwipeableResponse<TaskInterface>>(this.backend + '/api/swipe/task', {
+    ): Observable<TaskInterface[]> {
+        return this.http.post<NextSwipeableResponse<TaskInterface[]>>(this.backend + '/api/executor/swipe', {
             taskId: task.id,
             type,
         }).pipe(

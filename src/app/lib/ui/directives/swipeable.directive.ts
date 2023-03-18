@@ -12,6 +12,7 @@ export class SwipeableDirective implements OnInit {
     private lastSwipeDirection?: SwipeDirection;
 
     private windowWidth = window.innerWidth;
+    private swipeLength = this.windowWidth / 3;
 
     constructor(
         private hostElement: ElementRef,
@@ -62,10 +63,10 @@ export class SwipeableDirective implements OnInit {
     }
 
     private getCurrentSwipeDirection(ev: GestureDetail): SwipeDirection | null {
-        if (ev.deltaX > this.windowWidth / 2) {
+        if (ev.deltaX > this.swipeLength) {
             return 'right';
         }
-        if (ev.deltaX < -this.windowWidth / 2) {
+        if (ev.deltaX < -this.swipeLength) {
             return 'left';
         }
         return null;
