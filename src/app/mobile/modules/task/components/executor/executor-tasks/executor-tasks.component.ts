@@ -11,6 +11,7 @@ import { ExecutorTaskList } from '../../../../../../core/task/data/executor-task
 })
 export class ExecutorTasksComponent implements OnInit {
     tasks: ExecutorTaskList;
+    taskList: TaskInterface[];
     loading$: Observable<boolean>;
 
     @Output() openTask = new EventEmitter<TaskInterface>();
@@ -22,11 +23,21 @@ export class ExecutorTasksComponent implements OnInit {
 
     ngOnInit() {
         this.facade.init();
-        this.facade.tasks$.subscribe(tasks => this.tasks = tasks!);
+        this.facade.tasks$.subscribe(tasks => this.setTasks(tasks!));
         this.loading$ = this.facade.loading$;
     }
 
     onTaskClick(task: TaskInterface) {
         this.openTask.emit(task);
+    }
+
+    private setTasks(tasks: ExecutorTaskList) {
+        this.tasks = tasks;
+        this.taskList = [
+            ...tasks.work,
+            ...tasks.offers,
+            ...tasks.matches,
+            ...tasks.swipes,
+        ];
     }
 }

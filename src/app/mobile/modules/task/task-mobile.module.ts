@@ -7,6 +7,13 @@ import { UiModule } from '../../../lib/ui/ui.module';
 import { CategoryMobileModule } from '../category/category-mobile.module';
 import { AuthorTaskListItemComponent } from './components/author/author-task-list-item/author-task-list-item.component';
 import { ShowExecutorModalComponent } from './components/author/show-executor-modal/show-executor-modal.component';
+import {
+    ExecutorTaskListItemComponent
+} from './components/executor/executor-task-list-item/executor-task-list-item.component';
+import {
+    ExecutorTaskTypeListComponent
+} from './components/executor/executor-task-type-list/executor-task-type-list.component';
+import { TaskListModalComponent } from './components/shared/task-list-modal/task-list-modal.component';
 import { TaskListComponent } from './components/shared/task-list/task-list.component';
 import { TaskPhotosSliderComponent } from './components/shared/task-photos-slider/task-photos-slider.component';
 import { TaskPageComponent } from './components/task-page/task-page.component';
@@ -51,6 +58,9 @@ const routes: Routes = [
         TaskListComponent,
         TaskPhotosSliderComponent,
         ShowExecutorModalComponent,
+        ExecutorTaskListItemComponent,
+        TaskListModalComponent,
+        ExecutorTaskTypeListComponent,
     ],
     imports: [
         CommonModule,

@@ -5,10 +5,7 @@ import { AppMode } from '../../../../../core/settings/data/app-mode.type';
 import { AuthorTasksComponent } from '../author/author-tasks/author-tasks.component';
 import { ExecutorTasksComponent } from '../executor/executor-tasks/executor-tasks.component';
 import { SettingsService } from '../../../../../core/settings/service/settings.service';
-import { MatDialog } from '@angular/material/dialog';
 import { TaskInterface } from '../../../../../core/task/data/task.interface';
-import { TaskComponent } from '../shared/task/task.component';
-import { fullScreenConfig } from '../../../../../core/shared/data/mat-dialog.configs';
 
 @Component({
     selector: 'fj-task-page',
@@ -29,7 +26,6 @@ export class TaskPageComponent implements ViewWillEnter {
 
     constructor(
         private settingsService: SettingsService,
-        private dialog: MatDialog,
     ) {
     }
 
@@ -42,9 +38,5 @@ export class TaskPageComponent implements ViewWillEnter {
 
     private openTaskModal(task: TaskInterface) {
         this.openedTask = task;
-        // const modalRef = this.dialog.open(TaskComponent, {
-        //     ...fullScreenConfig,
-        // });
-        // modalRef.componentInstance.task = task;
     }
 }

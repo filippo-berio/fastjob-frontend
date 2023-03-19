@@ -9,32 +9,34 @@
 
     <ng-template #content>
         <div class="grid">
-            <fj-task-list-item *ngFor="let task of tasks.work"
-                               [task]="task"
-                               (click)="onTaskClick(task)"
-            >
-                <ng-container ngProjectAs="icon">В работе</ng-container>
-            </fj-task-list-item>
-
-            <fj-task-list-item *ngFor="let task of tasks.offers"
-                               [task]="task"
-                               (click)="onTaskClick(task)"
-            >
-                <ng-container ngProjectAs="icon">Оффер</ng-container>
-            </fj-task-list-item>
-
-            <fj-task-list-item *ngFor="let task of tasks.matches"
-                               [task]="task"
-                               (click)="onTaskClick(task)"
-            >
-                <ng-container ngProjectAs="icon">Метч</ng-container>
-            </fj-task-list-item>
-
-            <fj-task-list-item *ngFor="let task of tasks.swipes"
-                               [task]="task"
-                               (click)="onTaskClick(task)"
-            >
-            </fj-task-list-item>
+            <div class="bg-white shadow overflow-hidden rounded-xl">
+                <ul role="list" class="divide-y divide-gray-200">
+                    <fj-executor-task-type-list title="В работе"
+                                                icon="construct-outline"
+                                                [tasks]="tasks.work"
+                                                (click)="listModal.open(tasks.work)"
+                    ></fj-executor-task-type-list>
+                    <fj-executor-task-type-list title="Офферы"
+                                                icon="mail-unread-outline"
+                                                [tasks]="tasks.offers"
+                                                (click)="listModal.open(tasks.offers)"
+                    ></fj-executor-task-type-list>
+                    <fj-executor-task-type-list title="Метчи"
+                                                icon="people-circle-outline"
+                                                [tasks]="tasks.matches"
+                                                (click)="listModal.open(tasks.matches)"
+                    ></fj-executor-task-type-list>
+                    <fj-executor-task-type-list title="Свайпы"
+                                                icon="thumbs-up-outline"
+                                                [tasks]="tasks.swipes"
+                                                (click)="listModal.open(tasks.swipes)"
+                    ></fj-executor-task-type-list>
+                </ul>
+            </div>
         </div>
     </ng-template>
 </div>
+
+<fj-task-list-modal #listModal
+                    (clickTask)="onTaskClick($event)"
+></fj-task-list-modal>

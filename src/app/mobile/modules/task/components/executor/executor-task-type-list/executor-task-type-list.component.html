@@ -1,0 +1,14 @@
+<li class="p-4">
+    <div class="flex items-center">
+        <ion-icon [name]="icon"
+                  class="p-1 text-2xl"
+        ></ion-icon>
+        <span class="text-lg">
+            {{title}} {{tasks | count}}
+        </span>
+
+        <ion-icon name="chevron-forward-outline"
+                  class="ml-auto"
+        ></ion-icon>
+    </div>
+</li>

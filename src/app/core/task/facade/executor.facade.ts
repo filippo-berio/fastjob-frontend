@@ -11,9 +11,9 @@ export class ExecutorFacade {
     private _loading$ = new BehaviorSubject<boolean>(true);
     private _tasks$ = new BehaviorSubject<ExecutorTaskList|null>(null)
 
-    tasks$ = this._tasks$.asObservable().pipe(
+    tasks$: Observable<ExecutorTaskList> = this._tasks$.asObservable().pipe(
         filter(list => !!list)
-    );
+    ) as Observable<ExecutorTaskList>;
     loading$ = this._loading$.asObservable();
 
     constructor(
