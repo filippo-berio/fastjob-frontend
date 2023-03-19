@@ -9,7 +9,12 @@ import { TaskInterface } from '../../../../../../core/task/data/task.interface';
 export class TaskListModalComponent implements OnInit {
     @Output() clickTask = new EventEmitter<TaskInterface>();
 
+    opened = false;
     tasks: TaskInterface[] = [];
+    disclaimer?: string;
+
+    initialBreakpoint = 0.6;
+    breakpoints = [0, 0.6, 0.8];
 
     constructor() {
     }
@@ -17,8 +22,16 @@ export class TaskListModalComponent implements OnInit {
     ngOnInit() {
     }
 
-    open(list: TaskInterface[]) {
+    open(list: TaskInterface[], disclaimer: string = 'Дисклеймер') {
         this.tasks = list;
+        this.disclaimer = disclaimer;
+
+        if (!list.length) {
+            this.breakpoints = [0, 0.3];
+            this.initialBreakpoint = 0.2;
+        }
+
+        this.opened = true;
     }
 
     click(task: TaskInterface) {

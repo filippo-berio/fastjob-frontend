@@ -1,15 +1,11 @@
 <div class="flex justify-around">
-    <button (click)="goChat()"
-            *ngIf="canGoChat$ | async"
-            tuiButton
-            appearance="outline"
-            size="s"
-    >Перейти в чат</button>
+    <fj-circle-button icon="chatbubble-ellipses-outline"
+                      (click)="goChat()"
+                      *ngIf="canGoChat$ | async"
+    >Перейти в чат</fj-circle-button>
 
-    <button (click)="acceptOffer()"
-            *ngIf="canAcceptOffer$ | async"
-            tuiButton
-            appearance="outline"
-            size="s"
-    >Принять оффер</button>
+    <fj-circle-button icon="mail-outline"
+                      (click)="acceptOffer()"
+                      *ngIf="canAcceptOffer$ | async"
+    >Принять оффер</fj-circle-button>
 </div>

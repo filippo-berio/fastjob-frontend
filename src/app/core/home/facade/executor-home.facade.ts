@@ -23,7 +23,6 @@ export class ExecutorHomeFacade {
     }
 
     init() {
-        this.currentTask$.subscribe(t => console.log(t?.title))
         this.swipeState.swipe.pipe(
             switchMap(type => this.handleSwipe(type))
         ).subscribe();

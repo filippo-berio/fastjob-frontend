@@ -41,7 +41,7 @@ export class ExecutorFacade {
 
     canGoChat$(task: TaskInterface): Observable<boolean> {
         return this._tasks$.pipe(
-            map(tasks => !!tasks!.matches.find(t => t.id === task.id))
+            map(tasks => !tasks!.swipes.find(t => t.id === task.id))
         );
     }
 

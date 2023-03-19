@@ -14,22 +14,22 @@
                     <fj-executor-task-type-list title="В работе"
                                                 icon="construct-outline"
                                                 [tasks]="tasks.work"
-                                                (click)="listModal.open(tasks.work)"
+                                                (click)="listModal.open(tasks.work, 'Задачи, взятые в работу')"
                     ></fj-executor-task-type-list>
                     <fj-executor-task-type-list title="Офферы"
-                                                icon="mail-unread-outline"
+                                                icon="mail-outline"
                                                 [tasks]="tasks.offers"
-                                                (click)="listModal.open(tasks.offers)"
+                                                (click)="listModal.open(tasks.offers, 'Авторы этих задач готовы передать их вам в работу')"
                     ></fj-executor-task-type-list>
                     <fj-executor-task-type-list title="Метчи"
                                                 icon="people-circle-outline"
                                                 [tasks]="tasks.matches"
-                                                (click)="listModal.open(tasks.matches)"
+                                                (click)="listModal.open(tasks.matches, 'Вы понравились авторам этих задач, открывайте чат и договаривайтесь о деталях')"
                     ></fj-executor-task-type-list>
                     <fj-executor-task-type-list title="Свайпы"
                                                 icon="thumbs-up-outline"
                                                 [tasks]="tasks.swipes"
-                                                (click)="listModal.open(tasks.swipes)"
+                                                (click)="listModal.open(tasks.swipes, 'Задачи, понравившиеся вам')"
                     ></fj-executor-task-type-list>
                 </ul>
             </div>

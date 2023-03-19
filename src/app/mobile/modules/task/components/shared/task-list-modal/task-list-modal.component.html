@@ -1,16 +1,24 @@
-<ion-modal [isOpen]="tasks.length"
-           [initialBreakpoint]="0.5"
-           [breakpoints]="[0, 0.5, 0.8]"
-           (didDismiss)="tasks = []"
+<ion-modal [isOpen]="opened"
+           [initialBreakpoint]="initialBreakpoint"
+           [breakpoints]="breakpoints"
+           (didDismiss)="opened = false"
 >
     <ng-template>
-        <fj-task-list [tasks]="tasks" class="ion-padding">
-            <ng-template let-task>
-                <fj-task-list-item [task]="task"
-                                   (click)="click(task)"
-                >
-                </fj-task-list-item>
-            </ng-template>
-        </fj-task-list>
+        <div class="ion-padding">
+            <span *ngIf="disclaimer"
+                  class="text-gray-500 text-lg my-1 block"
+            >{{disclaimer}}</span>
+
+            <fj-task-list [tasks]="tasks" *ngIf="tasks.length"
+                          class="mt-4"
+            >
+                <ng-template let-task>
+                    <fj-task-list-item [task]="task"
+                                       (click)="click(task)"
+                    >
+                    </fj-task-list-item>
+                </ng-template>
+            </fj-task-list>
+        </div>
     </ng-template>
 </ion-modal>
