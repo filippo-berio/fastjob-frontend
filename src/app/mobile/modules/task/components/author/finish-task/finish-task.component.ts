@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { TaskInterface } from '../../../../../../core/task/data/task.interface';
 import { AuthorFacade } from '../../../../../../core/task/facade/author.facade';
-import { FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'fj-finish-task',
@@ -11,6 +11,7 @@ import { FormGroup } from '@angular/forms';
 export class FinishTaskComponent implements OnInit {
     @Input() task: TaskInterface;
 
+    opened = false;
     form: FormGroup
 
     constructor(
@@ -24,6 +25,11 @@ export class FinishTaskComponent implements OnInit {
 
     finish() {
         this.authorFacade.finishTask(this.task);
+        this.opened = false;
     }
 
+    open(task: TaskInterface) {
+        this.task = task;
+        this.opened = true;
+    }
 }

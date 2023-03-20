@@ -9,6 +9,7 @@
                 <fj-circle-button icon="document-text-outline"
                                   [disabled]="offerButtonDisabled"
                                   (click)="offerTask()"
+                                  *ngIf="showOfferButton"
                 >{{makeOfferButtonText}}</fj-circle-button>
             </div>
         </div>

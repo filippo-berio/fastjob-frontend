@@ -14,6 +14,7 @@ export class ShowExecutorComponent implements OnInit {
 
     makeOfferButtonText = 'Назначить исполнителя';
     offerButtonDisabled = false;
+    showOfferButton = true;
 
     constructor(
         private facade: AuthorFacade,
@@ -23,6 +24,9 @@ export class ShowExecutorComponent implements OnInit {
     ngOnInit() {
         if (this.task.executor) {
             this.disableOfferButton('У задачи уже назначен исполнитель');
+            if (this.task.executor.id === this.executor.id) {
+                this.showOfferButton = false;
+            }
         }
         if (this.facade.isTaskOffered(this.task, this.executor)) {
             this.disableOfferButton('Оффер отправлен')

@@ -25,7 +25,7 @@ import { TaskListItemComponent } from './components/shared/task-list-item/task-l
 import { IonicModule } from '@ionic/angular';
 import { TaskComponent } from './components/shared/task/task.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { TuiButtonModule, TuiLoaderModule } from '@taiga-ui/core';
+import { TuiButtonModule, TuiLoaderModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { AuthorTaskActionsComponent } from './components/author/author-task-actions/author-task-actions.component';
 import { ExecutorTaskActionsComponent } from './components/executor/executor-task-actions/executor-task-actions.component';
 import { TaskMatchesComponent } from './components/author/task-matches/task-matches.component';
@@ -81,6 +81,7 @@ const routes: Routes = [
         TaskModule,
         TuiAccordionModule,
         UiModule,
+        TuiTextfieldControllerModule,
     ],
     exports: [
     ],

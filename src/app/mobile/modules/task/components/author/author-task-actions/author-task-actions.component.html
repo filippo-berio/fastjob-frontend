@@ -10,8 +10,8 @@
                           *ngIf="!task.executor"
         >Исполнители</fj-circle-button>
 
-        <fj-circle-button icon="checkmark-done-outline-outline"
-                          (click)="searchExecutors()"
+        <fj-circle-button icon="checkmark-done-outline"
+                          (click)="finishModal.open(task)"
                           *ngIf="canFinishTask$ | async"
         >Задача выполнена</fj-circle-button>
     </div>
@@ -29,3 +29,5 @@
         </div>
     </ng-template>
 </ion-modal>
+
+<fj-finish-task #finishModal></fj-finish-task>
