@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { ProfileInterface } from '../../profile/core/data/profile.interface';
+import { NextExecutor } from '../data/next-executor.interface';
 import { SwipeType } from '../data/swipe.type';
 import { TaskInterface } from '../../task/data/task.interface';
 import { map, Observable } from 'rxjs';
@@ -26,9 +27,14 @@ export class SwipeApi {
         return this.http.get<TaskInterface[]>(this.backend + '/api/executor/next-tasks');
     }
 
-    nextExecutors(task: TaskInterface): Observable<ProfileInterface[]> {
-        return this.http.get<{ profile: ProfileInterface }[]>(this.backend + '/api/author/executors/' + task.id).pipe(
-            map(res => res.map(taskSwipe => taskSwipe.profile))
+    nextExecutors(task?: TaskInterface): Observable<NextExecutor[]> {
+        let params = new HttpParams();
+        if (task) {
+            params = params.set('taskId', task.id);
+        }
+        return this.http.get<NextExecutor[]>(this.backend + '/api/author/executors', {
+            params: params
+        }).pipe(
         );
     }
 

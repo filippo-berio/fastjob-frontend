@@ -44,24 +44,39 @@ export class AuthorHomeFacade {
                 this.authorTasks$.next(tasks);
                 if (tasks.length > 0) {
                     const taskId = this.authorHomeStorage.taskId;
-                    let task = tasks[0];
+                    let task = undefined;
                     if (taskId) {
-                        task = tasks.find(t => t.id === taskId) ?? task;
+                        task = tasks.find(t => t.id === taskId)!;
+                        this.switchTask(task)
+                    } else {
+                        this.getNextExecutors().subscribe(executors => {
+                            if (executors.length) {
+                                this.setTask(executors[0].task);
+                            }
+                        });
                     }
-                    this.switchTask(task)
                 }
             })
         ).subscribe();
     }
 
     switchTask(task: TaskInterface) {
-        console.log('switch to ', task.title)
-        this.currentTask.next(task);
+        this.setTask(task);
         this._loading$.next(true);
-        this.swipeApi.nextExecutors(task).subscribe((executors) => {
-            this._executors$.next(executors);
+        this.getNextExecutors(task).subscribe(() => {
             this._loading$.next(false);
         });
+    }
+
+    private setTask(task: TaskInterface) {
+        this.currentTask.next(task);
+        this.authorHomeStorage.taskId = task.id;
+    }
+
+    private getNextExecutors(task?: TaskInterface) {
+        return this.swipeApi.nextExecutors(task).pipe(
+            tap(executors => this._executors$.next(executors.map(e => e.profile)))
+        );
     }
 
     private handleSwipe(type: SwipeType): Observable<ProfileInterface | null> {
