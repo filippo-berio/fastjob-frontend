@@ -1,21 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ChatPageComponent } from './components/chat-page/chat-page.component';
+import { TuiLoaderModule } from '@taiga-ui/core';
+import { ChatListItemComponent } from './components/chat-list-item/chat-list-item.component';
+import { ChatListPageComponent } from './components/chat-list-page/chat-list-page.component';
 
 
 @NgModule({
     declarations: [
-        ChatPageComponent,
+        ChatListPageComponent,
+        ChatListItemComponent,
     ],
     imports: [
         CommonModule,
         RouterModule.forChild([
             {
                 path: '',
-                component: ChatPageComponent,
+                component: ChatListPageComponent,
             }
         ]),
+        TuiLoaderModule,
     ]
 })
 export class ChatMobileModule {

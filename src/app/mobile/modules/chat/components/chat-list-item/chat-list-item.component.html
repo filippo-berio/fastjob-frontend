@@ -1,0 +1,30 @@
+<a class="block">
+    <div class="flex items-center p-4">
+        <div class="grid w-full">
+            <div class="flex-1 flex items-center">
+                <div class="flex gap-2 items-center">
+
+                    <img [src]="photoPath"
+                         alt="Profile icon"
+                         class="relative h-16 w-16 inline-block rounded-full ring-2 overflow-hidden"
+                    >
+                    <div class="flex flex-col justify-between">
+                        <p class="mt-2 flex items-center text-sm text-gray-500">
+                            <span>{{item.companion.name}}</span>
+                        </p>
+                        <p class="mt-2 flex items-center text-sm text-gray-500">
+                            <span class="text-xs text-gray-300 mr-2">
+                                {{item.lastMessage.createdAt | date : 'HH:mm'}}:
+                            </span>
+                            <span>{{item.lastMessage.content}}</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="ml-auto px-2">
+                    {{item.unreadCount}}
+                </div>
+            </div>
+        </div>
+    </div>
+</a>

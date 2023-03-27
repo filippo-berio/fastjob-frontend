@@ -1,0 +1,15 @@
+<div class="ion-padding">
+    <div class="bg-white shadow overflow-hidden rounded-xl">
+        <ul role="list" class="divide-y divide-gray-200">
+            <tui-loader *ngIf="loading$ | async; else content"></tui-loader>
+
+            <ng-template #content>
+                <fj-chat-list-item *ngFor="let chatItem of list$ | async"
+                                   [item]="chatItem"
+                                   class="block"
+                ></fj-chat-list-item>
+
+            </ng-template>
+        </ul>
+    </div>
+</div>
