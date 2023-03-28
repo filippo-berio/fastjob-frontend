@@ -1,0 +1,18 @@
+<ion-modal [isOpen]="opened"
+           (didDismiss)="opened = false"
+           [initialBreakpoint]="0.95"
+           [breakpoints]="[0, 0.95]"
+           [animated]="true"
+>
+    <ng-template>
+        <div class="py-4 h-full">
+            <div *ngIf="loading$ | async; else content" class="flex grid items-center h-full">
+                <tui-loader size="l"></tui-loader>
+            </div>
+
+            <ng-template #content>
+                <fj-chat [chat]="chat" class="h-full"></fj-chat>
+            </ng-template>
+        </div>
+    </ng-template>
+</ion-modal>

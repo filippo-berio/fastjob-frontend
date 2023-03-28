@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, of, Subject, switchMap, tap } from 'rxjs';
 import { SwipeState } from '../../../mobile/modules/home/services/swipe.state';
 import { ProfileInterface } from '../../profile/core/data/profile.interface';
-import { createNullBehaviorSubject } from '../../shared/util/nullable-behavior-subject';
+import { createNullBehaviorSubject } from '../../shared/util/behavior-subject.utils';
 import { TaskInterface } from '../../task/data/task.interface';
 import { AuthorTasksState } from '../../task/services/author-tasks.state';
 import { SwipeType } from '../data/swipe.type';

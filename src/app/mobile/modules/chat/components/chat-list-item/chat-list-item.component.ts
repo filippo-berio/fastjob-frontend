@@ -6,7 +6,6 @@ import { profilePhotoPlaceholder } from '../../../../../core/profile/core/data/p
     selector: 'fj-chat-list-item',
     templateUrl: './chat-list-item.component.html',
     styleUrls: ['./chat-list-item.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatListItemComponent implements OnInit {
     @Input() item: ChatListItemInterface;

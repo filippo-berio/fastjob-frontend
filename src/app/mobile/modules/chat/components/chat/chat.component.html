@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-toolbar>
+        <div class="flex flex-1 gap-1 items-center justify-start">
+
+            <img [src]="photoPath"
+                 alt="Фото собеседника"
+                 class="relative h-12 w-12 inline-block rounded-full ring-2 overflow-hidden"
+            >
+            <h2 class="block text-lg">{{chat.companion.name}}</h2>
+        </div>
+        <div>
+        </div>
+    </ion-toolbar>
+</ion-header>
+
+
+<div class="flex w-full h-4/5">
+    <div class="flex flex-col flex-grow w-full max-w-xl bg-white shadow-xl rounded-lg overflow-auto" >
+        <div class="flex flex-col flex-grow h-0 p-4 overflow-auto">
+
+            <ng-container *ngFor="let message of chat.messages">
+                <ng-container [ngSwitch]="isMessageSelf(message)">
+                    <fj-companion-message *ngSwitchCase="false"
+                                          [message]="message"
+                    ></fj-companion-message>
+                    <fj-self-message *ngSwitchCase="true"
+                                     [message]="message"
+                    ></fj-self-message>
+                </ng-container>
+
+            </ng-container>
+        </div>
+
+        <div class="p-4">
+            <fj-chat-send-input (send)="sendMessage($event)"></fj-chat-send-input>
+        </div>
+    </div>
+
+</div>

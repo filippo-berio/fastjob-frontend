@@ -16,3 +16,11 @@ export interface MessageInterface {
     createdAt: string;
     author: CompanionInterface;
 }
+
+export interface DirectChatInterface {
+    id: number;
+    messages: MessageInterface[];
+    person: CompanionInterface;
+    companion: CompanionInterface;
+    unreadCount: number;
+}

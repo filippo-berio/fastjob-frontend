@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
-import { ChatListItemInterface } from '../data/chat.data';
+import { ChatListItemInterface, DirectChatInterface } from '../data/chat.data';
 
 @Injectable({
     providedIn: 'root',
@@ -17,5 +17,9 @@ export class ChatApi {
 
     getChats(): Observable<ChatListItemInterface[]> {
         return this.http.get<ChatListItemInterface[]>(this.backend + '/api/chat');
+    }
+
+    getChat(companionId: number): Observable<DirectChatInterface> {
+        return this.http.get<DirectChatInterface>(this.backend + '/api/chat/' + companionId);
     }
 }

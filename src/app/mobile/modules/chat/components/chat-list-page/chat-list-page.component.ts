@@ -25,5 +25,4 @@ export class ChatListPageComponent implements ViewWillEnter {
 
         this.facade.init();
     }
-
 }

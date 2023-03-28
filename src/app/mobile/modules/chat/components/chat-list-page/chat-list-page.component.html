@@ -7,9 +7,12 @@
                 <fj-chat-list-item *ngFor="let chatItem of list$ | async"
                                    [item]="chatItem"
                                    class="block"
+                                   (click)="chatModal.open(chatItem.companion)"
                 ></fj-chat-list-item>
 
             </ng-template>
         </ul>
     </div>
 </div>
+
+<fj-chat-modal #chatModal></fj-chat-modal>
