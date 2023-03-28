@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, finalize, Observable, of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { ChatApi } from '../services/api/chat.api';
 import { ChatListItemInterface } from '../services/data/chat.data';
 import { DirectChatFacade } from './direct-chat.facade';

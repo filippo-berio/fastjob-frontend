@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
-import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subject, tap } from 'rxjs';
 import { createNullBehaviorSubject } from '../../shared/util/behavior-subject.utils';
 import { ChatApi } from '../services/api/chat.api';
 import { CompanionInterface, DirectChatInterface } from '../services/data/chat.data';
@@ -20,6 +20,10 @@ export class DirectChatFacade {
 
     init(companion: CompanionInterface) {
         this.api.getChat(companion.id).pipe(
+            map(chat => {
+                chat.messages = chat.messages.reverse();
+                return chat;
+            }),
             tap(chat => this.chat$.next(chat)),
         ).subscribe(() => {
             this.loading$.next(false)
@@ -35,5 +39,7 @@ export class DirectChatFacade {
         });
         this.chat$.next(chat);
         this.newMessage$.next(chat);
+
+        this.api.sendMessage(chat.id, message).subscribe();
     }
 }

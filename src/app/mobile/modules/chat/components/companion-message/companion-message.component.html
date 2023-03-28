@@ -7,6 +7,6 @@
         <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
             <p class="text-sm">{{message.content}}</p>
         </div>
-        <span class="text-xs text-gray-500 leading-none">2 min ago</span>
+        <span class="text-xs text-gray-500 leading-none">{{message.createdAt | date : 'HH:mm'}}</span>
     </div>
 </div>
