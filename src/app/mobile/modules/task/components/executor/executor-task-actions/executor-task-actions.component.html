@@ -1,6 +1,6 @@
 <div class="flex justify-around">
     <fj-circle-button icon="chatbubble-ellipses-outline"
-                      (click)="goChat()"
+                      (click)="chatModal.open(authorCompanion)"
                       *ngIf="canGoChat$ | async"
     >Перейти в чат</fj-circle-button>
 
@@ -9,3 +9,5 @@
                       *ngIf="canAcceptOffer$ | async"
     >Принять оффер</fj-circle-button>
 </div>
+
+<fj-chat-modal #chatModal></fj-chat-modal>

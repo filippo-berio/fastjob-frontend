@@ -5,6 +5,7 @@ import { LocationModule } from '../../../core/location/location.module';
 import { TaskModule } from '../../../core/task/task.module';
 import { UiModule } from '../../../lib/ui/ui.module';
 import { CategoryMobileModule } from '../category/category-mobile.module';
+import { ChatMobileModule } from '../chat/chat-mobile.module';
 import { AuthorTaskListItemComponent } from './components/author/author-task-list-item/author-task-list-item.component';
 import { ShowExecutorModalComponent } from './components/author/show-executor-modal/show-executor-modal.component';
 import {
@@ -82,6 +83,7 @@ const routes: Routes = [
         TuiAccordionModule,
         UiModule,
         TuiTextfieldControllerModule,
+        ChatMobileModule,
     ],
     exports: [
     ],

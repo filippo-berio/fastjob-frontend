@@ -9,7 +9,7 @@ import { CompanionInterface, DirectChatInterface } from '../../../../../core/cha
     templateUrl: './chat-modal.component.html',
     styleUrls: ['./chat-modal.component.scss'],
 })
-export class ChatModalComponent  {
+export class ChatModalComponent {
 
     opened = false;
     chat: DirectChatInterface;
@@ -22,10 +22,6 @@ export class ChatModalComponent  {
     }
 
     open(companion: CompanionInterface) {
-        const event = fromEvent(document, 'backbutton');
-        event.subscribe(async () => {
-            this.opened = false;
-        });
         this.loading$ = this.facade.loading$;
         this.facade.chat$.subscribe(chat => this.chat = chat!);
         this.facade.init(companion);

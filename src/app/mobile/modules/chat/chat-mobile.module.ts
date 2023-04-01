@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { TuiLoaderModule } from '@taiga-ui/core';
 import { ChatListItemComponent } from './components/chat-list-item/chat-list-item.component';
@@ -22,14 +21,11 @@ import { SelfMessageComponent } from './components/self-message/self-message.com
         SelfMessageComponent,
         ChatSendInputComponent,
     ],
+    exports: [
+        ChatModalComponent
+    ],
     imports: [
         CommonModule,
-        RouterModule.forChild([
-            {
-                path: '',
-                component: ChatListPageComponent,
-            },
-        ]),
         TuiLoaderModule,
         IonicModule,
     ]

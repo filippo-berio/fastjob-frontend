@@ -44,7 +44,8 @@ const routes: Routes = [
     },
     {
         path: 'chats',
-        loadChildren: () => import('./modules/chat/chat-mobile.module').then(m => m.ChatMobileModule),
+        loadChildren: () => import('./modules/chat/chat-mobile-routing.module').then(m => m.ChatMobileRoutingModule
+        ),
         data: {routeName: 'chats'},
         canActivate: [
             CredentialsGuard,

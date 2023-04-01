@@ -44,8 +44,4 @@ export class ExecutorFacade {
             map(tasks => !tasks!.swipes.find(t => t.id === task.id))
         );
     }
-
-    goChat(task: TaskInterface) {
-        console.log('GO TO CHAT ON ', task.title)
-    }
 }

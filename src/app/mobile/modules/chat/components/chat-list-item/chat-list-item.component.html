@@ -22,7 +22,10 @@
                 </div>
 
                 <div class="ml-auto px-2">
-                    {{item.unreadCount}}
+                    <span *ngIf="item.unreadCount">{{item.unreadCount}}</span>
+                    <ion-icon name="chevron-forward-outline"
+                              *ngIf="!item.unreadCount"
+                    ></ion-icon>
                 </div>
             </div>
         </div>
