@@ -30,12 +30,8 @@ export class AuthorFacade {
         ).subscribe();
     }
 
-    openChat(executor: ProfileInterface, task: TaskInterface) {
-        console.log('NAVIGATE TO CHAT WITH ', executor.firstName);
-    }
-
     makeOffer(executor: ProfileInterface, task: TaskInterface) {
-        this.taskApi.makeOffer(task, executor).subscribe();
+        this.taskApi.makeOffer(task.id, executor).subscribe();
     }
 
     isTaskOffered(task: TaskInterface, executor: ProfileInterface): boolean {
@@ -52,7 +48,7 @@ export class AuthorFacade {
 
     finishTask(task: TaskInterface) {
         const formValue = this.finishTaskForm.value;
-        this.taskApi.finishTask(task, formValue.rating, formValue.comment).pipe(
+        this.taskApi.finishTask(task.id, formValue.rating, formValue.comment).pipe(
             tap(tasks => this._tasks$.next(tasks))
         ).subscribe();
     }
