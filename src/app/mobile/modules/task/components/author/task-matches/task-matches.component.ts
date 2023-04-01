@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { CompanionInterface } from '../../../../../../core/chat/services/data/chat.data';
 import { ProfileInterface } from '../../../../../../core/profile/core/data/profile.interface';
-import { MatDialog } from '@angular/material/dialog';
+import { convertToCompanion } from '../../../../../../core/profile/core/util/convert-companion';
 import { TaskExecutorsBaseComponent } from '../base/task-executors.base.component';
-import { AuthorFacade } from '../../../../../../core/task/facade/author.facade';
 
 @Component({
     selector: 'fj-task-matches',
@@ -14,13 +14,6 @@ export class TaskMatchesComponent extends TaskExecutorsBaseComponent implements 
 
     profiles: ProfileInterface[];
 
-    constructor(
-        private dialog: MatDialog,
-        private facade: AuthorFacade,
-    ) {
-        super();
-    }
-
     override ngOnInit() {
         super.ngOnInit();
         this.profiles = [
@@ -29,8 +22,7 @@ export class TaskMatchesComponent extends TaskExecutorsBaseComponent implements 
         ];
     }
 
-    openChat(event: Event, profile: ProfileInterface) {
-        event.stopPropagation();
-        this.facade.openChat(profile, this.task);
+    getCompanion(profile: ProfileInterface): CompanionInterface {
+        return convertToCompanion(profile);
     }
 }

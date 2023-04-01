@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { CompanionInterface } from '../../../../../../core/chat/services/data/chat.data';
 import { profilePhotoPlaceholder } from '../../../../../../core/profile/core/data/profile-photo-placeholder';
+import { NewProfileReview } from '../../../../../../core/profile/core/data/profile-review.interface';
+import { convertToCompanion } from '../../../../../../core/profile/core/util/convert-companion';
 import { getProfileFullName } from '../../../../../../core/profile/core/util/profile-representation';
 import { TaskInterface } from '../../../../../../core/task/data/task.interface';
 import { ExecutorFacade } from '../../../../../../core/task/facade/executor.facade';
@@ -21,21 +23,21 @@ export class ExecutorTaskActionsComponent implements OnInit {
     authorCompanion: CompanionInterface;
 
     constructor(
-        private facade: ExecutorFacade,
+        public facade: ExecutorFacade,
     ) {
     }
 
     ngOnInit() {
         this.canAcceptOffer$ = this.facade.canAcceptOffer$(this.task);
         this.canGoChat$ = this.facade.canGoChat$(this.task);
-        this.authorCompanion = {
-            id: this.task.author.id,
-            name: getProfileFullName(this.task.author),
-            photoPath: this.task.author.photos.find(ph => ph.main)?.path ?? profilePhotoPlaceholder
-        }
+        this.authorCompanion = convertToCompanion(this.task.author)
     }
 
     acceptOffer() {
         this.facade.acceptOffer(this.task);
+    }
+
+    leaveReview(review: NewProfileReview) {
+        this.facade.leaveReview(this.task, review);
     }
 }

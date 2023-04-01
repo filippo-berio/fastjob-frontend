@@ -11,7 +11,6 @@ import { ExecutorTaskList } from '../../../../../../core/task/data/executor-task
 })
 export class ExecutorTasksComponent implements OnInit {
     tasks: ExecutorTaskList;
-    taskList: TaskInterface[];
     loading$: Observable<boolean>;
 
     @Output() openTask = new EventEmitter<TaskInterface>();
@@ -31,13 +30,11 @@ export class ExecutorTasksComponent implements OnInit {
         this.openTask.emit(task);
     }
 
+    getFinishedTasks(): TaskInterface[] {
+        return this.tasks.finished.map(t => t.data);
+    }
+
     private setTasks(tasks: ExecutorTaskList) {
         this.tasks = tasks;
-        this.taskList = [
-            ...tasks.work,
-            ...tasks.offers,
-            ...tasks.matches,
-            ...tasks.swipes,
-        ];
     }
 }

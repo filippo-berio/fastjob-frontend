@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CompanionInterface } from '../../../../../../core/chat/services/data/chat.data';
 import { ProfileInterface } from '../../../../../../core/profile/core/data/profile.interface';
+import { convertToCompanion } from '../../../../../../core/profile/core/util/convert-companion';
 import { TaskInterface } from '../../../../../../core/task/data/task.interface';
 import { AuthorFacade } from '../../../../../../core/task/facade/author.facade';
 
@@ -15,6 +17,7 @@ export class ShowExecutorComponent implements OnInit {
     makeOfferButtonText = 'Назначить исполнителя';
     offerButtonDisabled = false;
     showOfferButton = true;
+    companion: CompanionInterface;
 
     constructor(
         private facade: AuthorFacade,
@@ -31,10 +34,7 @@ export class ShowExecutorComponent implements OnInit {
         if (this.facade.isTaskOffered(this.task, this.executor)) {
             this.disableOfferButton('Оффер отправлен')
         }
-    }
-
-    openChat() {
-        this.facade.openChat(this.executor, this.task);
+        this.companion = convertToCompanion(this.executor);
     }
 
     offerTask() {

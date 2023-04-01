@@ -1,0 +1,31 @@
+<ion-modal [isOpen]="opened"
+           (didDismiss)="opened = false"
+           [initialBreakpoint]="0.95"
+           [breakpoints]="[0, 0.95]"
+           [animated]="true"
+>
+    <ng-template>
+        <div class="ion-padding">
+            <form [formGroup]="form">
+                <p class="text-md">{{title}}</p>
+
+                <div class="grid gap-2 flex items-center">
+                    <tui-rating class="yellow"
+                                formControlName="rating"
+                    ></tui-rating>
+
+                    <tui-text-area formControlName="comment" tuiTextfieldSize="l">
+                        Комментарий
+                    </tui-text-area>
+                </div>
+
+                <button tuiButton
+                        *ngIf="form.valid"
+                        (click)="onSubmit()"
+                >
+                    {{submitText}}
+                </button>
+            </form>
+        </div>
+    </ng-template>
+</ion-modal>

@@ -8,6 +8,17 @@
                       (click)="acceptOffer()"
                       *ngIf="canAcceptOffer$ | async"
     >Принять оффер</fj-circle-button>
+
+    <fj-circle-button icon="mail-outline"
+                      (click)="reviewModal.open()"
+                      *ngIf="facade.canLeaveReview$(task) | async"
+    >Оставить отзыв</fj-circle-button>
 </div>
 
 <fj-chat-modal #chatModal></fj-chat-modal>
+
+<fj-leave-review-modal #reviewModal
+                       title="Оставьте отзыв об авторе задачи"
+                       submitText="Сохранить отзыв"
+                       (submit)="leaveReview($event)"
+></fj-leave-review-modal>

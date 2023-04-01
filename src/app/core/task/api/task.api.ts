@@ -26,22 +26,30 @@ export class TaskApi {
         return this.http.get<ExecutorTaskList>(this.backend + '/api/executor/tasks');
     }
 
-    makeOffer(task: TaskInterface, executor: ProfileInterface): Observable<SuccessResponseInterface> {
+    makeOffer(taskId: number, executor: ProfileInterface): Observable<SuccessResponseInterface> {
         return this.http.post<SuccessResponseInterface>(this.backend + '/api/task/offer', {
-            taskId: task.id,
+            taskId,
             executorId: executor.id
         });
     }
 
-    acceptOffer(task: TaskInterface): Observable<ExecutorTaskList> {
+    acceptOffer(taskId: number): Observable<ExecutorTaskList> {
         return this.http.post<ExecutorTaskList>(this.backend + '/api/executor/accept-offer', {
-            taskId: task.id
+            taskId
         });
     }
 
-    finishTask(task: TaskInterface, rating: number, comment?: string): Observable<TaskInterface[]> {
+    finishTask(taskId: number, rating: number, comment?: string): Observable<TaskInterface[]> {
         return this.http.post<TaskInterface[]>(this.backend + '/api/author/finish-task', {
-            taskId: task.id,
+            taskId,
+            rating,
+            comment
+        });
+    }
+
+    leaveTaskAuthorReview(taskId: number, rating: number, comment?: string): Observable<SuccessResponseInterface> {
+        return this.http.post<SuccessResponseInterface>(this.backend + '/api/executor/review', {
+            taskId,
             rating,
             comment
         });

@@ -14,6 +14,9 @@ import {
 import {
     ExecutorTaskTypeListComponent
 } from './components/executor/executor-task-type-list/executor-task-type-list.component';
+import {
+    LeaveReviewModalComponent
+} from './components/shared/leave-review/leave-review-modal.component';
 import { TaskListModalComponent } from './components/shared/task-list-modal/task-list-modal.component';
 import { TaskListComponent } from './components/shared/task-list/task-list.component';
 import { TaskPhotosSliderComponent } from './components/shared/task-photos-slider/task-photos-slider.component';
@@ -62,6 +65,7 @@ const routes: Routes = [
         ExecutorTaskListItemComponent,
         TaskListModalComponent,
         ExecutorTaskTypeListComponent,
+        LeaveReviewModalComponent,
     ],
     imports: [
         CommonModule,

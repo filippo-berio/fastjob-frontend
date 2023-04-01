@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { NewProfileReview } from '../../profile/core/data/profile-review.interface';
+import { ProfileStore } from '../../profile/core/store/profile.store';
 import { TaskApi } from '../api/task.api';
 import { BehaviorSubject, filter, finalize, map, Observable, tap } from 'rxjs';
 import { ExecutorTaskList } from '../data/executor-task-list.interface';
@@ -18,6 +20,7 @@ export class ExecutorFacade {
 
     constructor(
         private taskApi: TaskApi,
+        private profileStore: ProfileStore,
     ) {
     }
 
@@ -36,12 +39,35 @@ export class ExecutorFacade {
     }
 
     acceptOffer(task: TaskInterface) {
-        this.taskApi.acceptOffer(task).subscribe(tasks => this._tasks$.next(tasks));
+        this.taskApi.acceptOffer(task.id).subscribe(tasks => this._tasks$.next(tasks));
     }
 
     canGoChat$(task: TaskInterface): Observable<boolean> {
         return this._tasks$.pipe(
             map(tasks => !tasks!.swipes.find(t => t.id === task.id))
         );
+    }
+
+    canLeaveReview$(task: TaskInterface): Observable<boolean> {
+        return this._tasks$.pipe(
+            map(tasks => !tasks!.finished.find(t => t.data.id === task.id)!.review)
+        )
+    }
+
+    leaveReview(task: TaskInterface, review: NewProfileReview) {
+        this.taskApi.leaveTaskAuthorReview(task.id, review.rating, review.comment).subscribe(() => {
+            const tasks = this._tasks$.value!;
+            tasks.finished.forEach(t => {
+                if (t.data.id === task.id) {
+                    t.review = {
+                        rating: review.rating,
+                        comment: review.comment,
+                        target: task.author,
+                        author: this.profileStore.profile$.value!
+                    };
+                }
+            })
+            this._tasks$.next(tasks)
+        });
     }
 }

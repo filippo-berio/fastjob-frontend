@@ -21,4 +21,5 @@ export interface TaskInterface {
     status: TaskStatus;
     photos: string[];
     address?: Address;
+    canLeaveReview?: boolean;
 }

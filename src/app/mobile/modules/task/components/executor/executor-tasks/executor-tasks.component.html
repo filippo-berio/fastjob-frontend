@@ -11,25 +11,30 @@
         <div class="grid">
             <div class="bg-white shadow overflow-hidden rounded-xl">
                 <ul role="list" class="divide-y divide-gray-200">
+                    <fj-executor-task-type-list title="Выполненные"
+                                                icon="checkmark-circle-outline"
+                                                [tasks]="getFinishedTasks()"
+                                                (click)="listModal.open(getFinishedTasks(), 'Завершенные задачи. Оставьте отзыв их авторам.')"
+                    ></fj-executor-task-type-list>
                     <fj-executor-task-type-list title="В работе"
                                                 icon="construct-outline"
                                                 [tasks]="tasks.work"
-                                                (click)="listModal.open(tasks.work, 'Задачи, взятые в работу')"
+                                                (click)="listModal.open(tasks.work, 'Задачи, взятые в работу.')"
                     ></fj-executor-task-type-list>
                     <fj-executor-task-type-list title="Офферы"
                                                 icon="mail-outline"
                                                 [tasks]="tasks.offers"
-                                                (click)="listModal.open(tasks.offers, 'Авторы этих задач готовы передать их вам в работу')"
+                                                (click)="listModal.open(tasks.offers, 'Авторы этих задач готовы передать их вам в работу.')"
                     ></fj-executor-task-type-list>
                     <fj-executor-task-type-list title="Метчи"
                                                 icon="people-circle-outline"
                                                 [tasks]="tasks.matches"
-                                                (click)="listModal.open(tasks.matches, 'Вы понравились авторам этих задач, открывайте чат и договаривайтесь о деталях')"
+                                                (click)="listModal.open(tasks.matches, 'Вы понравились авторам этих задач. Открывайте чат и договаривайтесь о деталях.')"
                     ></fj-executor-task-type-list>
                     <fj-executor-task-type-list title="Свайпы"
                                                 icon="thumbs-up-outline"
                                                 [tasks]="tasks.swipes"
-                                                (click)="listModal.open(tasks.swipes, 'Задачи, понравившиеся вам')"
+                                                (click)="listModal.open(tasks.swipes, 'Вам понравились эти задачи.')"
                     ></fj-executor-task-type-list>
                 </ul>
             </div>
