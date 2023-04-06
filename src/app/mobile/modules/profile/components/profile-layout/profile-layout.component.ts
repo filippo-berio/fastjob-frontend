@@ -15,6 +15,7 @@ export class ProfileLayoutComponent implements OnInit {
 
     profileRepresentation: string;
     mainPhotoPath: string;
+    rating?: number;
 
     constructor() {
     }
@@ -22,6 +23,12 @@ export class ProfileLayoutComponent implements OnInit {
     ngOnInit() {
         this.profileRepresentation = getProfileRepresentation(this.profile);
         this.mainPhotoPath = getProfileMainPhotoPath(this.profile) ?? profilePhotoPlaceholder;
+        if (this.profile.reviews.length) {
+            this.rating = this.profile.reviews
+                .map(r => r.rating)
+                .reduce((a, b) => a + b)
+                / this.profile.reviews.length;
+        }
     }
 
 

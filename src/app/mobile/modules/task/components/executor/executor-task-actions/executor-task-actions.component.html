@@ -1,18 +1,24 @@
-<div class="flex justify-around">
-    <fj-circle-button icon="chatbubble-ellipses-outline"
-                      (click)="chatModal.open(authorCompanion)"
-                      *ngIf="canGoChat$ | async"
-    >Перейти в чат</fj-circle-button>
+<div class="flex grid">
+    <p *ngIf="facade.taskReview$(task) | async">
+        Вы поставили {{(facade.taskReview$(task) | async)?.rating}} звезд
+    </p>
 
-    <fj-circle-button icon="mail-outline"
-                      (click)="acceptOffer()"
-                      *ngIf="canAcceptOffer$ | async"
-    >Принять оффер</fj-circle-button>
+    <div class="flex justify-around">
+        <fj-circle-button icon="chatbubble-ellipses-outline"
+                          (click)="chatModal.open(authorCompanion)"
+                          *ngIf="canGoChat$ | async"
+        >Перейти в чат</fj-circle-button>
 
-    <fj-circle-button icon="mail-outline"
-                      (click)="reviewModal.open()"
-                      *ngIf="facade.canLeaveReview$(task) | async"
-    >Оставить отзыв</fj-circle-button>
+        <fj-circle-button icon="mail-outline"
+                          (click)="acceptOffer()"
+                          *ngIf="canAcceptOffer$ | async"
+        >Принять оффер</fj-circle-button>
+
+        <fj-circle-button icon="mail-outline"
+                          (click)="reviewModal.open()"
+                          *ngIf="facade.canLeaveReview$(task) | async"
+        >Оставить отзыв</fj-circle-button>
+    </div>
 </div>
 
 <fj-chat-modal #chatModal></fj-chat-modal>

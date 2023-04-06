@@ -1,9 +1,18 @@
 <div class="ion-padding mt-3">
     <div class="grid gap-4 mb-4">
-        <div>
+        <div class="gap-2">
             <p class="text-2xl">{{task.title}}</p>
             <p class="text-xl text-gray-600">{{task.price | taskPrice }}</p>
-            <p class="text-sm pt-1 text-gray-500">{{task.createdAt | date : 'MMM d, HH:mm' }}</p>
+            <div class="flex py-2 gap-1 items-center"
+                 (click)="authorModal.open(task.author)"
+            >
+                <fj-profile-icon [profile]="task.author"
+                                 size="xs"
+                ></fj-profile-icon>
+                <span class="text-sm">{{task.author.firstName}}</span>
+            </div>
+            <p class="text-sm text-gray-500">{{task.createdAt | date : 'MMM d, HH:mm' }}</p>
+
         </div>
 
         <ng-template dynamic></ng-template>
@@ -26,3 +35,5 @@
     </div>
 
 </div>
+
+<fj-show-profile-modal #authorModal></fj-show-profile-modal>

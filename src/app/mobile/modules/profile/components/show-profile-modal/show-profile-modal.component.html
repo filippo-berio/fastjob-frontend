@@ -1,0 +1,12 @@
+<ion-modal [isOpen]="opened"
+           [initialBreakpoint]="0.7"
+           [breakpoints]="[0, .3, .7]"
+           (didDismiss)="opened = false"
+           *ngIf="opened"
+>
+    <ng-template>
+        <div class="ion-padding">
+            <fj-show-profile [profile]="profile"></fj-show-profile>
+        </div>
+    </ng-template>
+</ion-modal>
